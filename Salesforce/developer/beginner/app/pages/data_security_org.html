@@ -1,0 +1,238 @@
+<div class="unit-content">
+<body id="data_security_org_learning_objectives"><a name="data_security_org_learning_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you'll be able to:<ul class="ul bulletList">
+<li class="li">Create, view, and manage users.</li>
+<li class="li">Set password policies.</li>
+<li class="li">Limit the IP addresses from which users can log in.</li>
+<li class="li">Limit the times at which users can log in.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="data_security_org_intro" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security_org_intro"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Control Access to the Organization</span></h2>
+<div class="body">
+<p class="p">At the highest level, you can secure access to your organization data by managing
+                        authorized users, setting password policies, and limiting when and from
+                        where users can log in. This ensures that only employees who meet certain
+                        criteria can log in to the organization, reducing the risk of users from
+                        outside your company gaining access to data.</p>
+<p class="p">Watch this video to get an overview of the different ways to manage organization
+                        access.</p>
+<p class="p"><iframe allowfullscreen="1" class="doc_embedded_video" frameborder="0" height="360" mozallowfullscreen="1" src="//play.vidyard.com/bCN1I-5LGbzPMQRDLlD4hw" webkitallowfullscreen="1" width="640"></iframe>
+</p>
+</div>
+</div>
+<div class="topic nested0" id="data_security_org_users" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security_org_users"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3"><span class="ph" id="topic-title"><a name="topic-title"></a>Create and Manage Users</span></h2>
+<div class="body">
+<p class="p">Creating and managing the users in your organization is a critical task.
+                        Salesforce simplifies user management by allowing administrators to create
+                        single or multiple users in just a few clicks. In Salesforce, every user is
+                        identified by a username, a password, and a single profile. Together with
+                        other settings, the profile determines what tasks users can perform, what
+                        data they see, and what they can do with the data.</p>
+<p class="p">Creating a user is as simple as entering a username, alias, and email, and
+                        selecting a role, license, and profile. Many extra options are available
+                        when creating a user. However, with just a few selections, you can create a
+                        new user or multiple users. Salesforce auto-generates a password and
+                        notifies new users immediately. Users can change or add to their own
+                        personal information after they log in.</p>
+<div class="p">To view and manage the users in your organization, from Setup, click <span class="ph menucascade"><strong class="ph uicontrol">Manage Users</strong> | <strong class="ph uicontrol">Users</strong></span>. The user list shows all the users in your organization. From
+                        the list, you can:<ul class="ul bulletList">
+<li class="li">Create one or more users.</li>
+<li class="li">Reset passwords for selected users.</li>
+<li class="li">View a user's detail page by clicking the name, alias, or
+                                        username.</li>
+<li class="li">Edit a user’s details. </li>
+</ul>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading4">Creating a User</h3>
+<div class="p">To add users:<ol class="ol enumList">
+<li class="li">From Setup, enter <kbd class="ph userinput">Users</kbd> in the
+                                                  <span class="keyword parmname">Quick Find</span> box, then select
+                                                  <strong class="ph uicontrol">Users</strong>.</li>
+<li class="li">Click <strong class="ph uicontrol">New User</strong> to add a single user or
+                                                click <strong class="ph uicontrol">Add Multiple Users</strong> to
+                                                add up to ten users at a time.<div class="fig fignone">
+<span class="image image-block"><img alt="Diagram of the relationship between the Position and Job Application custom objects in a record detail page" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us46c4a8898613a3db32997b0095fe8a75.png"/></span>
+</div>
+</li>
+<li class="li">Enter each user’s name, email address, and a unique username in
+                                        the form of an email address. By default, the username is
+                                        the same as the email address.</li>
+<li class="li">Select the user license you want to associate with the users you
+                                                create (the license determines which profiles are
+                                                available for each user).</li>
+<li class="li">Select a profile, which specifies the user’s minimum permissions
+                                        and access settings.</li>
+<li class="li">Select <span class="keyword parmname">Generate passwords and notify user via
+                                                  email</span> to email a login name and
+                                                temporary password to each new user. </li>
+<li class="li">Click <strong class="ph uicontrol">Save</strong>. </li>
+</ol>
+</div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading5">Deactivating or Freezing a User</h3>
+<p class="p">You can't delete a user, but you can deactivate an account so a user
+                                can’t log in.</p>
+<div class="p">
+<ol class="ol enumList">
+<li class="li">From Setup, enter <kbd class="ph userinput">Users</kbd> in the
+                                                  <span class="keyword parmname">Quick Find</span> box, then select
+                                                  <strong class="ph uicontrol">Users</strong>.</li>
+<li class="li">Click <strong class="ph uicontrol">Edit</strong> next to a user’s
+                                                name.</li>
+<li class="li">Deselect the Active checkbox and click
+                                                  <strong class="ph uicontrol">Save</strong>. </li>
+</ol>
+</div>
+<p class="p">Sometimes you can’t immediately deactivate an account (such as when a
+                                user is selected in a custom hierarchy field). To prevent users from
+                                logging in to your organization while you perform the steps to
+                                deactivate them, you can freeze user accounts.</p>
+<div class="p">
+<ol class="ol enumList">
+<li class="li">From Setup, enter <kbd class="ph userinput">Users</kbd> in the
+                                                  <span class="keyword parmname">Quick Find</span> box, then select
+                                                  <strong class="ph uicontrol">Users</strong>.</li>
+<li class="li">Click the username of the user whose account you want to
+                                                freeze.</li>
+<li class="li">Click <strong class="ph uicontrol">Freeze</strong>. </li>
+</ol>
+</div>
+<p class="p">Deactivated and frozen users lose access to any records that are manually
+                                shared with them, or records that are shared with them as team
+                                members. However, you can still transfer this data to other users
+                                and view the names on the Users page. </p>
+<p class="p">Watch this video for an overview of deactivating a user.</p>
+<p class="p"><iframe allowfullscreen="1" class="doc_embedded_video" frameborder="0" height="360" mozallowfullscreen="1" src="//play.vidyard.com/a2dlF9wVpM3oKcDh4XaD3A" webkitallowfullscreen="1" width="640"></iframe>
+</p>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading6">Setting Password Policies</h3>
+<div class="p">You can configure several settings to ensure that your users’
+                                passwords are strong and secure: <ul class="ul bulletList">
+<li class="li">Password policies—set password and login
+                                                policies, such as specifying an amount of time
+                                                before all users’ passwords expire and the
+                                                level of complexity required for passwords.</li>
+<li class="li">User password expiration—expire the passwords for
+                                                all the users in your organization, except for users
+                                                with “Password Never Expires”
+                                                permission.</li>
+<li class="li">User password resets—reset the password for
+                                                specified users.</li>
+<li class="li">Login attempts and lockout periods—if a user is
+                                                locked out due to too many failed login attempts,
+                                                you can unlock the person’s access.</li>
+</ul>
+</div>
+<div class="p">To set password and login policies:<ol class="ol enumList">
+<li class="li">From Setup, enter <kbd class="ph userinput">Password</kbd> in the
+                                                  <span class="keyword parmname">Quick Find</span> box, then select
+                                                  <strong class="ph uicontrol">Password Policies</strong>.<span class="image image-block"><img alt="Diagram of the relationship between the Position and Job Application custom objects in a record detail page" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us5a71e3cc03b1fd16460d81f16ee9232e.png"/></span></li>
+<li class="li">Customize the password settings. The options you can set include:<ul class="ul bulletList">
+<li class="li">password length</li>
+<li class="li">password complexity (whether to require alpha,
+                                                  numeric, uppercase, lowercase, or special
+                                                  characters)</li>
+<li class="li">number of days for which passwords are
+                                                  valid</li>
+<li class="li">maximum invalid login attempts</li>
+</ul>
+</li>
+<li class="li">Customize the forgotten password and locked account
+                                                assistance information.</li>
+<li class="li">Click <strong class="ph uicontrol">Save</strong>. </li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="data_security_org_ip_address" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security_org_ip_address"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading7"><span class="ph" id="topic-title"><a name="topic-title"></a>Restrict Login Access by IP Address</span></h2>
+<div class="body">
+<p class="p">By default, Salesforce doesn't restrict the location or the times for login
+                        access. However, for added security, you can restrict both of these. For
+                        example, you might want to restrict the allowed range of IP addresses to
+                        those inside your corporate firewall, so employees can’t log in from other
+                        locations. </p>
+<p class="p">You can specify an IP address range for the entire organization or for specific
+                        user profiles, but the behavior is very different for each option. If you
+                        set the login IP range: </p>
+<ul class="ul bulletList">
+<li class="li">at the organization level—users who log in outside the set range
+                                are shown a login challenge. If they complete the challenge
+                                question, typically by entering an activation code sent to their
+                                mobile device or email address, login access is granted. This method
+                                does not restrict access, entirely, for users outside of the set IP
+                                range. The set IP range is called the “trusted” IP range.</li>
+<li class="li">at the profile level—users outside the permitted range are always
+                                denied access.</li>
+</ul>
+<div class="p">To set a trusted login IP address range for the entire organization:<ol class="ol enumList">
+<li class="li">From Setup, enter <kbd class="ph userinput">Network Access</kbd> in the <span class="keyword parmname">Quick Find</span> box, then select <strong class="ph uicontrol">Network Access</strong>.</li>
+<li class="li">Click <strong class="ph uicontrol">New</strong> in the Login IP Range related
+                                        list.</li>
+<li class="li"> Enter the start and end point of the range of trusted IP
+                                        addresses.</li>
+<li class="li">Click <strong class="ph uicontrol">Save</strong>. </li>
+</ol>
+</div>
+<div class="p">To restrict the login IP address range for a profile:<ol class="ol enumList">
+<li class="li">From Setup, enter <kbd class="ph userinput">Profiles</kbd> in the <span class="keyword parmname">Quick Find</span> box, then select <strong class="ph uicontrol">Profiles</strong>.</li>
+<li class="li">Click the name of the profile you want to edit.</li>
+<li class="li">Click New in the Login IP Range related list.<span class="image image-block"><img alt="Diagram of the relationship between the Position and Job Application custom objects in a record detail page" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us48b3832914a6b615ba2ef40a80867a0e.png"/></span></li>
+<li class="li"> Enter the start and end point of the range of allowed IP
+                                        addresses.</li>
+<li class="li">Click <strong class="ph uicontrol">Save</strong>. </li>
+</ol>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="data_security_org_login_time" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security_org_login_time"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading8"><span class="ph" id="topic-title"><a name="topic-title"></a>Restrict Login Access by Time</span></h2>
+<div class="body">
+<p class="p">For each profile, you can
+                        specify the hours when users can log in. For example, for employees who only
+                        need to access customer data during business hours, you can deny login
+                        access during evening hours and weekends.</p>
+<ol class="ol enumList">
+<li class="li"><span class="ph" id="ProfileEditPath"><a name="ProfileEditPath"></a>From Setup, enter <kbd class="ph userinput">Profiles</kbd> in the <span class="keyword parmname">Quick Find</span> box, then select <strong class="ph uicontrol">Profiles</strong>.</span></li>
+<li class="li"><span class="ph" id="SelectAProfile"><a name="SelectAProfile"></a>Select a profile and click its name.</span></li>
+<li class="li">In the profile overview page, scroll down to Login Hours and click
+                                        <strong class="ph uicontrol">Edit</strong>.</li>
+<li class="li">Set the days and hours when users with this profile can log in to the
+                                organization. <p class="p">To allow users to log in at any time, click
+                                                <strong class="ph uicontrol">Clear all times</strong>. To prohibit
+                                        users from using the system on a specific day, set the start
+                                        and end times to the same value.</p>
+<p class="p"><span class="ph" id="HourOverlap"><a name="HourOverlap"></a>If users are logged in when their login hours end,
+                                                they can continue to view their current page, but
+                                                they can’t take any further
+                                action.</span></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="topic nested0" id="data_security_org_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security_org_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading9">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation"><a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=users_licenses_overview.htm&amp;language=en_US" target="_blank" title="HTML (New Window)">Licenses Overview</a></li>
+<li class="li Documentation"><a class="xref" href="https://help.salesforce.com/apex/HTViewHelpDoc?id=controlling_login_access.htm&amp;language=en_US" target="_blank" title="HTML (New Window)">Control Login Access</a></li>
+<li class="li Documentation"><a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=admin_loginrestrict.htm&amp;language=en_US" target="_blank" title="HTML (New Window)">Set Login Restrictions</a></li>
+<li class="li Documentation"><a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=admin_delegate.htm&amp;language=en_US" target="_blank" title="HTML (New Window)">Delegate Administrative
+          Duties</a></li>
+</ul>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>Remember, this module is meant for
+            Salesforce Classic. When you launch your hands-on org, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank">switch to Salesforce Classic</a> to complete this
+            challenge.</p></div></div></div></div></div>
+</div>
+</div>
+</body></div>

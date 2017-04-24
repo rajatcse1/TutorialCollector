@@ -1,0 +1,510 @@
+<div class="unit-content">
+<body id="flow_learning_objectives"><a name="flow_learning_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body conbody">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you'll be able to: <ul class="ul bulletList">
+<li class="li">Define what a flow is and what it’s comprised of.</li>
+<li class="li">Describe what types of business processes you should use a flow
+                                        for.</li>
+<li class="li">Build a flow that creates an account, a contact, and an
+                                        opportunity.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="flow_intro" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="flow_intro"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Introduction to Visual Workflow, the Cloud 
+                Flow Designer 
+                and Flows</span></h2>
+<div class="body conbody">
+<p class="p">You may have heard several terms used interchangeably when referring to flows.
+                        Before we begin, let’s take a minute to define each of them and dispel some
+                        confusion.</p>
+<ul class="ul bulletList">
+<li class="li"><strong class="ph b">Visual Workflow</strong>—the product that encompasses the process
+                                of designing, managing, and running flows. If you’re not sure about
+                                the difference between Visual Workflow and workflow rules, check out
+                                this <a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=vpm_faq_workflow_comparing.htm&amp;language=en_US" target="_blank">help topic</a>.</li>
+<li class="li"><strong class="ph b">Cloud Flow Designer</strong>—a point-and-click tool that you can use to
+                                design flows.</li>
+<li class="li"><strong class="ph b">Flow</strong>—an application that automates a process by
+                                collecting, updating, editing, and creating Salesforce data. Flows
+                                can execute logic, interact with the Salesforce database, call Apex
+                                classes, and guide users through screens for collecting and updating
+                                data. Most often, flows are built by using the Cloud Flow Designer.</li>
+</ul>
+<p class="p">In short, <dfn class="term">Visual Workflow</dfn> is the product name, <dfn class="term">Cloud Flow Designer</dfn> is the tool, and <dfn class="term">flows</dfn> are the thing that you
+                        create. </p>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading3">Should I Create a Flow?</h3>
+<p class="p">We recommend starting with the Process Builder whenever possible. The user interface is easier to use than the
+                                Cloud Flow Designer. The best way to figure out whether you can start with the
+                                Process Builder is to ask yourself, “Do I need to get information
+                                from a user?”</p>
+<ul class="ul bulletList">
+<li class="li" dir="ltr">If your answer is <strong class="ph b">Yes</strong>, use Visual
+                                                Workflow.<p class="p">An example of a process that requires
+                                                user interaction is a customer service call script.
+                                                The process for helping a customer troubleshoot
+                                                varies based on the product that they’re using, so
+                                                the customer service representative needs to provide
+                                                the product before he/she knows how to proceed.
+                                        </p>
+</li>
+<li class="li">If your answer is <strong class="ph b">No</strong> (i.e. it can run completely in the
+                                        background), start with the Process Builder. If your process is too complex for what the Process Builder allows you to do, then use Visual Workflow. <p class="p">For
+                                                example, your process doesn’t require user
+                                                interaction but it needs to evaluate the record
+                                                against multiple levels of criteria. When a new
+                                                contact is created or updated, make sure that the
+                                                address is complete. If it isn’t complete, request
+                                                the full address. However, some contacts have opted
+                                                out of phone calls, so check whether the Do Not Call
+                                                checkbox is selected. If it is selected, email the
+                                                contact with a request for the full address. If it
+                                                isn’t selected, create a task for the contact owner
+                                                to follow up with the contact and update the
+                                                address. </p>
+</li>
+</ul>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading4">Getting to Know the Cloud Flow Designer</h3>
+<p class="p">When you design flows, you work from the Cloud Flow Designer. For a quick tour of the user interface, watch this video.</p>
+<p class="p">
+<iframe allowfullscreen="1" class="doc_embedded_video" frameborder="0" height="360" mozallowfullscreen="1" src="//play.vidyard.com/f5EHUD2oiXr6t3_J6wW2tw" webkitallowfullscreen="1" width="640"></iframe></p>
+<p class="p">If you don’t feel like watching a video, here’s a short summary.</p>
+<div class="fig fignone">
+<span class="image image-block"><img alt="Screenshot of the Cloud Flow Designer's user interface with numbers pointing at the button bar, left side panel, and canvas" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us36a57d4ce97d87c1a180ace6ad70b51a.png"/></span>
+</div>
+<ul class="ul bulletList">
+<li class="li">Manage the flow while you’re designing from the button bar
+                                                <strong class="ph b">(1)</strong>.<ul class="ul bulletList">
+<li class="li" dir="ltr">Test how the flow works as you’ve
+                                                  designed it with <strong class="ph uicontrol">Run</strong>.
+                                                  Always save first, though. This button runs the
+                                                  last-saved version of the flow that you have
+                                                  open.</li>
+<li class="li" dir="ltr">Return to Setup with
+                                                  <strong class="ph uicontrol">Close</strong>.</li>
+<li class="li" dir="ltr">Manage the flow’s properties, such as
+                                                  its name, description, and interview label, with
+                                                  <strong class="ph uicontrol">Edit Properties</strong>.</li>
+<li class="li" dir="ltr">Monitor the flow version’s status, as
+                                                  well as whether it has any errors or warnings,
+                                                  with the indicator on the top right corner.</li>
+</ul>
+</li>
+<li class="li">The left-side panel <strong class="ph b">(2)</strong> contains three tabs.<ul class="ul bulletList">
+<li class="li" dir="ltr">The <strong class="ph b">Palette</strong> houses all the
+                                                  elements that you can add to your flow.
+                                                </li>
+<li class="li" dir="ltr">The <strong class="ph b">Resources</strong> tab houses all
+                                                  the resources that you can add to your flow.
+                                                </li>
+<li class="li" dir="ltr">The <strong class="ph b">Explorer</strong> shows all of the
+                                                  elements and resources that you’ve already added
+                                                  to this flow.</li>
+</ul>
+</li>
+<li class="li">The diagram of your flow appears on the <strong class="ph b">canvas (3)</strong>.</li>
+</ul>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading5">Flow Building Blocks</h3>
+<div class="p">
+<p class="p">Every flow is made up of the same three building blocks.</p>
+<span class="image image-block"><img alt="Elements, connectors, and resources in a flow" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us63733006d99f022e81b85f803976953a.png"/></span>
+<ul class="ul bulletList">
+<li class="li" dir="ltr"><strong class="ph b">Elements (1)</strong> are what appear on the canvas. To
+                                        add an element to the canvas, drag it there from the
+                                        palette. Each element represents an action that the flow can
+                                        execute, such as looking up a specific account (Record
+                                        Lookup) or collecting input from flow users (Screen).</li>
+<li class="li" dir="ltr"><strong class="ph b">Connectors (2)</strong> define the path that the flow
+                                        takes at runtime. They tell the flow which element is
+                                        second, third, fourth, etc. </li>
+<li class="li" dir="ltr"><strong class="ph b">Resources (3)</strong> are containers that represent a
+                                        given value, such as field values or formulas. You can
+                                        reference resources throughout your flow. For example, look
+                                        up an account’s ID, store that ID in a variable, and then
+                                        update that account by referencing the stored ID. </li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="topic task nested0" id="flow_defining_path" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="flow_defining_path"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading6"><span class="ph" id="topic-title"><a name="topic-title"></a>Designing a Flow</span></h2>
+<div class="body taskbody">
+<div class="section context">
+<p class="p">For a quick introduction to the process of creating a flow, watch this video.</p>
+<p class="p">
+<iframe allowfullscreen="1" class="doc_embedded_video" frameborder="0" height="360" mozallowfullscreen="1" src="//play.vidyard.com/WYDiNNK0SVJH6Kae42t5Mw" webkitallowfullscreen="1" width="640"></iframe>
+</p>
+<p class="p">We’re going to walk you through designing a flow to streamline the process of creating
+        accounts. Depending on your org’s page layouts, accounts can have lots of fields. All those
+        fields can overwhelm sales representatives when they just want to quickly create an account
+        with no bells and whistles.</p>
+<div class="box message confirm"><div class="inner"><div class="bd"><div class="media"><img alt="Tip" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us6da477d97c76333bb64f0d69f440dc0d.gif"/><div class="mediaBd"><h4 class="mbs">Tip</h4><p>
+<ul class="ul bulletList">
+<li class="li" dir="ltr">Draw out your business process before you try to automate it. Doing so makes
+            it easier to configure when you use one of our tools for process automation.</li>
+<li class="li" dir="ltr">When you design a flow that creates records, know which of the object’s
+            fields are required at the field level. The flow doesn’t check for fields required by a
+            page layout. From the flow’s perspective, a field is required if it’s required by the
+              API (standard fields) or has
+              <span class="keyword parmname">Required</span> selected in the field definition (custom fields). If the
+            flow doesn’t supply a value for a required field, the flow fails and the record isn’t
+            saved. The Cloud Flow Designer doesn’t identify API-required fields. <p class="p">If you’re not sure which fields are required, you can look at the
+                <a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.object_reference.meta/object_reference/" target="_blank">Object Reference for Salesforce and Force.com</a> for standard
+              fields and the object’s definition page for custom fields.</p>
+</li>
+</ul>
+</p></div></div></div></div></div>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">From Setup, enter <kbd class="ph userinput">Flows</kbd> in the
+              <span class="keyword parmname">Quick Find</span> box, then select
+          <strong class="ph uicontrol">Flows</strong>, and then click
+            <strong class="ph uicontrol">New Flow</strong>.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Add a screen, where you can collect information from the user who runs the flow.</span>
+<ol class="ol substeps enumList" type="a">
+<li class="li substep">
+<span class="ph cmd">From the Palette, drag a Screen element onto the canvas.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">In the General Info tab, name it <kbd class="ph userinput">New Account</kbd>.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">From the Add a Field tab, double-click <strong class="ph uicontrol">Textbox</strong> and then
+              double-click <strong class="ph uicontrol">Number</strong>.</span>
+<div class="itemgroup info">A textbox and a number field appear in the preview pane on the right. <div class="fig fignone">
+<span class="image image-block"><img alt="Screenshot of the screen element's Add a Field tab" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us689c71ad716ac6d935430f2c3a0c560e.png"/></span>
+</div>
+</div>
+</li>
+<li class="li substep">
+<span class="ph cmd">Select each field in the preview pane and enter the following for each field’s
+              label.</span>
+<div class="itemgroup info">
+<ul class="ul bulletList">
+<li class="li">Textbox: <kbd class="ph userinput">Account Name</kbd></li>
+<li class="li">Number: <kbd class="ph userinput">Phone Number</kbd></li>
+</ul>
+</div>
+</li>
+<li class="li substep">
+<span class="ph cmd">Click <strong class="ph uicontrol">OK</strong> to return to the canvas.</span>
+</li>
+</ol>
+</li>
+<li class="li step">
+<span class="ph cmd">Create an account by using the values that the user entered for the screen.</span>
+<ol class="ol substeps enumList" type="a">
+<li class="li substep">
+<span class="ph cmd">From the Palette, drag a Record Create element to your canvas.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Name it <kbd class="ph userinput">Create Account</kbd>.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">In Create, select <span class="ph menucascade"><strong class="ph uicontrol">Standard</strong> | <strong class="ph uicontrol">Account</strong></span>.</span>
+<div class="itemgroup info">When you create other flows, you can always choose other objects.</div>
+</li>
+<li class="li substep">
+<span class="ph cmd">Map the screen input fields to account fields. </span>
+<div class="itemgroup info">
+<div class="data colSort"><table class="featureTable sort_table" summary="">
+<thead align="left" class="thead sorted">
+<tr>
+<th class="featureTableHeader " id="d134226e482">For Field, select...</th>
+<th class="featureTableHeader " id="d134226e485">For Value, select...</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr>
+<td class="entry" data-title="For Field, select..." headers="d134226e482">Standard | Name</td>
+<td class="entry" data-title="For Value, select..." headers="d134226e485">Screen Input Fields | Account_Name</td>
+</tr>
+<tr>
+<td class="entry" data-title="For Field, select..." headers="d134226e482">Standard | Phone</td>
+<td class="entry" data-title="For Value, select..." headers="d134226e485">Screen Input Fields | Phone_Number</td>
+</tr>
+</tbody>
+</table></div>
+<div class="p">Here’s how the Assignments section of your Record Create element looks. <div class="fig fignone">
+<span class="image image-block"><img alt="Screenshot of the Record Create element's Assignments section" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-used09ed2a441a6f81fb6c3d5ab72432ad.png"/></span>
+</div>
+</div>
+</div>
+</li>
+<li class="li substep">
+<span class="ph cmd">Click <strong class="ph uicontrol">OK</strong>.</span>
+</li>
+</ol>
+</li>
+<li class="li step">
+<span class="ph cmd">Connect the two elements together by clicking the node at the bottom of the Screen
+          element and dragging the connector to the Record Create element.</span>
+<div class="itemgroup info">As explained earlier, connectors tell the flow which element to go to next. </div>
+</li>
+<li class="li step">
+<span class="ph cmd">Identify which element the flow should start at.</span>
+<div class="itemgroup info">Because the Record Create element uses the values entered in the screen’s fields, the
+          Screen element must come first.</div>
+<ol class="ol substeps enumList" type="a">
+<li class="li substep">
+<span class="ph cmd">Hover over the Screen element’s top right corner.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Click <img alt="Set a Start element" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us94218623f09ada6a940dbd969a83c538.png"/>.</span>
+<div class="itemgroup info">
+<div class="fig fignone">
+<p class="p">
+<span class="image image-block"><img alt="Screenshot that points at the Start icon" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usa6b9b13816253ccf50861760114616ae.png"/></span>
+</p>
+</div>
+</div>
+</li>
+</ol>
+</li>
+<li class="li step">
+<span class="ph cmd">Save the flow, and name it <kbd class="ph userinput">Quick Account</kbd>. </span>
+<div class="itemgroup info">
+<p class="p">The flow’s properties includes some other information, like <span class="keyword parmname">Flow
+              Type</span>. Leave the defaults selected. </p>
+</div>
+</li>
+</ol>
+<div class="section result"><div class="p">Here’s what the final flow looks like. <div class="fig fignone">
+<span class="image image-block"><img alt="Screenshot of the final flow" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us6cd1323fd58dc3902cdae567e6ef8ed3.png"/></span>
+</div>
+</div></div>
+</div>
+</div>
+<div class="topic task nested0" id="flow_testing" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="flow_testing"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading7"><span class="ph" id="topic-title"><a name="topic-title"></a>Testing Your Flow</span></h2>
+<div class="body taskbody">
+<div class="section prereq p"><div class="p">You’ve created your first flow. Awesome! Now test the flow to make sure it’s working as
+      expected.</div></div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">If you don’t still have the flow open, open it in the Cloud Flow Designer. </span>
+</li>
+<li class="li step">
+<span class="ph cmd">In the button bar, click <strong class="ph uicontrol">Run</strong>.</span>
+<div class="itemgroup stepresult">An instance of the flow, which we call a <dfn class="term">flow interview</dfn>, opens in
+          another tab. You should see the first screen, which requests information for the
+          account.</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Enter a name and phone number for a fake account, and then click
+            <strong class="ph uicontrol">Next</strong>.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Close the tab.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Verify that the test account was created. </span>
+</li>
+</ol>
+</div>
+</div>
+<div class="topic task nested0" id="flow_distributing" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="flow_distributing"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading8"><span class="ph" id="topic-title"><a name="topic-title"></a>Distributing Your Flow</span></h2>
+<div class="body taskbody">
+<div class="section prereq p"><div class="p">Now that you’ve made sure the flow works as designed, distribute it to the right users.
+    </div></div>
+</div>
+<div class="topic task nested1" id="flow_distributing_vf" lang="en-us" xml:lang="en-us"><a name="flow_distributing_vf"></a>
+<h3 class="helpHead3" id="Tdxn4tBK-heading9"><span class="ph" id="topic-title"><a name="topic-title"></a>Distribute Your Flow with Visualforce</span></h3>
+<div class="body taskbody">
+<div class="section context"><div class="p">Flows can be distributed in several ways. The Visual Workflow Guide goes into detail
+      about all the ways you can distribute. Here, we’re going to walk you through just one: using a
+        Visualforce page. When a flow is
+      embedded in a Visualforce page, you can
+      surface it just about anywhere. Some examples:<ul class="ul bulletList">
+<li class="li" dir="ltr">As a tab in a Force.com app</li>
+<li class="li" dir="ltr">In a page layout</li>
+<li class="li" dir="ltr">As a tab in a community or portal</li>
+<li class="li" dir="ltr">In the Salesforce1
+          navigation menu</li>
+</ul>
+<p class="p">The word “Visualforce” might be
+        intimidating, because it is a programmatic feature of Salesforce. But this is really easy.
+        We’ll provide you with three lines of code, and you just have to change one thing to make
+        your Visualforce page work. Then you’ll
+        create a tab with that Visualforce page
+        so that it shows up in the full Salesforce site. </p>
+</div></div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Find your flow’s unique name.</span>
+<ol class="ol substeps enumList" type="a">
+<li class="li substep">
+<span class="ph cmd">If you aren’t already there, open the detail page for the Quick Account flow.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Copy the flow’s <span class="keyword parmname">Unique Name</span>.</span>
+<div class="itemgroup info">
+<div class="fig fignone">
+<span class="image image-block"><img alt="Screenshot pointing to the Unique Name field on the flow detail page" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-use6bf9ec4702b1f7ee84bcd684c3596ac.png"/></span>
+</div>
+</div>
+</li>
+</ol>
+</li>
+<li class="li step">
+<span class="ph cmd">Create a Visualforce page.</span>
+<ol class="ol substeps enumList" type="a">
+<li class="li substep">
+<span class="ph cmd">From Setup, enter <kbd class="ph userinput">Visualforce Pages</kbd> in the <span class="keyword parmname">Quick
+                Find</span> box, then select <strong class="ph uicontrol">Visualforce Pages</strong>. Then
+              click <strong class="ph uicontrol">New</strong>.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Give your page a label.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">In the markup section, add the following code.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:page&gt;
+   &lt;flow:interview name = "YOUR_FLOW" /&gt;
+&lt;/apex:page&gt;</pre></div>
+</div>
+</li>
+<li class="li substep">
+<span class="ph cmd">Replace <var class="keyword varname">YOUR_FLOW</var> with the unique name that you copied earlier.
+            </span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Click <strong class="ph uicontrol">Save</strong>.</span>
+</li>
+</ol>
+</li>
+<li class="li step">
+<span class="ph cmd">Create a tab using that Visualforce page.</span>
+<ol class="ol substeps enumList" type="a">
+<li class="li substep">
+<span class="ph cmd">From Setup, enter <kbd class="ph userinput">Tabs</kbd> in the <span class="keyword parmname">Quick
+                Find</span> box, then select <strong class="ph uicontrol">Tabs</strong>.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Under Visualforce Tabs, click <strong class="ph uicontrol">New</strong>.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">For <span class="keyword parmname">Visualforce Page</span>, select the page you just created.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Give your tab a label.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Choose a tab style.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Click <strong class="ph uicontrol">Next</strong>, <strong class="ph uicontrol">Next</strong>, and
+                <strong class="ph uicontrol">Save</strong>.</span>
+</li>
+</ol>
+</li>
+</ol>
+<div class="section result"><div class="p">You should now see a tab called Quick Account (or whatever name you gave your tab).
+      Click it to see your flow in action!<div class="fig fignone">
+<span class="image image-block"><img alt="Screenshot of the flow appearing in the Quick Account tab" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us71f4b6ab63279640902a5423aab317cd.png"/></span>
+</div>
+</div></div>
+</div>
+</div>
+<div class="topic task nested1" id="flow_distributing_perms" lang="en-us" xml:lang="en-us"><a name="flow_distributing_perms"></a>
+<h3 class="helpHead3" id="Tdxn4tBK-heading10"><span class="ph" id="topic-title"><a name="topic-title"></a>Ensure Users Can Run the Flow</span></h3>
+<div class="body taskbody">
+<div class="section context"><div class="p">Finally, make sure that your users can actually run the flow. For a user to be able to
+      run this flow: <ul class="ul bulletList">
+<li class="li" dir="ltr">The user must have either the “Run Flows” user permission or
+            <span class="keyword parmname">Force.com Flow User</span> selected on their user record.</li>
+<li class="li" dir="ltr">The user must have access to the Visualforce page in which the flow’s
+          embedded. </li>
+<li class="li" dir="ltr">The flow must be active. Only flow creators (aka users with the “Manage
+          Force.com Flow” user permission) can run inactive flows.</li>
+</ul>
+<div class="p">To address the first and second requirements, add the following things to a permission
+        set and assign that permission set to the right users. For details about creating and
+        assigning permission sets, see <a class="xref" href="https://trailhead.salesforce.com/data_security/data_security_objects" target="_blank">Controlling Access to Objects</a>.<ul class="ul bulletList">
+<li class="li" dir="ltr">“Run Flows” user permission</li>
+<li class="li" dir="ltr">The Visualforce page
+            that you created</li>
+</ul>
+</div>
+<p class="p">To address the third requirement, activate the flow. You must be on the flow’s
+        detail page to do so.</p>
+</div></div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">If you aren’t already on the flow’s detail page, navigate there.</span>
+<ol class="ol substeps enumList" type="a">
+<li class="li substep">
+<span class="ph cmd">From Setup, enter <kbd class="ph userinput">Flows</kbd> in the
+              <span class="keyword parmname">Quick Find</span> box, then select
+          <strong class="ph uicontrol">Flows</strong>.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Click the name of the flow that you need to activate.</span>
+</li>
+</ol>
+</li>
+<li class="li step">
+<span class="ph cmd">Activate the appropriate version of the flow.</span>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="topic reference nested0" id="flow_tell_me_more" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="flow_tell_me_more"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading11"><span class="ph" id="topic-title"><a name="topic-title"></a>Tell Me More...</span></h2>
+<div class="body refbody">
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading12">More Flow Terminology</h3>
+<div class="p">Here are a couple more terms that you should know when working with Visual Workflow.<ul class="ul bulletList">
+<li class="li">A <dfn class="term">flow interview</dfn> is a running instance of a flow. When you distribute a
+            flow, users interact with individual interviews of that flow.</li>
+<li class="li">A flow can consist of multiple <dfn class="term">flow versions</dfn>. Once you’ve activated a
+            flow, you can’t make changes to it. You can, however, make the necessary changes to a
+            new version of that flow and later activate the new version.</li>
+</ul>
+</div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading13">Doing More with Flows</h3>
+<p class="p">This unit walked you through a simple example of a flow. You can customize that flow to do
+        much more. For example, design the Quick Account flow so that it gives values for more
+        account fields, like the location or owner. </p>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading14">Deleting Flows</h3>
+<p class="p">To delete an active flow version, first deactivate it. If a
+   flow has any paused or waiting interviews, it can’t be deleted until those interviews are
+   finished or deleted. Flows that have never been activated can be deleted
+  immediately. If you
+        don’t see a Delete button or “Del” link, not enough time has passed since the flow was
+        deactivated.</p>
+</div>
+</div>
+</div>
+<div class="topic reference nested0" id="flow_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="flow_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading15">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body refbody"><div class="section">
+<ul class="ul bulletList">
+<li class="li Documentation"><a class="xref" href="https://appexchange.salesforce.com/listingDetail?listingId=a0N30000009wYVIEA2" target="_blank">Getting Started Pack</a></li>
+<li class="li Documentation"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.salesforce_vpm_guide.meta/salesforce_vpm_guide/vpm_admin_flow_overview.htm" target="_blank">Visual Workflow Guide</a></li>
+<li class="li Documentation"><a class="xref" href="https://success.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F9300000001rzc" target="_blank">Salesforce Workflow Automation
+                          Success Community</a></li>
+<li class="li Documentation"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.salesforce_vpm_guide.meta/salesforce_vpm_guide/vpm_considerations.htm" target="_blank">Flow Limits &amp;
+                          Considerations</a></li>
+</ul>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>Remember, this module is meant for
+            Salesforce Classic. When you launch your hands-on org, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank">switch to Salesforce Classic</a> to complete this
+            challenge.</p></div></div></div></div></div>
+</div>
+</div>
+</div>
+</body></div>

@@ -1,0 +1,220 @@
+<div class="unit-content">
+<body id="schema_builder_learning_objectives"><a name="schema_builder_learning_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you'll be able to: <ul class="ul bulletList">
+<li class="li">Describe the advantages of using Schema Builder for data modeling.</li>
+<li class="li">Use Schema Builder to create a schema for a given object model.</li>
+<li class="li">Use Schema Builder to add a custom object to your schema.</li>
+<li class="li">Use Schema Builder to add a custom field to your schema.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="schema_builder" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="schema_builder"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="SchemaBuilderOverview"><a name="SchemaBuilderOverview"></a>Design Your Own Data Model</span></h2>
+<div class="body"><div class="shortdesc">Schema Builder provides a dynamic environment for viewing and modifying all the
+        objects and relationships in your app. This greatly simplifies the task of designing,
+        implementing, and modifying your data model, or schema. Schema Builder is enabled by default.</div>
+<p class="p">You can view your existing schema and interactively add new custom objects, custom
+            fields, and relationships, simply by dragging and dropping. Schema Builder automatically
+            implements the changes and saves the layout of your schema any time you move an object.
+            This eliminates the need to click from page to page to find the details of a
+            relationship or to add a new custom field to an object in your schema.</p>
+<p class="p"><span class="ph" id="schema_builder_desc"><a name="schema_builder_desc"></a>Schema Builder provides details like the field values,
+                required fields, and how objects are related by displaying lookup and master-detail
+                relationships.</span> You can view the fields and relationships for both standard and
+            custom objects.</p>
+<div class="fig fignone">
+<img alt="Schema Builder interface" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us897ad96136eff9a38ec3897ddbeb0e3d.png"/>
+</div>
+<div class="p" id="schema_builder_list"><a name="schema_builder_list"></a>Schema Builder lets you add the
+            following to your schema:<ul class="ul bulletList">
+<li class="li">Custom objects</li>
+<li class="li">Lookup relationships</li>
+<li class="li">Master-detail relationships</li>
+<li class="li">All custom fields except: Geolocation</li>
+</ul>
+</div>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>You can’t export your schema from Schema Builder (for example, to use the schema in
+            another org).</p></div></div></div></div></div>
+</div>
+</div>
+<div class="topic nested0" id="schema_builder_working" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="schema_builder_working"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3"><span class="ph" id="WorkingSchemaBuilder"><a name="WorkingSchemaBuilder"></a>How Do I Access Schema Builder?</span></h2>
+<div class="body">
+<p class="p">From Setup, enter <kbd class="ph userinput">Schema Builder</kbd> in the <span class="keyword parmname">Quick Find</span>
+      box, then select <strong class="ph uicontrol">Schema Builder</strong>.</p>
+<p class="p">When working with Schema Builder:</p>
+<ul class="ul bulletList">
+<li class="li">Click an object and move it to any space on the canvas. Schema Builder saves the layout of your
+    schema any time you move an object.</li>
+<li class="li">Click <strong class="ph uicontrol">Auto-Layout</strong> to sort the layout of the objects in your schema. <div class="box message confirm"><div class="inner"><div class="bd"><div class="media"><img alt="Important" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usa1b68275bb2e1d6b7c064cb423d787e5.gif"/><div class="mediaBd"><h4 class="mbs">Important</h4><p>When you click <strong class="ph uicontrol">Auto-Layout</strong>, you can’t undo
+    it.</p></div></div></div></div></div>
+</li>
+<li class="li">Click <strong class="ph uicontrol">View Options</strong> to:<ul class="ul bulletList">
+<li class="li"><strong class="ph uicontrol">Display Element Names</strong> if you prefer system
+names, or <strong class="ph uicontrol">Display Element Labels</strong> if you prefer
+text values.</li>
+<li class="li"><strong class="ph uicontrol">Show/Hide Relationships</strong></li>
+<li class="li"><strong class="ph uicontrol">Show/Hide Legend</strong></li>
+</ul>
+</li>
+<li class="li">The <strong class="ph uicontrol">Elements</strong> tab lets you drag and drop new custom objects and fields
+    onto the canvas.</li>
+<li class="li">The Objects tab lets you select objects to display on the canvas.<ul class="ul bulletList">
+<li class="li">Click the drop-down list in the sidebar to filter your list of objects:<ul class="ul bulletList">
+<li class="li">All Objects</li>
+<li class="li">Selected Objects</li>
+<li class="li" id="CRMonlyli"><a name="CRMonlyli"></a><span class="ph" id="CRMOnlyStandard"><a name="CRMOnlyStandard"></a>Standard Objects</span></li>
+<li class="li">Custom Objects</li>
+<li class="li">System Objects <div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>Objects created outside of Schema Builder, such as through an app or
+         the API, don’t automatically
+         display on the canvas. Select the checkbox for the object created outside Schema Builder to
+         display it on the canvas.</p></div></div></div></div></div>
+</li>
+</ul>
+</li>
+<li class="li">To search for an object, type its name in the <strong class="ph uicontrol">Quick Find</strong> box.</li>
+<li class="li">Hover over an object in your list of objects and click <img alt="search icon" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-use71b6bb49b8fc38ee98e0856b78fbf9e.gif"/> to find it on the
+      canvas.</li>
+</ul>
+</li>
+<li class="li">Hover over relationship lines to show relationship details such as lookup and master-detail
+    relationships. Click the name of the object to find it on the canvas. You can hide relationships
+    if your schema is taking too long to load.</li>
+<li class="li">To view the details of a field in a new window, right-click the element name or label and select
+     <strong class="ph uicontrol">View Field in New Window</strong>.</li>
+<li class="li">To edit properties of a custom field, right-click the element name or label and select
+     <strong class="ph uicontrol">Edit Field Properties</strong>.</li>
+<li class="li">To manage permissions of a custom field, click the element name or label and select
+          <strong class="ph uicontrol">Manage Field Permissions</strong>. </li>
+<li class="li">Click <img alt="object in new window" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us0ade978f1580c74dcb86c22aee27c370.png"/> to:<ul class="ul bulletList">
+<li class="li"><strong class="ph uicontrol">Hide Object on Canvas</strong></li>
+<li class="li"><strong class="ph uicontrol">View Object</strong> detail in a new window</li>
+<li class="li"><strong class="ph uicontrol">View Page Layouts</strong> detail in a new window</li>
+</ul>
+</li>
+<li class="li">For objects with many fields (Lead or Campaign, for example), click <strong class="ph uicontrol">Show More
+     Fields</strong> to display all the fields.</li>
+<li class="li">To zoom in, click <img alt="zoom in" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us10f981c21129d00d3def4e6b00043dea.png"/>. To zoom out, click
+     <img alt="zoom out" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us52c4c029cdefcebde6235f465dcc23e9.png"/>. <div class="box message info" id="SchemaBuilderZoomNote"><a name="SchemaBuilderZoomNote"></a><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>You can’t save the level of zoom when closing Schema Builder.</p></div></div></div></div></div>
+</li>
+<li class="li">To collapse the sidebar, click <img alt="collapse icon" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us47af44121bcab9bf0797e5e66337a1f3.png"/>. To expand it, click <img alt="expand icon" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us4faafb6fc91a3204bdbc81347c1d26c0.png"/>.</li>
+<li class="li">The map in the lower right corner shows the overall layout of your objects on the canvas. Click
+    the map to navigate the layout of your objects. To pan across the schema layout while zoomed in,
+    click and hold the canvas while moving the mouse.</li>
+<li class="li">To close the Schema Builder and save the layout of your objects,
+click <strong class="ph uicontrol">Close</strong>.</li>
+</ul>
+<div class="box message confirm"><div class="inner"><div class="bd"><div class="media"><img alt="Important" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usa1b68275bb2e1d6b7c064cb423d787e5.gif"/><div class="mediaBd"><h4 class="mbs">Important</h4><p>If your schema contains many objects and fields, loading can take a long
+   time. Click <strong class="ph uicontrol">Hide Relationships</strong> to improve Schema Builder
+   performance.</p></div></div></div></div></div>
+</div>
+</div>
+<div class="topic nested0" id="schema_builder_elements_objects" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="schema_builder_elements_objects"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading4"><span class="ph" id="SchemaBuilderObjects"><a name="SchemaBuilderObjects"></a>Create Objects with Schema Builder</span></h2>
+<div class="body">
+<div class="p">To create a custom object with Schema Builder:<ol class="ol enumList">
+<li class="li">Click the <strong class="ph uicontrol">Elements</strong> tab.</li>
+<li class="li">Click <strong class="ph uicontrol">Object</strong> and drag it onto the canvas.</li>
+<li class="li">Enter information to define your object. For a list of object definitions, see <a class="xref" href="https://help.salesforce.com/articleView?id=schema_builder_elements_objects_ref.htm&amp;language=en_US">Schema Builder Custom Object Definition</a>.</li>
+<li class="li">Click <strong class="ph uicontrol">Save</strong>.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="topic task nested0" id="schema_builder_elements_objects_delete_custom" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="schema_builder_elements_objects_delete_custom"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading5">Delete Custom Objects with Schema Builder</h2>
+<div class="body taskbody"><div class="shortdesc">You can delete the custom objects that you no longer need by using Schema
+  Builder.</div>
+<div class="section context"><p class="p" id="schema_builder_cobjects_delete"><a name="schema_builder_cobjects_delete"></a>Schema Builder displays a list of side effects when you try
+    to delete a custom object. Be sure you’re ready to accept these side effects before
+    finalizing the deletion. </p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step" id="delete_co_step1"><a name="delete_co_step1"></a><span class="ph cmd">Click <img alt="object in new window" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us0ade978f1580c74dcb86c22aee27c370.png"/> on the custom
+     object’s icon.</span></li>
+<li class="li step" id="delete_co_step2"><a name="delete_co_step2"></a><span class="ph cmd">Select <strong class="ph uicontrol">Delete Object...</strong>. A dialog box displays that explains the side effects of deleting
+an object. Read this information carefully.</span></li>
+<li class="li step" id="delete_co_step3"><a name="delete_co_step3"></a><span class="ph cmd">If you accept the conditions, check <strong class="ph uicontrol">Yes, I want to delete the custom object.</strong> </span></li>
+<li class="li step" id="delete_co_step4"><a name="delete_co_step4"></a><span class="ph cmd">Click <strong class="ph uicontrol">Delete</strong>.</span></li>
+</ol>
+</div>
+</div>
+<div class="topic nested0" id="schema_builder_elements_fields" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="schema_builder_elements_fields"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading6"><span class="ph" id="SchemaBuilderFields"><a name="SchemaBuilderFields"></a>Create Fields with Schema Builder</span></h2>
+<div class="body">
+<div class="p">To create a custom field with Schema Builder:<ol class="ol enumList">
+<li class="li">Click the <strong class="ph uicontrol">Elements</strong> tab.</li>
+<li class="li">Click a field and drag it onto an object on the canvas.</li>
+<li class="li">Enter a <span class="keyword parmname">Field Label</span>.<p class="p">Salesforce populates <span class="keyword parmname">Field
+              Name</span> using the field label. This name can contain only underscores and alphanumeric
+          characters, and must be unique in your org. It must begin with a letter, not include
+          spaces, not end with an underscore, and not contain two consecutive underscores.</p>
+</li>
+<li class="li">Enter a <span class="keyword parmname">Description</span> of the custom field.</li>
+<li class="li">Enter <span class="keyword parmname">Help Text</span> to detail the purpose and function of a custom
+     field.</li>
+<li class="li">Enter a <span class="keyword parmname">Default Value</span> to automatically insert a value of a custom field
+     when a new record is created.</li>
+<li class="li">Depending on the custom field type you choose, enter any remaining field attributes.</li>
+<li class="li">Click <strong class="ph uicontrol">Save</strong>.</li>
+</ol>
+</div>
+<p class="p">Any field you add through Schema Builder isn’t automatically added to the page layout. You will
+   need to edit the page layout to specify where the field should be displayed.</p>
+<div class="btb callout box guidedTour"><div class="inner"><div class="bd"><div class="media"><div class="mediaBd"><h4 class="mbs">Beyond the Basics</h4><p>By default, the field level security for
+   custom fields is set to visible and editable for internal profiles. Fields that are not normally
+   editable, such as formulas and roll-up summary fields, are visible and read-only. To manage
+   permissions of a custom field, click the element name or label and select <strong class="ph uicontrol">Manage Field
+    Permissions</strong>. </p></div></div></div></div></div>
+</div>
+</div>
+<div class="topic task nested0" id="schema_builder_elements_fields_delete_custom" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="schema_builder_elements_fields_delete_custom"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading7">Delete Custom Fields with Schema Builder</h2>
+<div class="body taskbody"><div class="shortdesc">Conveniently avoid “custom field clutter” by using Schema Builder to delete custom fields
+  that you no longer need.</div>
+<div class="section context"><p class="p" id="schema_builder_cfields_delete"><a name="schema_builder_cfields_delete"></a>Schema Builder displays
+a list of side effects when you try to delete a custom field. Be sure
+you’re ready to accept these side effects before finalizing
+the deletion.</p>
+</div>
+<a name="schema_builder_delete_cfields_steps"></a><ol class="ol steps enumList" id="schema_builder_delete_cfields_steps">
+<li class="li step" id="delete_cf_step_1"><a name="delete_cf_step_1"></a><span class="ph cmd">Right-click on the custom field.</span>
+</li>
+<li class="li step" id="delete_cf_step_2"><a name="delete_cf_step_2"></a><span class="ph cmd">Select <strong class="ph uicontrol">Delete Field...</strong>. A dialog box displays that explains the side effects of deleting
+a custom field. Read this information carefully.</span></li>
+<li class="li step" id="delete_cf_step_3"><a name="delete_cf_step_3"></a><span class="ph cmd">If you accept the conditions, check <strong class="ph uicontrol">Yes, I want to delete the custom field.</strong> </span></li>
+<li class="li step" id="delete_cf_step_4"><a name="delete_cf_step_4"></a><span class="ph cmd">Click <strong class="ph uicontrol">Delete</strong>.</span></li>
+</ol>
+</div>
+</div>
+<div class="topic nested0" id="schema_builder_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="schema_builder_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading8">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=overview_of_custom_object_relationships.htm&amp;language=en_US" target="_blank">Object Relationships
+                Overview</a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=schema_builder_elements_objects_ref.htm&amp;language=en_US" target="_blank">Schema Builder Custom Object
+                    Reference</a>
+</li>
+</ul>
+<ul class="ul bulletList">
+<li class="li Articles">
+<a class="xref" href="https://developer.salesforce.com/page/An_Introduction_to_Force_Database" target="_blank">Introduction to the Force.com
+                    Database</a>
+</li>
+<li class="li Articles">
+<a class="xref" href="https://developer.salesforce.com/page/Architecting_Force.com_Apps_A_Design_Primer" target="_blank">Designing Force.com Apps</a>
+</li>
+</ul>
+</div>
+</div>
+</body></div>

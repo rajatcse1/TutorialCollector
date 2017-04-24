@@ -1,0 +1,100 @@
+<div class="unit-content">
+<body id="data_export_learning_objectives"><a name="data_export_learning_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you'll be able to: <ul class="ul bulletList">
+<li class="li">Describe and compare the two methods of exporting data from Salesforce.</li>
+<li class="li">Export data manually using the Data Export Wizard.</li>
+<li class="li">Set up automatic export of data on a weekly or monthly schedule.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="data_export_overview" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_export_overview"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Introduction to Data Export</span></h2>
+<div class="body">
+<p class="p" dir="ltr">You can easily export data from Salesforce, either manually or on an
+                        automatic schedule. The data is exported as a set of comma-separated values
+                        (CSV) files. This provides a convenient way to export your data, either for
+                        backup or for importing into a different system.</p>
+<p class="p" dir="ltr">Salesforce offers two main methods for exporting data.</p>
+<div class="p" dir="ltr">
+<ul class="ul bulletList">
+<li class="li" dir="ltr">
+<p class="p" dir="ltr"><strong class="ph b">Data Export Wizard</strong>—this is an
+                                                in-browser wizard, accessible through the Setup
+                                                menu. It allows you to export data manually once
+                                                every six days (for weekly export) or 28 days (for
+                                                monthly export). You can also export data
+                                                automatically, at weekly or monthly intervals.</p>
+</li>
+<li class="li" dir="ltr">
+<p class="p" dir="ltr"><strong class="ph b">Data Loader</strong>—this is a client
+                                                application that you must install separately. It can
+                                                be operated either through the user interface or the
+                                                command line. The latter option is useful if you
+                                                want to automate the export process, or use APIs to
+                                                integrate with another system.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="admin_exportdata_path" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="admin_exportdata_path"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3"><span class="ph" id="topic-title"><a name="topic-title"></a>Using the Data Export Wizard</span></h2>
+<div class="body">
+<p class="p">Follow these steps to export data using the wizard.</p>
+<ol class="ol enumList">
+<li class="li" id="l1"><a name="l1"></a>From Setup, enter <kbd class="ph userinput">Data Export</kbd> in the <span class="keyword parmname">Quick Find</span> box, then select <strong class="ph uicontrol">Data Export</strong> and <strong class="ph uicontrol">Export Now</strong> or <strong class="ph uicontrol">Schedule
+          Export</strong>.<ul class="ul bulletList">
+<li class="li">The <strong class="ph uicontrol">Export Now</strong> option prepares your files for export
+            immediately. This option is only available if enough time has passed since your last
+            export.</li>
+<li class="li">The <strong class="ph uicontrol">Schedule Export</strong> option allows you to schedule the export
+            process for weekly or monthly intervals.</li>
+</ul>
+</li>
+<li class="li" id="l2"><a name="l2"></a>Select the desired encoding for your export file.</li>
+<li class="li" id="l3"><a name="l3"></a>If you want images, documents, attachments, and so on included in your data,
+        select the appropriate options.</li>
+<li class="li" id="l4"><a name="l4"></a>Select <span class="keyword parmname">Replace carriage returns with spaces</span> to have spaces
+        instead of carriage returns or line breaks in your export files. This is useful if you plan
+        to use your export files for importing or other integrations.</li>
+<li class="li" id="l5"><a name="l5"></a>If you're scheduling your export, select the frequency (only available for
+        organizations with monthly exports), start and end dates, and time of day for your scheduled
+        export.</li>
+<li class="li" id="l6"><a name="l6"></a>Under Exported Data, select the types of data to include in your export. We
+        recommend that you select <strong class="ph uicontrol">Include all data</strong> if you’re not familiar
+        with the terminology used for some of the types of data.</li>
+<li class="li" id="l7"><a name="l7"></a>Click <strong class="ph uicontrol">Start Export</strong> or <strong class="ph uicontrol">Save</strong>.<p class="p" id="p_end"><a name="p_end"></a>Salesforce creates a zip archive of CSV files and emails you when it's ready.
+          Exports will complete as soon as possible, however we can't guarantee the date and time
+          the export will complete. Large exports are broken up into multiple files. Follow the link
+          in the email or click <strong class="ph uicontrol">Data Export</strong> to download the zip file. Zip
+          files are deleted 48 hours after the email is sent.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="topic nested0" id="data_export_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_export_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading4">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=data_loader.htm&amp;language=en_US" target="_blank">Data Loader
+                                        Overview</a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/apex/HTViewHelpDoc?id=installing_the_data_loader.htm&amp;language=en_US" target="_blank">Installing Data
+                                        Loader</a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=exporting_data.htm&amp;language=en_US" target="_blank">Exporting Data using the Data Loader</a></li>
+<li class="li Documentation">Best Practice Hub: <a class="xref" href="http://pages.mail.salesforce.com/page.aspx?QS=3935619f7de112ef3fdd44cfb3dcb15df8ef83257379ba31&amp;utm_source=trailhead&amp;utm_medium=resources&amp;utm_campaign=072016" target="_blank">Improve Data Quality</a>
+</li>
+</ul>
+</div>
+</div>
+</body></div>

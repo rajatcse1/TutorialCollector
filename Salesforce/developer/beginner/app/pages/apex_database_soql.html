@@ -1,0 +1,297 @@
+<div class="unit-content">
+<body id="apex_database_soql_learning_objectives"><a name="apex_database_soql_learning_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you'll be able to: <ul class="ul bulletList">
+<li class="li">Write SOQL queries in Apex.</li>
+<li class="li">Execute SOQL queries by using the Query Editor in the Developer Console.</li>
+<li class="li">Execute SOQL queries embedded in Apex by using Anonymous Apex.</li>
+<li class="li">Query related records.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="apex_database_soql" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="apex_database_soql"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Write SOQL Queries</span></h2>
+<div class="body conbody"><div class="shortdesc">To read a record from Salesforce,
+    you need to write a query. Salesforce
+    provides the Salesforce Object Query Language, or SOQL in short, that you can use to read
+    saved records. SOQL is similar to the
+    standard SQL language but is customized for the Force.com platform. </div>
+<p class="p">Because Apex has direct access
+      to Salesforce records that are stored in
+      the database, you can embed SOQL
+      queries in your Apex code and
+      get results in a straightforward fashion. When SOQL is embedded in Apex, it is referred to as
+        <dfn class="term">inline SOQL</dfn>.</p>
+<p class="p">To include SOQL queries within
+      your Apex code, wrap the SOQL statement within square brackets
+      and assign the return value to an array of sObjects. For example, the following retrieves all
+      account records with two fields, Name and Phone, and returns an array of Account sObjects.</p>
+<div class="codeblock"><pre>Account[] accts = [SELECT Name,Phone FROM Account];</pre></div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading3">Prerequisites</h3>
+<p class="p">Some queries in this unit expect the org to have accounts and contacts. Before you run the
+        queries, create some sample data.</p>
+<ol class="ol enumList">
+<li class="li">In the Developer Console, open the Execute Anonymous window from the
+            <strong class="ph uicontrol">Debug</strong> menu.</li>
+<li class="li">Insert the below snippet in the window and click <strong class="ph uicontrol">Execute</strong>.</li>
+</ol>
+<div class="codeblock"><pre>// Add account and related contact
+Account acct = new Account(
+    Name='SFDC Computing',
+    Phone='(415)555-1212',
+    NumberOfEmployees=50,
+    BillingCity='San Francisco');
+insert acct;
+
+// Once the account is inserted, the sObject will be 
+// populated with an ID.
+// Get this ID.
+ID acctID = acct.ID;
+
+// Add a contact to this account.
+Contact con = new Contact(
+    FirstName='Carol',
+    LastName='Ruiz',
+    Phone='(415)555-1212',
+    Department='Wingo',
+    AccountId=acctID);
+insert con;
+
+// Add account with no contact
+Account acct2 = new Account(
+    Name='The SFDC Query Man',
+    Phone='(310)555-1213',
+    NumberOfEmployees=50,
+    BillingCity='Los Angeles',
+    Description='Expert in wing technologies.');
+insert acct2;
+</pre></div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading4">Using the Query Editor</h3>
+<p class="p">The Developer Console provides the Query Editor console, which enables you to run your SOQL queries and view results. The
+        Query Editor provides a quick way to inspect the database. It is a good way to test your SOQL queries before adding them to
+        your Apex code. When you use
+        the Query Editor, you need to supply only the SOQL statement without the Apex code that surrounds it.</p>
+<p class="p">Let’s try running the following SOQL example: </p>
+<ol class="ol enumList">
+<li class="li">In the Developer Console, click the <em class="ph i">Query Editor </em> tab.</li>
+<li class="li">Copy and paste the following into the first box under Query Editor, and then click
+            <strong class="ph uicontrol">Execute</strong>.</li>
+</ol>
+<div class="codeblock"><pre>SELECT Name,Phone FROM Account</pre></div>
+<p class="p">All account records in your org appear in the Query Results section as rows with
+        fields.</p>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading5">Basic SOQL Syntax</h3>
+<p class="p">This is the syntax of a basic SOQL query:</p>
+<div class="codeblock"><pre>SELECT fields FROM ObjectName [WHERE Condition]</pre></div>
+<p class="p">The WHERE clause is optional. Let’s start with a very simple query. For example, the
+        following query retrieves accounts and gets two fields for each account: the ID and the
+        Phone.</p>
+<div class="codeblock"><pre>SELECT Name,Phone FROM Account</pre></div>
+<p class="p">The query has two parts:</p>
+<ol class="ol enumList">
+<li class="li"><samp>SELECT Name,Phone</samp>: This part lists the fields that you would like to
+          retrieve. The fields are specified after the SELECT keyword in a comma-delimited list. Or
+          you can specify only one field, in which case no comma is necessary (e.g. <samp>SELECT
+            Phone</samp>).</li>
+<li class="li"><samp>FROM Account</samp>: This part specifies the standard or custom object that
+          you want to retrieve. In this example, it’s Account. For a custom object called
+          Invoice_Statement, it is Invoice_Statement__c.</li>
+</ol>
+<div class="btb callout box guidedTour"><div class="inner"><div class="bd"><div class="media"><div class="mediaBd"><h4 class="mbs">Beyond the Basics</h4><p>Unlike other SQL languages, you can’t specify * for all
+        fields. You must specify every field you want to get explicitly. If you try to access a
+        field you haven’t specified in the SELECT clause, you’ll get an error because the field
+        hasn’t been retrieved. <p class="p">You don’t need to specify the Id field in the query as it is
+          always returned in Apex
+          queries, whether it is specified in the query or not. For example: <samp>SELECT Id,Phone FROM Account</samp> and <samp>SELECT Phone FROM Account</samp> are equivalent statements. The
+          only time you may want to specify the Id field if it is the only field you’re retrieving
+          because you have to list at least one field: <samp>SELECT Id FROM
+            Account</samp>. You may want to specify the Id field also when running a query in the
+          Query Editor as the ID field won’t be displayed unless specified.</p>
+</p></div></div></div></div></div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading6"> Filtering Query Results with Conditions</h3>
+<p class="p">If you have more than one account in the org, they will all be returned. If you want to
+        limit the accounts returned to accounts that fulfill a certain condition, you can add this
+        condition inside the WHERE clause. The following example retrieves only the accounts whose
+        names are SFDC Computing. Note that comparisons on strings are case-insensitive.</p>
+<div class="codeblock"><pre>SELECT Name,Phone FROM Account WHERE Name='SFDC Computing'</pre></div>
+<p class="p">The WHERE clause can contain multiple conditions that are grouped by using logical
+        operators (AND, OR) and parentheses. For example, this query returns all accounts whose name
+        is SFDC Computing that have more than 25 employees:</p>
+<div class="codeblock"><pre>SELECT Name,Phone FROM Account WHERE (Name='SFDC Computing' AND NumberOfEmployees&gt;25)</pre></div>
+<p class="p">This is another example with a more complex condition. This query returns all SFDC
+        Computing accounts, or all accounts with more than 25 employees whose billing city is Los
+        Angeles.</p>
+<div class="codeblock"><pre>SELECT Name,Phone FROM Account WHERE (Name='SFDC Computing' OR (NumberOfEmployees&gt;25 AND BillingCity='Los Angeles'))</pre></div>
+<div class="btb callout box guidedTour"><div class="inner"><div class="bd"><div class="media"><div class="mediaBd"><h4 class="mbs">Beyond the Basics</h4><p>Instead of using the equal operator (<samp>=</samp>)
+        for comparison, you can perform fuzzy matches by using the <samp>LIKE</samp> operator.
+        For example, you can retrieve all accounts whose names start with SFDC by using this
+        condition: <samp>WHERE Name LIKE 'SFDC%'</samp>. The % wildcard character matches any or
+        no character. The _ character in contrast can be used to match just one character.</p></div></div></div></div></div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading7">Ordering Query Results</h3>
+<p class="p">When a query executes, it returns records from Salesforce in no particular order, so you
+        can’t rely on the order of records in the returned array to be the same each time the query
+        is run. You can however choose to sort the returned record set by adding an ORDER BY clause
+        and specifying the field by which the record set should be sorted. This example sorts all
+        retrieved accounts based on the Name field. </p>
+<div class="codeblock"><pre>SELECT Name,Phone FROM Account ORDER BY Name</pre></div>
+<p class="p">The default sort order is in alphabetical order, specified as ASC. The previous statement
+        is equivalent to:</p>
+<div class="codeblock"><pre>SELECT Name,Phone FROM Account ORDER BY Name ASC</pre></div>
+<p class="p">To reverse the order, use the DESC keyword for descending order:</p>
+<div class="codeblock"><pre>SELECT Name,Phone FROM Account ORDER BY Name DESC</pre></div>
+<p class="p">You can sort on most fields, including numeric and text fields. You can’t sort on fields
+        like rich text and multi-select picklists.</p>
+<p class="p">Try these SOQL statements in the
+        Query Editor and see how the order of the returned record changes based on the Name
+        field.</p>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading8">Limiting the Number of Records Returned</h3>
+<p class="p">You can limit the number of records returned to an arbitrary number by adding the
+          <samp>LIMIT n</samp> clause where n is the number of records you want returned.
+        Limiting the result set is handy when you don’t care which records are returned, but you
+        just want to work with a subset of records. For example, this query retrieves the first
+        account that is returned. Notice that the returned value is one account and not an array
+        when using <samp>LIMIT 1</samp>.</p>
+<div class="codeblock"><pre>Account oneAccountOnly = [SELECT Name,Phone FROM Account LIMIT 1];</pre></div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading9">Combining All Pieces Together</h3>
+<p class="p">You can combine the optional clauses in one query, in the following order:</p>
+<div class="codeblock"><pre>SELECT Name,Phone FROM Account 
+                   WHERE (Name = 'SFDC Computing' AND NumberOfEmployees&gt;25)
+                   ORDER BY Name
+                   LIMIT 10</pre></div>
+<p class="p">Execute the following SOQL query
+        in Apex by using the Execute
+        Anonymous window in the Developer Console. Then inspect the debug statements in the debug
+        log. One sample account should be returned.</p>
+<div class="codeblock"><pre>Account[] accts = [SELECT Name,Phone FROM Account 
+                   WHERE (Name='SFDC Computing' AND NumberOfEmployees&gt;25)
+                   ORDER BY Name
+                   LIMIT 10];
+System.debug(accts.size() + ' account(s) returned.');
+// Write all account array info
+System.debug(accts);</pre></div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading10">Accessing Variables in SOQL
+        Queries</h3>
+<p class="p">SOQL statements in Apex can reference Apex code variables and
+        expressions if they are preceded by a colon (:). The use of a local variable within a SOQL statement is called a
+          <dfn class="term">bind</dfn>.</p>
+<p class="p">This example shows how to use the <samp>targetDepartment</samp> variable in the WHERE
+        clause.</p>
+<div class="codeblock"><pre>String targetDepartment = 'Wingo';
+Contact[] techContacts = [SELECT FirstName,LastName 
+                          FROM Contact WHERE Department=:targetDepartment];</pre></div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading11">Querying Related Records</h3>
+<p class="p">Records in Salesforce can be linked to
+        each other through relationships: lookup relationships or master-detail relationships. For
+        example, the Contact has a lookup relationship to Account. When you create or update a
+        contact, you can associate it with an account. The contacts that are associated with the
+        same account appear in a related list on the account’s page. In the same way you can view
+        related records in the Salesforce user
+        interface, you can query related records in SOQL.</p>
+<p class="p">To get child records related to a parent record, add an inner query for the child records.
+        The FROM clause of the inner query runs against the relationship name, rather than a Salesforce object name. This example
+        contains an inner query to get all contacts that are associated with each returned account.
+        The FROM clause specifies the Contacts relationship, which is a default relationship on
+        Account that links accounts and contacts.</p>
+<div class="codeblock"><pre>SELECT Name, (SELECT LastName FROM Contacts) FROM Account WHERE Name = 'SFDC Computing'</pre></div>
+<p class="p">This next example embeds the example SOQL query in Apex and shows how to get the
+        child records from the SOQL
+        result by using the Contacts relationship name on the sObject.</p>
+<div class="codeblock"><pre>Account[] acctsWithContacts = [SELECT Name, (SELECT FirstName,LastName FROM Contacts)
+                               FROM Account 
+                               WHERE Name = 'SFDC Computing'];
+// Get child records
+Contact[] cts = acctsWithContacts[0].Contacts;
+System.debug('Name of first associated contact: ' 
+             + cts[0].FirstName + ', ' + cts[0].LastName);</pre></div>
+<p class="p">You can traverse a relationship from a child object (contact) to a field on its parent
+        (Account.Name) by using dot notation. For example, the following Apex snippet queries contact
+        records whose first name is Carol and is able to retrieve the name of Carol’s associated
+        account by traversing the relationship between accounts and contacts.</p>
+<div class="codeblock"><pre>Contact[] cts = [SELECT Account.Name FROM Contact 
+                 WHERE FirstName = 'Carol' AND LastName='Ruiz'];
+Contact carol = cts[0];
+String acctName = carol.Account.Name;
+System.debug('Carol\'s account name is ' + acctName);</pre></div>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>The examples in this section are based on standard objects. Custom objects can also be
+        linked together by using custom relationships. Custom relationship names end with the __r
+        suffix. For example, invoice statements are linked to line items through the Line_Items__r
+        relationship on the Invoice_Statement__c custom object. (These custom objects are part of
+        the Warehouse schema used in the <a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.workbook.meta/workbook/" target="_blank" title="HTML (New Window)">Force.com Workbook</a>.)</p></div></div></div></div></div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading12">Querying Record in Batches By Using SOQL For Loops</h3>
+<p class="p">With a SOQL for loop, you can
+        include a SOQL query within a
+          <samp>for</samp> loop. The results of a SOQL query can be iterated over
+        within the loop. SOQL for loops
+        use a different method for retrieving records—records are retrieved using efficient
+        chunking with calls to the query and queryMore methods of the SOAP API. By using SOQL for loops, you can avoid
+        hitting the heap size limit.</p>
+<div class="p">SOQL
+        <samp>for</samp> loops iterate over all of the sObject records
+        returned by a SOQL query. The
+        syntax of a SOQL
+        <samp>for</samp> loop is
+        either:<div class="codeblock"><pre>for (variable : [soql_query]) {
+    code_block
+}</pre></div>
+
+        or<div class="codeblock"><pre>for (variable_list : [soql_query]) {
+    code_block
+}</pre></div>
+</div>
+<p class="p">Both <samp>
+<var class="keyword varname">variable</var></samp> and <samp>
+<var class="keyword varname">variable_list</var></samp> must be of the same type as the sObjects that
+        are returned by the <samp>
+<var class="keyword varname">soql_query</var></samp>.</p>
+<p class="p">It is preferable to use the sObject list format of the SOQL for loop as the loop executes
+        once for each batch of 200 sObjects. Doing so enables you to work on batches of records and
+        perform DML operations in batch, which helps avoid reaching governor limits.</p>
+<div class="codeblock"><pre>insert new Account[]{new Account(Name = 'for loop 1'), 
+                     new Account(Name = 'for loop 2'), 
+                     new Account(Name = 'for loop 3')};
+
+// The sObject list format executes the for loop once per returned batch
+// of records
+Integer i=0;
+Integer j=0;
+for (Account[] tmp : [SELECT Id FROM Account WHERE Name LIKE 'for loop _']) {
+    j = tmp.size();
+    i++;
+}
+System.assertEquals(3, j); // The list should have contained the three accounts
+                       // named 'yyy'
+System.assertEquals(1, i); // Since a single batch can hold up to 200 records and,
+                       // only three records should have been returned, the 
+                       // loop should have executed only once
+</pre></div>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="apex_database_soql_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="apex_database_soql_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading13">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation">
+<a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.soql_sosl.meta/soql_sosl/" target="_blank" title="HTML (New Window)">Force.com SOQL and SOSL Reference</a>
+</li>
+</ul>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>Remember, this module is meant for
+            Salesforce Classic. When you launch your hands-on org, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank">switch to Salesforce Classic</a> to complete this
+            challenge.</p></div></div></div></div></div>
+</div>
+</div>
+</body></div>

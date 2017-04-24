@@ -1,0 +1,118 @@
+<div class="unit-content">
+<body id="data_security_fields_learning_objectives"><a name="data_security_fields_learning_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you'll be able to: <ul class="ul bulletList">
+<li class="li">Describe a typical use case for limiting access to specific fields.</li>
+<li class="li">View and edit field-level security settings.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="data_security_fields_fls" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security_fields_fls"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Modify Field-Level Security</span></h2>
+<div class="body">
+<p class="p">In some cases, you might want users to have access to an object, but limit their
+                        access to individual fields in that object. Field-level security—or field
+                        permissions—control whether a user can see, edit, and delete the value for a
+                        particular field on an object. These are the settings that allow us to
+                        protect sensitive fields such as a candidate's social security number
+                        without having to hide the candidate object. </p>
+<p class="p">Unlike page layouts, which only control the visibility of fields on detail and
+                        edit pages, field-level security controls the visibility of fields in any
+                        part of the app, including related lists, list views, reports, and search
+                        results. In fact, to make absolutely sure that a user can't access a
+                        particular field, it's important to use the field-level security page for a
+                        given object to restrict access to the field. There are simply no other
+                        shortcuts that provide the same level of protection for a particular
+                        field.</p>
+<div class="p">For example, here are some
+                        field-level security settings you might need to set for the Recruiting app.<ul class="ul bulletList">
+<li class="li">Position object—hide minimum and maximum pay from
+                                        standard employees and interviewers.</li>
+<li class="li">Candidate object—hide social security numbers from hiring
+                                        managers and interviewers.</li>
+<li class="li">Job Application object—make the Position and Candidate
+                                        lookup fields read-only for hiring managers.</li>
+</ul>
+</div>
+<p class="p">Watch this video to get an overview of field-level security. It shows how you can
+                        restrict access to specific fields on a profile by profile basis.</p>
+<p class="p">
+<iframe allowfullscreen="1" class="doc_embedded_video" frameborder="0" height="360" mozallowfullscreen="1" src="//play.vidyard.com/ExFZudjhquI28XE5o2tZxQ" webkitallowfullscreen="1" width="640"></iframe>
+</p>
+<div class="p">Field settings can be applied either by modifying profiles or permission sets or
+                        from the <span class="ph menucascade"><strong class="ph uicontrol">Security Controls</strong> | <strong class="ph uicontrol">Field Accessibility </strong></span> menu in Setup. You can define field-level permissions in one
+                        of two ways:<ul class="ul bulletList">
+<li class="li">For multiple fields on a single permission set or profile</li>
+<li class="li">For a single field on all profiles</li>
+</ul>
+</div>
+<p class="p">To set field-level security in permission sets and profiles:</p>
+<ol class="ol enumList">
+<li class="li">From Setup, enter <kbd class="ph userinput">Manage Users</kbd> in the <span class="keyword parmname">Quick Find</span> box, then select <strong class="ph uicontrol">Manage Users</strong>, then click <strong class="ph uicontrol">Permission Sets</strong> or
+                                        <strong class="ph uicontrol">Profiles</strong>.</li>
+<li class="li">Select a permission set or profile.</li>
+<li class="li" id="ProfileInterfaceFLS"><a name="ProfileInterfaceFLS"></a>Depending on which interface you're using, do
+                                one of the following:<ul class="ul bulletList">
+<li class="li">Permission sets or enhanced profile user
+                                                interface—In the <strong class="ph uicontrol">Find
+                                                  Settings...</strong> box, enter the name of the
+                                                object you want and select it from the list. Click
+                                                  <strong class="ph b">Edit</strong>, then scroll to the Field Permissions
+                                                section.</li>
+<li class="li">Original profile user interface—In the
+                                                Field-Level Security section, click
+                                                  <strong class="ph uicontrol">View</strong> next to the object you
+                                                want to modify, and then click
+                                                  <strong class="ph uicontrol">Edit</strong>.</li>
+</ul>
+</li>
+<li class="li">Specify the field's access level.<span class="image image-block"><img alt="The Field-Level Security Edit page for the Standard Employee profile" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us209db4aa90f7c01ee57ce4088de764a3.jpg"/></span></li>
+<li class="li">Click <strong class="ph uicontrol">Save</strong>.</li>
+</ol>
+<div class="p">To set field-level security for a field on all profiles:<ol class="ol enumList">
+<li class="li">From Setup, enter <kbd class="ph userinput">Customize</kbd> in the <span class="keyword parmname">Quick Find</span> box, then select <strong class="ph uicontrol">Customize</strong>, click a tab or activity link, and click
+                                                <strong class="ph uicontrol">Fields</strong>.</li>
+<li class="li">Select the field you want to modify.</li>
+<li class="li">Click <strong class="ph uicontrol">View Field Accessibility</strong>.</li>
+<li class="li">Specify the field’s access level.</li>
+<li class="li">Click <strong class="ph uicontrol">Save</strong>.</li>
+</ol>
+</div>
+<div class="p">After setting field-level
+                        security for users, you can:<ul class="ul bulletList">
+<li class="li">Create page layouts to organize the fields on detail and edit
+                                        pages. </li>
+<li class="li">Verify users’ access to fields by checking the field
+                                        accessibility.</li>
+<li class="li">Customize search layouts to set the fields that display in
+                                        search results, in lookup dialog search results, and in the
+                                        key lists on tab home pages.</li>
+</ul>
+</div>
+<p class="p">In the previous unit, you learned how to control object-level access. Defining
+                        field-level security for sensitive fields is the second piece of the
+                        security and sharing puzzle. For the final piece of the puzzle, specify the
+                        individual records to which each user needs access. By combining security
+                        controls at all three levels, you can set up a highly secure data access
+                        model which is flexible enough to meet the needs of many different types of
+                        users.</p>
+</div>
+</div>
+<div class="topic nested0" id="data_security_fields_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security_fields_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.securityImplGuide.meta/securityImplGuide/" target="_blank" title="HTML (New Window)">Security Implementation
+                Guide</a></li>
+</ul>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>Remember, this module is meant for
+            Salesforce Classic. When you launch your hands-on org, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank">switch to Salesforce Classic</a> to complete this
+            challenge.</p></div></div></div></div></div>
+</div>
+</div>
+</body></div>

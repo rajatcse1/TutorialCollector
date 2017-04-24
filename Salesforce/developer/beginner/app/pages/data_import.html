@@ -1,0 +1,293 @@
+<div class="unit-content">
+<body id="blank_ref_classic"><a name="blank_ref_classic"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a> </span></h2>
+<div class="body">
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>
+<p class="p"><strong class="ph b">Attention Trailblazer!</strong></p>
+<p class="p">Salesforce has two different user interfaces: Lightning Experience and Salesforce
+                Classic. It’s easy to switch between the two. You can learn about <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank" title="html (New Window)">switching between interfaces</a>, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_enable_intro.htm&amp;language=en_US" target="_blank" title="html (New Window)">enabling Lightning Experience</a>, and more in the <a class="xref" href="https://trailhead.salesforce.com/module/lex_migration_introduction" target="_blank" title="html (New Window)">Lightning Experience Basics</a> module here on Trailhead.</p>
+<p class="p">This module is designed for <strong class="ph b">Salesforce Classic</strong>.</p>
+</p></div></div></div></div></div>
+</div>
+</div>
+<div class="topic nested0" id="data_import_learning_objectives" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_import_learning_objectives"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you'll be able to: <ul class="ul bulletList">
+<li class="li">Describe and compare the different options for importing data into
+                    Salesforce.</li>
+<li class="li">List the steps involved in preparing data for import.</li>
+<li class="li">Import data from a sample .csv file using the Data Import Wizard.</li>
+<li class="li">Use the Import Queue to monitor the status of an import.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="data_import_overview" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_import_overview"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3"><span class="ph" id="topic-title"><a name="topic-title"></a>Introduction to Data Import</span></h2>
+<div class="body">
+<p class="p" dir="ltr">You can easily import external data into Salesforce. Supported data
+                        sources include any program that can save data in the comma delimited text
+                        format (.csv). </p>
+<p class="p" dir="ltr">Salesforce offers two main methods for importing data.</p>
+<div class="p" dir="ltr">
+<ul class="ul bulletList">
+<li class="li" dir="ltr">
+<p class="p" dir="ltr"><strong class="ph b">Data Import Wizard</strong>—this tool,
+                                                accessible through the Setup menu, lets you import
+                                                data in common standard objects, such as contacts,
+                                                leads, accounts, as well as data in custom objects.
+                                                It can import up to 50,000 records at a time. It
+                                                provides a simple interface to specify the
+                                                configuration parameters, data sources, and the
+                                                field mappings that map the field names in your
+                                                import file with the field names in Salesforce.</p>
+</li>
+<li class="li" dir="ltr">
+<p class="p" dir="ltr"><strong class="ph b">Data Loader</strong>—this is a client
+                                                application that can import up to five million
+                                                records at a time, of any data type, either from
+                                                files or a database connection. It can be operated
+                                                either through the user interface or the command
+                                                line. In the latter case, you need to specify data
+                                                sources, field mappings and other parameters via
+                                                configuration files. This makes it possible to
+                                                automate the import process, using API calls.</p>
+</li>
+</ul>
+</div>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>With both methods, the number of records you can import depends on your
+                        permissions, the type of data you’re importing, and the overall data
+                        storage limits for your organization. The type of objects you can import
+                        depends on your edition.</p></div></div></div></div></div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading4">Use the Data Import Wizard When:</h3>
+<a name="import"></a><ul class="ul bulletList" id="import">
+<li class="li">You need to load less than 50,000 records.</li>
+<li class="li">The objects you need to import are supported by the wizard. </li>
+<li class="li">You don’t need the import process to be automated.</li>
+</ul>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading5">Use Data Loader When:</h3>
+<a name="data_loader"></a><ul class="ul bulletList" id="data_loader">
+<li class="li">You need to load 50,000 to five million records. If you need to
+                                        load more than 5 million records, <span class="ph" id="third_party"><a name="third_party"></a>we
+                                                recommend you work with a Salesforce partner or
+                                                visit the <cite class="cite"><a class="xref" href="http://appexchange.salesforce.com" target="_blank">AppExchange</a></cite> for a
+                                                suitable partner product.</span></li>
+<li class="li">You need to load into an object that isn’t supported by the Data
+                                        Import Wizard.</li>
+<li class="li">You want to schedule regular data loads, such as nightly
+                                        imports.</li>
+</ul>
+</div>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>Data Loader uses the SOAP API to process records. For faster processing, you
+                        can configure it to use the Bulk API instead. The Bulk API is optimized to
+                        load a large number of records simultaneously. It is faster than the SOAP
+                        API due to parallel processing and fewer network round-trips.</p></div></div></div></div></div>
+<p class="p" dir="ltr">View this video for more information on choosing the right import
+                        tool.</p>
+<p class="p"><iframe allowfullscreen="1" class="doc_embedded_video" frameborder="0" height="360" mozallowfullscreen="1" src="//play.vidyard.com/qm6ZgUjjKjgIp7F1qXwFcw" webkitallowfullscreen="1" width="640"></iframe></p>
+</div>
+</div>
+<div class="topic nested0" id="data_import_prepare" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_import_prepare"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading6"><span class="ph" id="topic-title"><a name="topic-title"></a>Prepare for Data Import</span></h2>
+<div class="body">
+<div class="p" dir="ltr">Follow these steps before you start importing any data. <ol class="ol enumList">
+<li class="li" dir="ltr">Use your existing software to create an export
+                                        file.</li>
+<li class="li">Clean up the import file for accuracy and consistency. This
+                                        involves updating the data to remove duplicates, delete
+                                        unnecessary information, correct spelling and other errors,
+                                        and enforce naming conventions. </li>
+<li class="li" dir="ltr">Compare your data fields with the Salesforce fields
+                                        you can import into, and verify that your data will be
+                                        mapped into the appropriate Salesforce fields. You might
+                                        need to fine-tune the mapping before starting the import.
+                                        For details, see <a class="xref" href="https://help.salesforce.com/apex/HTViewHelpDoc?id=field_mapping_for_other_data_sources_and_organization_import.htm&amp;language=en_US" target="_blank">Field
+                                                Mapping for Data Sources</a> in the online
+                                        help.</li>
+<li class="li">Make any configuration changes required in Salesforce to handle
+                                        the imported data. For example, you might need to create new
+                                        custom fields, add new values to picklists, or temporarily
+                                        deactivate workflow rules.</li>
+</ol>
+</div>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>Salesforce recommends you import using a small test file first to make sure
+                        you’ve prepared your source data correctly. </p></div></div></div></div></div>
+<p class="p" dir="ltr">View this video for more information on cleaning up your import
+                        file.</p>
+<p class="p"><iframe allowfullscreen="1" class="doc_embedded_video" frameborder="0" height="360" mozallowfullscreen="1" src="//play.vidyard.com/Te2Qxd1MsJt4jTnlxRiMoA" webkitallowfullscreen="1" width="640"></iframe>
+</p>
+</div>
+</div>
+<div class="topic task nested0" id="data_import_wizard_path" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_import_wizard_path"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading7"><span class="ph" id="data_import_wizard_title"><a name="data_import_wizard_title"></a>Use the Data Import Wizard</span></h2>
+<div class="body taskbody"><div class="shortdesc">Once you have created an export file and cleaned up the data for import, follow these
+    steps to import data using the Data Import Wizard.</div>
+<a name="steps1"></a><ol class="ol steps enumList" id="steps1">
+<li class="li step">
+<span class="ph cmd" id="c2"><a name="c2"></a>Start the wizard.</span>
+<a name="ss2"></a><ol class="ol substeps enumList" id="ss2" type="a">
+<li class="li substep">
+<span class="ph cmd">From Setup, enter <kbd class="ph userinput">Data Import Wizard</kbd> in the <span class="keyword parmname">Quick Find</span> box, then select <strong class="ph uicontrol">Data Import Wizard</strong>.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Review the information provided on the welcome page, then click <strong class="ph uicontrol">Launch
+                Wizard!</strong></span>
+</li>
+</ol>
+</li>
+<li class="li step" id="s3"><a name="s3"></a>
+<span class="ph cmd">Choose the data that you want to import.</span>
+<ol class="ol substeps enumList" type="a">
+<li class="li substep">
+<span class="ph cmd">To import accounts, contacts, leads, or solutions, click <strong class="ph uicontrol">Standard
+                Objects</strong>. To import custom objects, click <strong class="ph uicontrol">Custom
+                Objects</strong> .</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Specify whether you want to add new records to Salesforce, update existing records,
+              or add and update records simultaneously.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Specify matching and other criteria as necessary. Hover over the question marks for
+              more information about each option.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Specify the file that contains your data.</span>
+<div class="itemgroup info">You can specify your data file by dragging the CSV to the upload area of the page
+              or by clicking the CSV category you’re using and then navigating to and
+              selecting the file.</div>
+</li>
+<li class="li substep">
+<span class="ph cmd">Choose a character encoding method for your file. Most users can accept the default
+              value. .</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Click <strong class="ph uicontrol">Next</strong>.</span>
+<div class="itemgroup info">
+<div class="fig fignone">
+<span class="image image-block"><img alt="Image of Data Import Wizard" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-use04c26bb062944601b082308833a2f44.png"/></span>
+</div>
+</div>
+</li>
+</ol>
+</li>
+<li class="li step" id="s4"><a name="s4"></a>
+<span class="ph cmd">Map your data fields to Salesforce data fields.</span>
+<div class="itemgroup info">The Data Import Wizard tries to map as many of your data fields as possible to
+          standard Salesforce data fields. If Salesforce can’t automatically map fields,
+          however, you  map them manually. Unmapped fields are not imported into Salesforce.<p class="p">To
+            see a list of standard Salesforce data fields, from Setup click
+              <strong class="ph uicontrol">Customize</strong>, click the object whose fields you’re
+            interested in, and click <strong class="ph uicontrol">Fields</strong>. For example, if you want to see
+            a list of standard Salesforce fields for leads, click <span class="ph menucascade"><strong class="ph uicontrol">Customize</strong> | <strong class="ph uicontrol">Leads</strong> | <strong class="ph uicontrol">Fields</strong></span>.</p>
+</div>
+<ol class="ol substeps enumList" type="a">
+<li class="li substep">
+<span class="ph cmd">Scan the list of mapped data fields and locate any unmapped fields.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Click <strong class="ph uicontrol">Map</strong> to the left of each unmapped field.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">In the Map Your Field dialog box, choose the Salesforce field(s) you want to map to
+              and click <strong class="ph uicontrol">Map</strong>.</span>
+<div class="itemgroup info">
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>The Map Your Field dialog box also gives you the option of saving data from
+                unmapped fields in a general notes field for accounts and contacts. To do so, choose
+                Account Note or Contact Note from the Map To drop-down list and click
+                  <strong class="ph uicontrol">Map</strong>.</p></div></div></div></div></div>
+</div>
+</li>
+<li class="li substep">
+<span class="ph cmd">To change mappings that Salesforce performed automatically, click
+                <strong class="ph uicontrol">Change</strong> to the left of the appropriate field, then choose the
+              Salesforce field(s) you want to map to and click <strong class="ph uicontrol">Map</strong>.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Click <strong class="ph uicontrol">Next</strong>.</span>
+</li>
+</ol>
+</li>
+<li class="li step" id="s5"><a name="s5"></a>
+<span class="ph cmd">Review and start your import.</span>
+<ol class="ol substeps enumList" type="a">
+<li class="li substep">
+<span class="ph cmd">Review your import information on the Review page. If you still have unmapped
+              fields that you want to import, click <strong class="ph uicontrol">Previous</strong> to return to the
+              previous page and specify your mappings.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Click <strong class="ph uicontrol">Start Import</strong>.</span>
+</li>
+</ol>
+</li>
+<li class="li step">
+<span class="ph cmd" id="c6"><a name="c6"></a>Check import status.</span>
+<div class="itemgroup info"><span class="ph" id="ph_check_status"><a name="ph_check_status"></a>From Setup, enter “Bulk Data Load Jobs” in the <span class="keyword parmname">Quick Find</span> box, then select <strong class="ph uicontrol">Bulk Data Load Jobs</strong>.</span></div>
+</li>
+</ol>
+</div>
+</div>
+<div class="topic nested0" id="notes_on_importing_data_path" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="notes_on_importing_data_path"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading8"><span class="ph" id="topic-title"><a name="topic-title"></a>Tell Me More...</span></h2>
+<div class="body"><div class="shortdesc">This information can help you integrate your imported data intoSalesforce.</div>
+<ul class="ul bulletList">
+<li class="li"><strong class="ph b">New Values for Picklists and Multi-Select
+                        Picklists</strong>—If you import a picklist value that doesn’t match an
+                    existing picklist value:<ul class="ul bulletList">
+<li class="li">For an unrestricted picklist, the Data Import Wizard uses the value
+                            that’s in the import file.</li>
+<li class="li">For a restricted picklist, the Data Import Wizard uses the picklist’s
+                            default value.</li>
+</ul>
+</li>
+<li class="li" id="l3"><a name="l3"></a><strong class="ph b">Multi-Select Picklists</strong>—To import multiple values into a
+                multi-select picklist, separate the values by a semicolon in your import file.</li>
+<li class="li"><strong class="ph b">Checkboxes</strong>—To import data into a checkbox field, use 1 for
+                checked values and 0 for unchecked values.</li>
+<li class="li"><strong class="ph b">Default Values</strong>—For picklist, multi-select picklist, and
+                checkbox fields, if you do not map the field in the import wizard, the default value
+                for the field, if any, is automatically inserted into the new or updated
+                record.</li>
+<li class="li"><strong class="ph b">Date/Time Fields</strong>—Ensure that the format of any date/time
+                fields you are importing matches how they display in Salesforce per your locale setting.</li>
+<li class="li" id="l7"><a name="l7"></a><strong class="ph b">Formula Fields</strong>—Formula fields cannot accept imported data
+                because they are read-only.</li>
+<li class="li"><strong class="ph b">Field Validation Rules</strong>—Salesforce runs validation rules on
+                records before they are imported. Records that fail validation aren’t
+                imported. Consider deactivating the appropriate validation rules before running an
+                import if they affect the records you are importing.</li>
+</ul>
+</div>
+</div>
+<div class="topic nested0" id="data_import_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_import_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading9">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=faq_import_general.htm&amp;language=en_US" target="_blank">Data Import
+                                        FAQ</a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/apex/HTViewHelpDoc?id=import_prepare.htm&amp;language=en_US" target="_blank">Preparing Your Data for
+                Import</a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=data_loader.htm&amp;language=en_US" target="_blank">Data Loader
+                                        Overview</a>
+</li>
+<li class="li Videos">
+<a class="xref" href="http://salesforce.vidyard.com/watch/ARIjWm2qrDkJVJxEhReFug" target="_blank">Data Import Video Series</a>
+</li>
+</ul>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>Remember, this module is meant for
+            Salesforce Classic. When you launch your hands-on org, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank">switch to Salesforce Classic</a> to complete this
+            challenge.</p></div></div></div></div></div>
+</div>
+</div>
+</body></div>

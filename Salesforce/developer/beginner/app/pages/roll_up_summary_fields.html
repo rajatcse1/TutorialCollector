@@ -1,0 +1,184 @@
+<div class="unit-content">
+<body id="roll_up_summary_objectives"><a name="roll_up_summary_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you'll be able to: <ul class="ul bulletList">
+<li class="li">Describe what a roll-up summary field is. </li>
+<li class="li">Create a roll-up summary field.</li>
+<li class="li">Apply field-level security to your roll-up summary field.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="roll_up_fields_about_roll_up_summary_fields_path" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="roll_up_fields_about_roll_up_summary_fields_path"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Introduction to Roll-Up Summary Fields</span></h2>
+<div class="body">
+<p class="p">While formula fields calculate values using fields within a single record, roll-up summary
+      fields calculate values from a set of related records, such as those in a related list. You
+      can create roll-up summary fields that automatically display a value on a master record based
+      on the values of records in a detail record. These detail records must be directly related to
+      the master through a master-detail relationship.</p>
+<div class="p">You can perform different types of calculations with roll-up summary fields. You can count
+      the number of detail records related to a master record, or calculate the sum, minimum value,
+      or maximum value of a field in the detail records. For example, you might want:<ul class="ul bulletList">
+<li class="li">A custom account field that calculates the total of all related pending
+          opportunities.</li>
+<li class="li">A custom order field that sums the unit prices of products that contain a description
+          you specify.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="roll_up_fields_defining_summary_fields_path" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="roll_up_fields_defining_summary_fields_path"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3"><span class="ph" id="topic-title"><a name="topic-title"></a>Defining a Roll-Up Summary Field</span></h2>
+<div class="body">
+<p class="p">Since roll-up summary fields are based on master-detail relationships, it’s useful to review
+      object relationships before creating a roll-up summary field. </p>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading4">Master-Detail Relationships</h3>
+<p class="p">Master-detail relationships closely link objects together so that the master record
+        controls specific behaviors of the detail and subdetail record. </p>
+<div class="p">You define a roll-up summary field on the object that is on the master side of a
+        master-detail relationship. For example, you can create a roll-up summary field on the
+        Account object, summarizing related opportunities:<div class="fig fignone">
+<img alt="Example of fields rolling up to sum opportunities." class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us790603d627e6a75e64ee441c8e76762f.png"/>
+</div>
+</div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading5">Creating the Summary Field</h3>
+<a name="StepsRollUpSummary"></a><ol class="ol enumList" id="StepsRollUpSummary">
+<li class="li">Click <span class="ph menucascade"><strong class="ph uicontrol">Setup</strong> | <strong class="ph uicontrol">Customize</strong> | <strong class="ph uicontrol"><var class="keyword varname">Your Object</var></strong> | <strong class="ph uicontrol">Fields</strong></span>. </li>
+<li class="li">Click <strong class="ph uicontrol">New</strong>.</li>
+<li class="li">Choose the <span class="keyword parmname">Roll-Up Summary</span> field type, and click
+            <strong class="ph uicontrol">Next</strong>.</li>
+<li class="li">Enter a field label and any other attributes. Click <strong class="ph uicontrol">Next</strong>. </li>
+<li class="li">Select the object on the detail side of a master-detail relationship. This object
+          contains the records you want to summarize.</li>
+<li class="li">Select the type of summary:
+<div class="data colSort"><table class="featureTable sort_table" summary="">
+<thead align="left" class="thead sorted">
+<tr>
+<th class="featureTableHeader " id="d397119e148">Type</th>
+<th class="featureTableHeader " id="d397119e151">Description</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr>
+<td class="entry" data-title="Type" headers="d397119e148">COUNT</td>
+<td class="entry" data-title="Description" headers="d397119e151">Totals the number of related records.</td>
+</tr>
+<tr>
+<td class="entry" data-title="Type" headers="d397119e148">SUM</td>
+<td class="entry" data-title="Description" headers="d397119e151">Totals the values in the field you select in the <span class="keyword parmname">Field to
+                            Aggregate</span> option. Only number, currency, and percent fields
+                          are available.</td>
+</tr>
+<tr>
+<td class="entry" data-title="Type" headers="d397119e148">MIN</td>
+<td class="entry" data-title="Description" headers="d397119e151">Displays the lowest value of the field you select in the
+                            <span class="keyword parmname">Field to Aggregate</span> option for all directly related
+                          records. Only number, currency, percent, date, and date/time fields are
+                          available.</td>
+</tr>
+<tr>
+<td class="entry" data-title="Type" headers="d397119e148">MAX</td>
+<td class="entry" data-title="Description" headers="d397119e151">Displays the highest value of the field you select in the
+                            <span class="keyword parmname">Field to Aggregate</span> option for all directly related
+                          records. Only number, currency, percent, date, and date/time fields are
+                          available.</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li class="li">Enter your filter criteria if you want a selected group of records in your summary
+          calculation. If your organization uses multiple languages, enter filter values in your
+          organization's default language. </li>
+<li class="li">Click <strong class="ph uicontrol">Next</strong>.</li>
+<li class="li">Set the field-level security to determine whether the field should be visible for
+          specific profiles, and click <strong class="ph uicontrol">Next</strong>.<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>Field-level security
+            settings are settings that determine whether fields are hidden, visible, read only, or
+            editable for users.</p></div></div></div></div></div>
+</li>
+<li class="li">Choose the page layouts that should display the field. The field is
+                    added as the last field in the first two-column section on the page layout. For
+                    user custom fields, the field is automatically added to the bottom of the user
+                    detail page.</li>
+<li class="li">Click <strong class="ph uicontrol">Save</strong> to finish or <strong class="ph uicontrol">Save &amp;
+                        New</strong> to create more custom fields.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="roll_up_fields_example" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="roll_up_fields_example"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading6"><span class="ph" id="topic-title"><a name="topic-title"></a>Examples of Roll-Up Summary Fields</span></h2>
+<div class="body">
+<p class="p">Here are more examples of detail data rolling-up to master records. </p>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading7">Date Opportunity First Created</h3>
+<div class="p">A roll-up field was created on the Accounts object. Created Date is summarized on the
+    Opportunities object to find the earliest date an opportunity was created related to an account. <div class="fig fignone">
+<img alt="Example of rolling up the opportunity created date to an account." class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usda98619ac66d33f593fe7b969d9ddc22.png"/>
+</div>
+</div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading8">Total Price of All Products Related to An Opportunity</h3>
+<div class="p">A roll-up field was created on the Opportunities object. Total Price is summarized on the
+    Opportunity Product object to find the grand total of all products related to an opportunity. <div class="fig fignone">
+<img alt="Example of rolling up the product total for an opportunity." class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us9d2856ba901233f9840674b54469462f.png"/>
+</div>
+</div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading9">Minimum List Price of An Opportunity</h3>
+<p class="p">A roll-up field was created on the Opportunities object. List Price is summarized on the
+    Opportunity Product object to find the product with the lowest price related to an opportunity.
+   </p>
+</div>
+<img alt="Example of rolling up the minimum product price on an opportunity." class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us0869e0c54a1bc6e5ae2c5b8dd1685adc.png"/>
+</div>
+</div>
+<div class="topic nested0" id="roll_up_fields_tell_me_more" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="roll_up_fields_tell_me_more"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading10"><span class="ph" id="topic-title"><a name="topic-title"></a>Tell Me More</span></h2>
+<div class="body">
+<div class="p">Congratulations on creating your first roll-up summary field! Keep in mind that the types of
+   fields you can calculate in a roll-up summary field depend on the type of calculation. For
+    example:<ul class="ul bulletList">
+<li class="li">Number, currency, and percent fields are available when you select SUM as the roll-up
+     type.</li>
+<li class="li">Number, currency, percent, date, and date/time fields are available when you select MIN or
+     MAX as the roll-up type.</li>
+</ul>
+Learn more about roll-up summary fields at <a class="xref" href="https://help.salesforce.com" target="_blank">https://help.salesforce.com</a>.</div>
+</div>
+</div>
+<div class="topic nested0" id="roll_up_summary_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="roll_up_summary_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading11">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=fields_about_roll_up_summary_fields.htm&amp;language=en_US" target="_blank" title="HTML (New Window)">
+               Roll-Up Summary Field
+            </a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=relationships_considerations.htm&amp;language=en_US" target="_blank" title="HTML (New Window)">
+               Considerations for Relationships
+            </a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=filter_operators.htm&amp;language=en_US" target="_blank" title="HTML (New Window)">
+               Filter Operators Reference
+            </a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=overview_of_custom_object_relationships.htm&amp;language=en_US" target="_blank" title="HTML (New Window)">
+               Object Relationships
+            </a>
+</li>
+</ul>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>Remember, this module is meant for
+            Salesforce Classic. When you launch your hands-on org, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank">switch to Salesforce Classic</a> to complete this
+            challenge.</p></div></div></div></div></div>
+</div>
+</div>
+</body></div>

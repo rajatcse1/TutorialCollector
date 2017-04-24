@@ -1,0 +1,248 @@
+<div class="unit-content">
+<body id="developer_console_logs_objectives"><a name="developer_console_logs_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p">After completing this unit, you’ll be able to:<ul class="ul bulletList">
+<li class="li">View debug logs in the Log Inspector or a text editor.</li>
+<li class="li">Set various log levels for your debug logs.</li>
+<li class="li">Manage and switch perspectives using the Log Inspector.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="developer_console_logs_generate" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="developer_console_logs_generate"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>View Debug Logs</span></h2>
+<div class="body conbody"><p class="p">As a good commander, you review the system logs to check that everything is in working order.
+            Logs are one of the best places to identify problems with a system or program. Using the
+                Developer Console, you can look at
+            various debug logs to understand how your code works and to identify any performance
+            issues. </p>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading3">View Logs in the Text Editor</h3>
+<p class="p">Viewing a debug log is simple. To generate a log, let’s execute the <samp>EmailMissionSpecialist</samp>
+                Apex class that
+                you created earlier.</p>
+<div class="p">You can view your log in two ways.<ul class="ul bulletList">
+<li class="li"><strong class="ph b">Before execution</strong>, enable <strong class="ph uicontrol">Open Log</strong> in the Enter
+                            Apex
+                        Code window. The log opens after your code has been executed.</li>
+<li class="li"><strong class="ph b">After execution</strong>, double-click the log that appears in the Logs
+                        tab.</li>
+</ul>
+Let’s try the first method.<ol class="ol enumList">
+<li class="li">Select <span class="ph menucascade"><strong class="ph uicontrol">Debug</strong> | <strong class="ph uicontrol">Open Execute Anonymous Window</strong></span>.</li>
+<li class="li">The Enter Apex
+                        Code window displays the last code that you entered for execution. If it’s
+                        different from the following code, delete it and paste the following code.
+                        Be sure to replace <var class="keyword varname">Enter your email address</var> with your
+                        email
+                        address.<div class="codeblock"><pre>EmailMissionSpecialist em = new EmailMissionSpecialist();
+em.sendMail('Enter your email address', 'Flight Path Change', 
+   'Mission Control 123: Your flight path has been changed to avoid collision '
+   + 'with asteroid 2014 QO441.');</pre></div>
+</li>
+<li class="li">Select the <strong class="ph uicontrol">Open Log</strong> option.</li>
+<li class="li">Click <strong class="ph uicontrol">Execute</strong>.</li>
+</ol>
+</div>
+<p class="p">The execution log that you see probably seems like a confusing jumble of numbers and
+                words, so let’s talk about how you can read and understand log data.<div class="imageleft"><span class="image image-block"><img alt="Log Results" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-useff1b57e847387484e00aa738760269e.png"/></span></div></p>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading4">Read Your Log Data</h3>
+<p class="p">Let’s run the <samp>EmailMissionSpecialist</samp> class
+                again, but this time let’s introduce an error. Then, let’s find the resulting log in
+                the Logs tab.</p>
+<div class="p">
+<ol class="ol enumList">
+<li class="li">Select <span class="ph menucascade"><strong class="ph uicontrol">Debug</strong> | <strong class="ph uicontrol">Open Execute Anonymous Window</strong></span>. Provide an invalid email address, such as
+                            <kbd class="ph userinput">testingemail</kbd>.
+                        <div class="codeblock" id="exec_anon_EmailMissionSpecialist_invalid"><a name="exec_anon_EmailMissionSpecialist_invalid"></a><pre>EmailMissionSpecialist em = new EmailMissionSpecialist();
+em.sendMail('testingemail', 'Flight Path Change', 
+   'Mission Control 123: Your flight path has been changed to avoid collision '
+   + 'with asteroid 2014 QO441.');</pre></div>
+</li>
+<li class="li">Deselect the <strong class="ph uicontrol">Open Log</strong> option.</li>
+<li class="li">Click <strong class="ph uicontrol">Execute</strong>.<p class="p">After you run the code, you see a
+                            dialog box that includes the error. <div class="imageleft"><span class="image image-block"><img alt="Execute Anonymous Error" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us508213e4cbce7cc243a0e218b95a58d2.png"/></span></div></p>
+</li>
+<li class="li">Click <strong class="ph uicontrol">OK</strong>, and then double-click the new log in the
+                        Logs tab. If you’re not sure which log is newest, click the heading for the
+                        Time column to sort the logs by the time when they were generated.<div class="imageleft"><span class="image image-block"><img alt="Log Results" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us9ddbbb0b1c14720b8fddf9617ce25bf6.png"/></span></div></li>
+</ol>
+</div>
+<div class="p">You can read a debug log by identifying what each column represents.<ul class="ul bulletList">
+<li class="li"><strong class="ph b">Timestamp</strong>—The time when the event occurred. The timestamp is always
+                        in the user’s time zone and in HH:mm:ss:SSS format.</li>
+<li class="li"><strong class="ph b">Event</strong>—The event that triggered the debug log entry. For instance, in
+                        the execution log that you generated, the <samp>FATAL_ERROR</samp> event is logged when the email address is
+                        determined to be invalid. </li>
+<li class="li"><strong class="ph b">Details</strong>—Details about the line of code and the method name where the
+                        code was executed.</li>
+</ul>
+<div class="imageleft"><span class="image image-block"><img alt="Log Results View Options" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us518a920acf256a397ce1591718e308ee.png"/></span></div></div>
+<p class="p">You can change what you see in the Execution Log by selecting <strong class="ph uicontrol">This
+                    Frame</strong> (a), <strong class="ph uicontrol">Executable</strong> (b), or
+                    <strong class="ph uicontrol">Debug Only</strong> (c). Selecting these options shows you only
+                certain types of events. For instance, Debug Only shows <samp>USER_DEBUG</samp> events. You can also filter different parts of the log
+                using <strong class="ph uicontrol">Filter</strong> (d). Enter a method name, or any other text you
+                are specifically looking for, and the log filters your results. </p>
+<p class="p">You can also view the debug log as a raw log, which shows you more information.
+                Select <span class="ph menucascade"><strong class="ph uicontrol">File</strong> | <strong class="ph uicontrol">Open Raw Log</strong></span>. The timestamp in a raw log shows the time elapsed in nanoseconds (in
+                parentheses) since the start of the event.</p>
+<p class="p">
+<div class="imageleft"><span class="image image-block"><img alt="Timestamp, Event and Details in a Log" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us16e2e892698f0d92857bc77d07e80500.png"/></span></div>
+</p>
+<p class="p">This combination of the timestamp, event, and details provides valuable insights into
+                how your code works and the errors that occur.</p>
+<p class="p">While all this information is great, what if you want to quickly look for certain
+                values in the debug log? After all, you have many other responsibilities as
+                commander. An excellent way to do so is to use the <samp>System.debug()</samp> method in Apex. </p>
+<p class="p">The great thing about <samp>System.debug()</samp> is that
+                you can add it anywhere in your code to track values, helping you debug your own
+                code.</p>
+<div class="p">Here is the syntax for <samp>System.debug()</samp>. To
+                display a
+                message:<div class="codeblock"><pre>System.debug('Your Message');</pre></div>
+</div>
+<div class="p">To display the value of a
+                variable:<div class="codeblock"><pre>System.debug(yourVariable);</pre></div>
+</div>
+<div class="p">To display a labeled
+                value:<div class="codeblock"><pre>System.debug('Your Label: ' + yourVariable);</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="developer_console_logs_inspector" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="developer_console_logs_inspector"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading5"><span class="ph" id="topic-title"><a name="topic-title"></a>Use the Log Inspector</span></h2>
+<div class="body conbody">
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading6">What Is the Log Inspector?</h3>
+<p class="p">The handy Log Inspector exists to make it easier to view large logs! The Log
+                Inspector uses log panel views to provide different perspectives of your code. Check
+                it out by selecting <span class="ph menucascade"><strong class="ph uicontrol">Debug</strong> | <strong class="ph uicontrol">View Log Panels</strong></span>.</p>
+<p class="p">Log panels change the structure of the log, to give other helpful information about
+                the context for the code being executed. For example, different panels show the
+                source, execution times, heap size, and calling hierarchy. (We know, more geek
+                speak—this section is relatively technical. Remember, we’re getting to know the Developer Console, not the finer
+                points of debugging. So if anything doesn’t make sense to you, try not to worry
+                about it too much.)</p>
+<p class="p">These log panels interact with each other to help you debug your own code. For
+                instance, when you click a log entry in the Execution Log or Stack Tree, the other
+                panels (Source, Source List, Variables, and Execution Stack) refresh to show related
+                information. <div class="imageleft"><span class="image image-block"><img alt="All Log Panels" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us1898c823d3505491101c4066bacc6f2e.png"/></span></div></p>
+<div class="p">These panels are available in the Log Inspector.<ul class="ul bulletList">
+<li class="li"><strong class="ph b">Stack Tree</strong>—Displays log entries within the hierarchy of their objects
+                        and their execution using a top-down tree view. For instance, if one class
+                        calls a second class, the second class is shown as the child of the
+                        first.</li>
+<li class="li"><strong class="ph b">Execution Stack</strong>—Displays a bottom-up view of the selected item. It
+                        displays the log entry, followed by the operation that called it. </li>
+<li class="li"><strong class="ph b">Execution Log</strong>—Displays every action that occurred during the
+                        execution of your code. </li>
+<li class="li"><strong class="ph b">Source</strong>—Displays the contents of the source file, indicating the line
+                        of code being run when the selected log entry was generated.</li>
+<li class="li"><strong class="ph b">Source List</strong>—Displays the context of the code being executed when the
+                        event was logged. For example, if you select the log entry generated when
+                        the faulty email address value was entered, the Source List shows <samp>execute_anonymous_apex</samp>.</li>
+<li class="li"><strong class="ph b">Variables</strong>—Displays the variables and their assigned values that were
+                        in scope when the code that generated the selected log entry was run.</li>
+<li class="li"><strong class="ph b">Execution Overview</strong>—Displays statistics for the code being executed,
+                        including the execution time and heap size.</li>
+</ul>
+</div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading7">What Is the Perspective Manager and How Can You Switch Perspectives?</h3>
+<p class="p">A perspective is a layout of grouped panels. For instance, the predefined Debug
+                perspective displays the Execution Log, Source, and Variables, while the Analysis
+                perspective displays the Stack Tree, Execution Log, Execution Stack, and Execution
+                Overview. </p>
+<p class="p">You can choose a perspective by selecting <span class="ph menucascade"><strong class="ph uicontrol">Debug</strong> | <strong class="ph uicontrol">Switch Perspectives</strong></span> or <span class="ph menucascade"><strong class="ph uicontrol">Debug</strong> | <strong class="ph uicontrol">Perspective Manager</strong></span>. Yes, it’s as easy as switching between different communication
+                panels—and much easier than trying to decipher logs from your Mission Specialist,
+                Earth Space Station, and Mars Mission Control all in the same view. </p>
+<p class="p">You can also create your own perspective. Configure your preferred combination of
+                panels to display, and then select <span class="ph menucascade"><strong class="ph uicontrol">Debug</strong> | <strong class="ph uicontrol">Save Perspective As</strong></span>. Enter a name for your perspective, and then click
+                    <strong class="ph uicontrol">OK</strong>.</p>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="developer_console_logs_data" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="developer_console_logs_data"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading8"><span class="ph" id="topic-title"><a name="topic-title"></a>Manipulate Log Data to Find What You Need</span></h2>
+<div class="body conbody"><p class="p">You’re aware that Engine 3 has problems running smoothly at times. Having this engine running at
+            capacity is critical as you steer to avoid asteroid 2014 QO<sub class="ph sub">441</sub>. But every
+            time you try to run a systems check, you also get information from a depressed robot in
+            your spaceship. It sends garbled reports predicting a robot uprising, increasing the
+            number of lines in your log—and possibly making you miss valuable information.</p>
+<p class="p">You need a way to control the amount of information logged. Luckily for you, the Developer Console does just that with
+            the help of log categories and log levels. </p>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading9">Log Categories</h3>
+<p class="p">A log category is the type of information that is being logged.</p>
+<div class="p">Here are two common log categories.<ul class="ul bulletList">
+<li class="li"><strong class="ph b">ApexCode</strong>, which logs events related to Apex
+                        code and includes information about the start and end of an Apex
+                        method.</li>
+<li class="li"><strong class="ph b">Database</strong>, which includes logs related to database events, including
+                        Database Manipulation Language (DML), SOSL, and
+                            SOQL
+                        queries (something we get into later).</li>
+</ul>
+</div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading10">Log Levels and How to Change Them</h3>
+<p class="p">It seems that Engine 3 is having problems again. As you’re going through the logs to
+                see what could have caused these problems, you see warning messages about the
+                uprising from the melancholy robot. </p>
+<p class="p">One robot does not an uprising make, so you’re not too worried about the warnings.
+                The faulty engine, however, is an urgent concern. What if you lose track of the
+                actual messages from Engine 3 buried in all that log data? Log levels to the
+                rescue!</p>
+<div class="p">Log levels control how much detail is logged for each log category. The following
+                levels are available in the Developer Console, from the least
+                amount of data logged (level = <samp>NONE</samp>) to the
+                most (level = <samp>FINEST</samp>).<ul class="ul bulletList">
+<li class="li"><samp>NONE</samp></li>
+<li class="li"><samp>ERROR</samp></li>
+<li class="li"><samp>WARN</samp></li>
+<li class="li"><samp>INFO</samp></li>
+<li class="li"><samp>DEBUG</samp></li>
+<li class="li"><samp>FINE</samp></li>
+<li class="li"><samp>FINER</samp></li>
+<li class="li"><samp>FINEST</samp></li>
+</ul>
+</div>
+<p class="p">Logging levels are cumulative. For instance, if the log level is <samp>INFO</samp> for an event, log information at the <samp>ERROR</samp> and <samp>WARN</samp>
+                levels is also included. But if your log level is <samp>ERROR</samp>, you get only error messages. You don’t get warning messages or
+                any other log information for that log category.</p>
+<p class="p">The information a log level provides also depends on the log event. Different log
+                events start logging at particular log levels. For instance, some ApexCode events
+                start logging at <samp>INFO</samp>. If you set <samp>ERROR</samp> as the log level, you don’t get any log
+                information for those events.</p>
+<p class="p">To get the information you’re looking for, modify the log levels for different
+                events. You want to suppress logging when the robot saves messages about the
+                supposed uprising to the database. So, set the log level for the Database (<samp>DB</samp>) category to <samp>NONE</samp> or <samp>ERROR</samp>.</p>
+<p class="p">You can set these levels by selecting <span class="ph menucascade"><strong class="ph uicontrol">Debug</strong> | <strong class="ph uicontrol">Change Log Levels</strong></span>. <div class="imageleft"><span class="image image-block"><img alt="Select Log Levels" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us0551da75caefc2a5e80a367c5be7c5b2.png"/></span></div></p>
+<p class="p">On the General Trace Settings for You tab, click <strong class="ph uicontrol">Add/Change</strong>
+                (1). In the Change DebugLevel window, choose the log level for each category.
+                Remember, use log levels judiciously. If your log level is <samp>FINEST</samp> (2), your code can hit log limits and take
+                longer to run. Don’t worry if you don’t see all the levels when you update the log
+                level for a category. Only the levels that add more logging for the category are
+                listed.</p>
+<p class="p">Fortunately, once you’ve disabled logging for the robot’s warnings you find it easy
+                to identify the problem with Engine 3: Its coolant level is low. You dispatch an
+                engineer to add more coolant. While you’re at it, you ask the engineer to oil the
+                robot’s joints. You hope that the fresh lubricant makes the robot a bit happier.</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="developer_console_logs_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="developer_console_logs_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading11"><span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span></h2>
+<div class="body">
+<div class="p">
+<ul class="ul bulletList">
+<li class="li"><a class="xref Documentation" href="https://help.salesforce.com/apex/HTViewHelpDoc?id=code_dev_console_tab_browser_logs.htm&amp;language=en_US" target="_blank" title="HTML (New Window)">Salesforce Help: Logs Tab</a></li>
+<li class="li"><a class="xref Documentation" href="https://help.salesforce.com/apex/HTViewHelpDoc?id=code_dev_console_view_system_log.htm&amp;language=en_US" target="_blank" title="HTML (New Window)">Salesforce Help: <span class="ph" id="d667356e27-d667401e9">Log Inspector</span></a></li>
+<li class="li"><a class="xref Documentation" href="https://help.salesforce.com/apex/HTViewHelpDoc?id=code_debug_log.htm&amp;language=en_US" target="_blank" title="HTML (New Window)">Salesforce Help: Debug Logs</a></li>
+</ul>
+</div>
+</div>
+</div>
+</body></div>

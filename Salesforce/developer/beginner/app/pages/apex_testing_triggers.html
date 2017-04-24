@@ -1,0 +1,162 @@
+<div class="unit-content">
+<body id="apex_testing_triggers_learning_objectives"><a name="apex_testing_triggers_learning_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you'll be able to: <ul class="ul bulletList">
+<li class="li">Write a test for a trigger that fires on a single record operation.</li>
+<li class="li">Execute all test methods in a class.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="apex_testing_triggers" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="apex_testing_triggers"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Test Apex Triggers</span></h2>
+<div class="body conbody"><div class="shortdesc">Before deploying a trigger, write unit tests to perform the actions that fire the
+    trigger and verify expected results.</div>
+<p class="p">Let’s test a trigger that we worked with earlier in the Writing Apex Triggers unit. If an account
+      record has related opportunities, the <samp>AccountDeletion</samp>
+      trigger prevents the record’s deletion.</p>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading3">Prerequisites</h3>
+<ol class="ol enumList">
+<li class="li">If you haven’t yet added the <samp>AccountDeletion</samp>
+          trigger, follow these steps.<ol class="ol enumList" type="a">
+<li class="li">In the Developer Console, click <span class="ph menucascade"><strong class="ph uicontrol">File</strong> | <strong class="ph uicontrol">New</strong> | <strong class="ph uicontrol">Apex
+                  Trigger</strong></span>. </li>
+<li class="li">Enter <kbd class="ph userinput">AccountDeletion</kbd> for the trigger name, and then select
+                <strong class="ph uicontrol">Account</strong> for the sObject. Click
+              <strong class="ph uicontrol">Submit</strong>.</li>
+<li class="li">Replace the default code with the
+              following.<div class="codeblock"><pre>trigger AccountDeletion on Account (before delete) {
+   
+    // Prevent the deletion of accounts if they have related contacts.
+    for (Account a : [SELECT Id FROM Account
+                     WHERE Id IN (SELECT AccountId FROM Opportunity) AND
+                     Id IN :Trigger.old]) {
+        Trigger.oldMap.get(a.Id).addError(
+            'Cannot delete account with related opportunities.');
+    }
+    
+}</pre></div>
+</li>
+</ol>
+</li>
+<li class="li">If you added the <samp>AccountDeletion</samp> trigger in a
+          previous unit but disabled it so that the system could check your challenge, re-enable it.<ol class="ol enumList" type="a">
+<li class="li">From Setup, search for <kbd class="ph userinput">Apex Triggers</kbd>.</li>
+<li class="li">On the Apex Triggers page, click <strong class="ph uicontrol">Edit</strong> next to the
+              AccountDeletion trigger.</li>
+<li class="li">Select <strong class="ph uicontrol">Is Active</strong>.</li>
+<li class="li">Click <strong class="ph uicontrol">Save</strong>.</li>
+</ol>
+</li>
+<li class="li">If your org contains triggers from a previous unit called <samp>AddRelatedRecord</samp>, <samp>CalloutTrigger</samp>, or
+            <samp>HelloWorldTrigger</samp>, disable them. For example, to
+          disable the <samp>AddRelatedRecord</samp> trigger:<ol class="ol enumList" type="a">
+<li class="li">From Setup, search for <kbd class="ph userinput">Apex Triggers</kbd>.</li>
+<li class="li">On the Apex Triggers page, click <strong class="ph uicontrol">Edit</strong> next to the
+              AddRelatedRecord trigger.</li>
+<li class="li">Deselect <strong class="ph uicontrol">Is Active</strong>.</li>
+<li class="li">Click <strong class="ph uicontrol">Save</strong>.</li>
+</ol>
+</li>
+<li class="li">To disable the <samp>HelloWorldTrigger</samp> and <samp>CalloutTrigger</samp> triggers, repeat the previous steps.</li>
+</ol>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading4">Adding and Running a Unit Test</h3>
+<p class="p">First, let’s start by adding a test method. This test method verifies what the trigger is
+        designed to do (the positive case): preventing an account from being deleted if it has
+        related opportunities. </p>
+<ol class="ol enumList">
+<li class="li">In the Developer Console, click <span class="ph menucascade"><strong class="ph uicontrol">File</strong> | <strong class="ph uicontrol">New</strong> | <strong class="ph uicontrol">Apex Class</strong></span>.</li>
+<li class="li">Enter <kbd class="ph userinput">TestAccountDeletion</kbd> for the class name, and then click
+            <strong class="ph uicontrol">OK</strong>.</li>
+<li class="li">Replace the default class body with the
+            following.<div class="codeblock"><pre>@isTest
+private class TestAccountDeletion {
+
+    @isTest static void TestDeleteAccountWithOneOpportunity() {
+        // Test data setup
+        // Create an account with an opportunity, and then try to delete it
+        Account acct = new Account(Name='Test Account');
+        insert acct;
+        Opportunity opp = new Opportunity(Name=acct.Name + ' Opportunity',
+                                       StageName='Prospecting',
+                                       CloseDate=System.today().addMonths(1),
+                                       AccountId=acct.Id);
+        insert opp;
+        
+        // Perform test
+        Test.startTest();
+        Database.DeleteResult result = Database.delete(acct, false);
+        Test.stopTest();
+
+        // Verify 
+        // In this case the deletion should have been stopped by the trigger,
+        // so verify that we got back an error.
+        System.assert(!result.isSuccess());
+        System.assert(result.getErrors().size() &gt; 0);
+        System.assertEquals('Cannot delete account with related opportunities.',
+                             result.getErrors()[0].getMessage());
+    }
+    
+}</pre></div>
+<p class="p">The
+            test method first sets up a test account with an opportunity. Next, it deletes the test
+            account, which fires the <samp>AccountDeletion</samp>
+            trigger. The test method verifies that the trigger prevented the deletion of the test
+            account by checking the return value of the <samp>Database.delete()</samp> call. The return value is a <samp>Database.DeleteResult</samp> object that contains information about the delete
+            operation. The test method verifies that the deletion was not successful and verifies
+            the error message obtained.</p>
+</li>
+</ol>
+<ol class="ol enumList">
+<li class="li">To run this test, click <span class="ph menucascade"><strong class="ph uicontrol">Test</strong> | <strong class="ph uicontrol">New Run</strong></span>.</li>
+<li class="li">Under Test Classes, click <strong class="ph uicontrol">TestAccountDeletion</strong>.</li>
+<li class="li">To add all the methods in the <samp>TemperatureConverterTest</samp> class to the test run, click <strong class="ph uicontrol">Add
+            Selected</strong>.</li>
+<li class="li">Click <strong class="ph uicontrol">Run</strong>.<p class="p">Find the test result in the Tests tab under the
+            latest run.</p>
+</li>
+</ol>
+<p class="p">The <samp>TestAccountDeletion</samp> test class contains only
+        one test method, which tests for a single account record. Also, this test is for the
+        positive case. Always test for more scenarios to ensure that the trigger works in all cases,
+        including deleting an account without opportunities and bulk account deletions.</p>
+<p class="p">Test data is set up inside the test method, which can be time-consuming as you add more
+        test methods. If you have many test methods, put test-data creation in a test utility class
+        and call the utility class from multiple test methods. The next unit shows you how to take
+        advantage of a test utility class and add more test methods.</p>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading5">Tell Me More</h3>
+<p class="p">The test method contains the <samp>Test.startTest()</samp> and
+          <samp>Test.stopTest()</samp> method pair, which delimits a
+        block of code that gets a fresh set of governor limits. In this test, test-data setup uses
+        two DML statements before the test is performed. To test that Apex code runs within governor
+        limits, isolate data setup’s limit usage from your test’s. To isolate the data setup
+        process’s limit usage, enclose the test call within the <samp>Test.startTest()</samp> and <samp>Test.stopTest()</samp>
+        block. Also use this test block when testing asynchronous Apex. For more information, see
+          <a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.apexcode.meta/apexcode/apex_testing_tools_start_stop_test.htm" target="_blank" title="HTML (New Window)">Using Limits, startTest, and
+          stopTest</a>.</p>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>A known issue with the Developer Console prevents it from
+            updating code coverage correctly when running a subset of tests. To update your code
+            coverage results, use <span class="ph menucascade"><strong class="ph uicontrol">Test</strong> | <strong class="ph uicontrol">Run All</strong></span> rather than <span class="ph menucascade"><strong class="ph uicontrol">Test</strong> | <strong class="ph uicontrol">New Run</strong></span>.</p></div></div></div></div></div>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="apex_testing_triggers_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="apex_testing_triggers_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading6"><span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span></h2>
+<div class="body">
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading7">Documentation</h3>
+<p class="p">Check out the following in the <cite class="cite">Apex Developer Guide</cite>.</p>
+<ul class="ul bulletList">
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.apexcode.meta/apexcode/apex_testing_intro.htm" target="_blank" title="HTML (New Window)">Understanding Testing in Apex</a></li>
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.apexcode.meta/apexcode/apex_triggers.htm" target="_blank" title="HTML (New Window)">Triggers</a></li>
+</ul>
+</div>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>Remember, this module is meant for
+            Salesforce Classic. When you launch your hands-on org, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank">switch to Salesforce Classic</a> to complete this
+            challenge.</p></div></div></div></div></div>
+</div>
+</div>
+</body></div>

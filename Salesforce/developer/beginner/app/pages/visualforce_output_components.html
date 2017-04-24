@@ -1,0 +1,352 @@
+<div class="unit-content">
+<body id="visualforce_output_components_learning_objectives"><a name="visualforce_output_components_learning_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you’ll be able to: <ul class="ul bulletList">
+<li class="li">Explain the difference between coarse-grained and fine-grained components, and why you
+          might want to use one or the other.</li>
+<li class="li">Explain what an iteration component is and what it’s used for.</li>
+<li class="li">Use relevant coarse-grained components to display record details and related lists.</li>
+<li class="li">Use relevant fine-grained components to replace and customize coarse-grained
+          components.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="visualforce_output_components_intro" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_output_components_intro"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Introduction to Output Components</span></h2>
+<div class="body conbody"><div class="shortdesc">Visualforce includes
+  nearly 150 built-in components that you can use on your pages. Components are
+  rendered into HTML, CSS, and JavaScript when a page is requested. Coarse-grained
+  components provide a significant amount of functionality in a single component, and
+  might add a lot of information and user interface to the page it’s used on.
+  Fine-grained components provide more focused functionality, and enable you to
+  design the page to look and behave the way you want.</div>
+<p class="p">Here we’ll focus on <dfn class="term">output components</dfn>, that is, components that
+   output data from a record and enable you to design a view-only user interface. </p>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_output_components_create_page" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_output_components_create_page"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3"><span class="ph" id="topic-title"><a name="topic-title"></a>Create a Visualforce Page with
+            a Standard Controller</span></h2>
+<div class="body taskbody"><div class="shortdesc">Use output components with a standard controller to make it easy to
+        access and display record details.</div>
+<div class="section context">
+<p class="p">You’ll experiment with a number of different output components in this
+                page. For now, let’s create a mostly blank page.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Open the Developer Console and
+                    click <span class="ph menucascade"><strong class="ph uicontrol">File</strong> | <strong class="ph uicontrol">New</strong> | <strong class="ph uicontrol">Visualforce Page</strong></span> to create a new Visualforce
+                    page. Enter <kbd class="ph userinput">AccountDetail</kbd> for the page
+                    name.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">In the editor, replace any markup with the following.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:page standardController="Account"&gt;
+    
+    {! Account.Name }
+    
+&lt;/apex:page&gt;</pre></div>
+</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Click <strong class="ph uicontrol">Preview</strong> to open a preview of your
+                    page that you can look at while you make changes.</span>
+<div class="itemgroup stepresult">A new window should open, showing the standard Salesforce page header and sidebar elements, but nothing in the
+                    body.</div>
+</li>
+<li class="li step">
+<span class="ph cmd">In the preview window, add the ID for an account to the URL, and
+                    press Return.</span>
+<div class="itemgroup info">The URL should be something like this:
+                            <span class="ph filepath">https://<var class="keyword varname">SalesforceInstance</var>/apex/AccountDetail?core.apexpages.request.devconsole=1<strong class="ph b">&amp;id=001D000000JRBes</strong></span></div>
+<div class="itemgroup stepresult">You should now see the name of the account in the body.
+                    This verifies that you’ve got the standard controller working and
+                    a valid record ID.</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_output_components_record_details" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_output_components_record_details"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading4"><span class="ph" id="topic-title"><a name="topic-title"></a>Display Record Details</span></h2>
+<div class="body taskbody"><div class="shortdesc">Use <samp>&lt;apex:detail&gt;</samp> to
+        quickly add record details to a page that uses a standard
+        controller.</div>
+<div class="section context">
+<p class="p">Some output components bring a lot to the party. These “coarse
+                grained” components offer a lot of functionality, displaying many
+                fields, labels, and other user interface elements. They let you
+                quickly build pages that are variations on the built-in Salesforce
+                user interface.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Replace the line with <samp>{!
+                        Account.Name }</samp> with the following markup, and save
+                    your changes.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:detail /&gt;</pre></div>
+</div>
+<div class="itemgroup stepresult">Wow, that is a big change! With one line of markup you’ve
+                    just reproduced the entire standard view page for the account object!<div class="fig fignone">
+<span class="image image-block"><img alt="The &lt;apex:detail/&gt; component" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us0cf7d28c646e0246dc69c12086a914e9.png"/></span>
+</div>
+</div>
+</li>
+</ol>
+<div class="section result">
+<p class="p"><samp>&lt;apex:detail&gt;</samp> is a
+                    <dfn class="term">coarse-grained</dfn> output component that adds many fields, sections,
+                buttons, and other user interface elements to the page in just one line of markup.
+                Notice also that everything it adds to the page uses the Salesforce Classic styling. There are
+                quite a few attributes for customizing the appearance of <samp>&lt;apex:detail&gt;</samp>. Spend a few minutes now and
+                try changing a few to see what they do.</p>
+</div>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_output_components_related_lists" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_output_components_related_lists"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading5"><span class="ph" id="topic-title"><a name="topic-title"></a>Display Related Lists</span></h2>
+<div class="body taskbody"><div class="shortdesc">Use <samp>&lt;apex:relatedList&gt;</samp> to
+        display lists of records related to the current record.</div>
+<div class="section context">
+<p class="p">The <samp>&lt;apex:detail&gt;</samp> component
+                displays the details of a particular record, as well as lists of
+                related records, such as contacts, cases, opportunities, and so on.
+                This might be too much, so you can remove those related lists, and
+                then add back just a few, using a different coarse-grained
+                component.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Revise the markup to omit related lists by adding <samp>relatedList="false"</samp> to the
+                        <samp>&lt;apex:detail&gt;</samp>
+                    component.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:detail relatedList="false"/&gt;</pre></div>
+</div>
+<div class="itemgroup stepresult">The account record’s details are still displayed, but the
+                    related lists are gone.</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Below the <samp>&lt;apex:detail/&gt;</samp> line, add the following
+                    markup.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:relatedList list="Contacts"/&gt;
+&lt;apex:relatedList list="Opportunities" pageSize="5"/&gt;
+</pre></div>
+</div>
+<div class="itemgroup stepresult">Your page should now display two related lists, for
+                    contacts and opportunities. Also notice that you can configure
+                    each related list independently, by changing attributes on just
+                    that component.</div>
+</li>
+</ol>
+<div class="section result">
+<p class="p">The <samp>&lt;apex:relatedList&gt;</samp>
+                component is another coarse-grained component, but it’s lower level
+                than <samp>&lt;apex:detail&gt;</samp>. That
+                is, <samp>&lt;apex:detail&gt;</samp> shows
+                many related lists at once (or none), while <samp>&lt;apex:relatedList&gt;</samp> lets you go
+                one by one. This lets you show only the related lists that you’re
+                interested in, and you can customize the display of each related list
+                individually.</p>
+<p class="p">Use higher level components when they offer the functionality you
+                need, and use lower level components when you need more control over
+                what’s displayed on the page.</p>
+</div>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_output_components_fields" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_output_components_fields"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading6"><span class="ph" id="topic-title"><a name="topic-title"></a>Display Individual Fields</span></h2>
+<div class="body taskbody"><div class="shortdesc">Use <samp>&lt;apex:outputField&gt;</samp> to
+        display individual fields from a record.</div>
+<div class="section context">
+<p class="p">When you need even more control over your page layout, you can add
+                fields individually. The <samp>&lt;apex:outputField&gt;</samp> component is designed for doing
+                exactly that.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Replace the <samp>&lt;apex:detail/&gt;</samp> line with the following
+                    markup.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:outputField value="{! Account.Name }"/&gt;
+&lt;apex:outputField value="{! Account.Phone }"/&gt;
+&lt;apex:outputField value="{! Account.Industry }"/&gt;
+&lt;apex:outputField value="{! Account.AnnualRevenue }"/&gt;
+</pre></div>
+</div>
+<div class="itemgroup stepresult">The four fields are added to the page. But the formatting
+                    perhaps isn’t what you expected. <div class="fig fignone">
+<span class="image image-block"><img alt="Output fields, outside of a page block" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us0ea8de5045327ee3532f265d6f94c660.png"/></span>
+</div>
+The field values are displayed all on one line, without
+                    labels, and without other formatting. That’s not what we want,
+                    and it’s quite a contrast to the <samp>&lt;apex:detail&gt;</samp> and <samp>&lt;apex:relatedList&gt;</samp> components, which
+                    automatically use the platform styling.<p class="p">By itself, the <samp>&lt;apex:outputField&gt;</samp>
+                        only outputs the field’s value. But when you wrap it in
+                            <samp>&lt;apex:pageBlock&gt;</samp> and <samp>&lt;apex:pageBlockSection&gt;</samp> components, its
+                        behavior changes quite a bit.</p>
+</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Wrap the <samp>&lt;apex:outputField&gt;</samp> lines with <samp>&lt;apex:pageBlock&gt;</samp> and
+                        <samp>&lt;apex:pageBlockSection&gt;</samp> components, so that your
+                    markup looks like this.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:pageBlock title="Account Details"&gt;
+    &lt;apex:pageBlockSection&gt;
+        &lt;apex:outputField value="{! Account.Name }"/&gt;
+        &lt;apex:outputField value="{! Account.Phone }"/&gt;
+        &lt;apex:outputField value="{! Account.Industry }"/&gt;
+        &lt;apex:outputField value="{! Account.AnnualRevenue }"/&gt;
+    &lt;/apex:pageBlockSection&gt;
+&lt;/apex:pageBlock&gt;</pre></div>
+</div>
+<div class="itemgroup stepresult">That’s more like it! <div class="fig fignone">
+<span class="image image-block"><img alt="Output fields inside a page block" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usfd38dc245128a1bf657b64c10f225c4d.png"/></span>
+</div>
+The <samp>&lt;apex:pageBlock&gt;</samp> and <samp>&lt;apex:pageBlockSection&gt;</samp>
+                    components are required to activate the platform look and feel.
+                    When you use <samp>&lt;apex:outputField&gt;</samp> within a <samp>&lt;apex:pageBlockSection&gt;</samp> it
+                    adopts the two column layout, adds field labels, aligns and
+                    styles fields and labels nicely, and so on.</div>
+</li>
+</ol>
+<div class="section result">
+<p class="p">Although <samp>&lt;apex:outputField&gt;</samp>
+                seems like a fine-grained component because it only outputs one
+                field, it’s actually doing quite a lot. It knows if it’s being used
+                inside certain other components, and changes its output and styling
+                appropriately. It’s also smart about formatting and display. Notice
+                that the Annual Revenue field is formatted as currency. <samp>&lt;apex:outputField&gt;</samp>
+                automatically adapts to the data type of the field being displayed.
+                Try adding a date, checklist, or picklist field to the page, and see
+                what happens.</p>
+</div>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_output_components_tables" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_output_components_tables"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading7"><span class="ph" id="topic-title"><a name="topic-title"></a>Display A Table</span></h2>
+<div class="body taskbody"><div class="shortdesc">Use <samp>&lt;apex:pageBlockTable&gt;</samp>
+        to add a table of data to a page.</div>
+<div class="section context">
+<div class="p">What exactly is a related list? What does <samp>&lt;apex:relatedList&gt;</samp> do when you
+                add it to a page?<ul class="ul bulletList">
+<li class="li">It grabs a list of similar data elements. For example, a list
+                        of contacts for the account.</li>
+<li class="li">It sets up a table with columns for each field, headers atop
+                        each column, and so on.</li>
+<li class="li">For each item in the list—for each related contact—it adds a
+                        row to the table, and fills in each column with the
+                        appropriate field from that record.</li>
+</ul>
+</div>
+<p class="p">You can do the same thing in your own Visualforce
+                markup using <dfn class="term">iteration components</dfn>. An iteration
+                component works with a collection of similar items, instead of on a
+                single value. For example, <samp>{!Account.contacts}</samp> is an expression that evaluates to
+                a list of contacts for an account. You can use this expression with
+                an iteration component to create a list or table with details of
+                these related contacts.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Replace the two <samp>&lt;apex:relatedList/&gt;</samp> lines with the following
+                    markup.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:pageBlock title="Contacts"&gt;
+   &lt;apex:pageBlockTable value="{!Account.contacts}" var="contact"&gt;
+      &lt;apex:column value="{!contact.Name}"/&gt;
+      &lt;apex:column value="{!contact.Title}"/&gt;
+      &lt;apex:column value="{!contact.Phone}"/&gt;
+   &lt;/apex:pageBlockTable&gt;
+&lt;/apex:pageBlock&gt;</pre></div>
+</div>
+<div class="itemgroup stepresult">A table listing the account’s contacts is added to the
+                    page, with just the columns you’ve chosen.<div class="fig fignone">
+<span class="image image-block"><img alt="Contacts list using pageBlockTable" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-use3d110545beda1bb7d7c5bfae62dfe72.png"/></span>
+</div>
+</div>
+</li>
+</ol>
+<div class="section result">
+<div class="p"><samp>&lt;apex:pageBlockTable&gt;</samp> is an
+                iteration component that generates a table of data, complete with
+                platform styling. Here’s what’s going on in your markup.<ul class="ul bulletList">
+<li class="li">The <samp>value</samp> attribute
+                        of <samp>&lt;apex:pageBlockTable&gt;</samp> is set to the
+                        expression mentioned previously, <samp>{!Account.contacts}</samp>. This
+                        is the list of records that <samp>&lt;apex:pageBlockTable&gt;</samp> will work with.</li>
+<li class="li">For each record in that list, one record at a time, <samp>&lt;apex:pageBlockTable&gt;</samp>
+                        assigns that record to the variable named in the <samp>&lt;apex:pageBlockTable&gt;</samp>’s <samp>var</samp> attribute. In this
+                        case, that variable is named <samp>contact</samp>.</li>
+<li class="li">For each record, <samp>&lt;apex:pageBlockTable&gt;</samp> constructs a new row
+                        in the table, using the row defined by the set of <samp>&lt;apex:column&gt;</samp>components within the body of
+                            <samp>&lt;apex:pageBlockTable&gt;</samp>. The <samp>&lt;apex:column&gt;</samp>
+                        components, in turn, use the <samp>contact</samp> variable that represents the current
+                        record to pull out the field values for that record.</li>
+<li class="li">Outside of the loop, <samp>&lt;apex:pageBlockTable&gt;</samp> uses the fields in the
+                            <samp>&lt;apex:column&gt;</samp>
+                        components to create column headers, by looking up the label
+                        for each field.</li>
+</ul>
+</div>
+<p class="p">That’s a lot to take in, and iteration components are tricky to
+                understand the first time. The best thing you can do right now is to
+                try creating your own. Add a list of opportunity related records to
+                the page using <samp>&lt;apex:pageBlockTable&gt;</samp>. Choose the fields you want
+                displayed in the table. Look up the different attributes for <samp>&lt;apex:pageBlockTable&gt;</samp> and
+                    <samp>&lt;apex:column&gt;</samp>, and
+                experiment until you feel comfortable.</p>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="visualforce_output_components_tell_me_more" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_output_components_tell_me_more"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading8"><span class="ph" id="topic-title"><a name="topic-title"></a>Tell Me More...</span></h2>
+<div class="body conbody"><div class="shortdesc">Coarse-grained components let you quickly add lots of functionality to a
+  page, while fine-grained components give you more control over the specific details
+  of a page.</div>
+<p class="p"><samp>&lt;apex:enhancedList&gt;</samp> and <samp>&lt;apex:listViews&gt;</samp> are other coarse-grained
+   components that you might want to use with or in place of <samp>&lt;apex:relatedList&gt;</samp>. And there are many other
+   components that pack a lot of functionality into a single tag. If you haven’t done
+   it yet, check out the <a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_compref.htm" target="_blank" title="html (New Window)">Standard Component Reference</a> and see what the range of possibilities are.</p>
+<p class="p"><samp>&lt;apex:pageBlockTable&gt;</samp> is an iteration
+   component that picks up the platform styling. <samp>&lt;apex:dataTable&gt;</samp> and <samp>&lt;apex:dataList&gt;</samp> are iteration components for creating tables and
+   lists without the platform styling. And <samp>&lt;apex:repeat&gt;</samp> is an iteration component that you can use to generate
+   any arbitrary markup for a collection of records.</p>
+<p class="p">You may have noticed that your manually created related lists are missing some
+   things that were added to the table created by <samp>&lt;apex:relatedList&gt;</samp>. For example, the <u class="ph u">Edit</u> and <u class="ph u">Del</u>
+   links to edit and delete individual records is missing, and so is the
+    <strong class="ph uicontrol">New Contact</strong> button. To create these user interface
+   elements you need to know a little more Visualforce, specifically about
+   forms and actions. You’ll learn about that elsewhere.</p>
+</div>
+</div>
+<div class="topic nested0" id="visualforce_output_components_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_output_components_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading9">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_quick_start_display_field_values.htm" target="_blank" title="html (New Window)">Displaying Field Values with Visualforce</a>
+</li>
+<li class="li Documentation"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_quick_start_component_library.htm" target="_blank" title="html (New Window)">Using the Visualforce Component Library</a>
+</li>
+<li class="li Documentation"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_quick_start_custom_mapping.htm" target="_blank" title="html (New Window)">Displaying Related Lists for Custom Objects</a>
+</li>
+<li class="li Documentation"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_quick_start_iteration_components.htm" target="_blank" title="html (New Window)">Building a Table of Data in a Page</a>
+</li>
+<li class="li Documentation"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_compref.htm" target="_blank" title="html (New Window)">Standard Component Reference</a>
+</li>
+</ul>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>Remember, this module is meant for
+            Salesforce Classic. When you launch your hands-on org, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank">switch to Salesforce Classic</a> to complete this
+            challenge.</p></div></div></div></div></div>
+</div>
+</div>
+</body></div>

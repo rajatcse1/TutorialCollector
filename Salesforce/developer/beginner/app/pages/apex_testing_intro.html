@@ -1,0 +1,396 @@
+<div class="unit-content">
+<body id="blank_ref_classic"><a name="blank_ref_classic"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a> </span></h2>
+<div class="body">
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>
+<p class="p"><strong class="ph b">Attention Trailblazer!</strong></p>
+<p class="p">Salesforce has two different user interfaces: Lightning Experience and Salesforce
+                Classic. It’s easy to switch between the two. You can learn about <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank" title="html (New Window)">switching between interfaces</a>, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_enable_intro.htm&amp;language=en_US" target="_blank" title="html (New Window)">enabling Lightning Experience</a>, and more in the <a class="xref" href="https://trailhead.salesforce.com/module/lex_migration_introduction" target="_blank" title="html (New Window)">Lightning Experience Basics</a> module here on Trailhead.</p>
+<p class="p">This module is designed for <strong class="ph b">Salesforce Classic</strong>.</p>
+</p></div></div></div></div></div>
+</div>
+</div>
+<div class="topic nested0" id="apex_testing_intro_learning_objectives" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="apex_testing_intro_learning_objectives"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you’ll be able to: <ul class="ul bulletList">
+<li class="li">Describe the key benefits of Apex unit
+                    tests.</li>
+<li class="li">Define a class with test methods.</li>
+<li class="li">Execute all test methods in a class and inspect failures.</li>
+<li class="li">Create and execute a suite of test classes.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="apex_testing_intro" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="apex_testing_intro"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3"><span class="ph" id="topic-title"><a name="topic-title"></a>Apex
+      Unit Tests</span></h2>
+<div class="body conbody"><div class="shortdesc"> The Apex testing
+    framework enables you to write and execute tests for your Apex classes and triggers on the Force.com platform. Apex unit tests ensure high quality
+    for your Apex code and let you
+    meet requirements for deploying Apex.</div>
+<div class="section">
+<p class="p">Testing is the key to successful long-term development and is a critical component of the
+        development process. The Apex
+        testing framework makes it easy to test your Apex code. Apex code can only be written in
+        a sandbox environment or a Developer org, not in production. Apex code can be deployed to a
+        production org from a sandbox. Also, app developers can distribute Apex code to customers from
+        their Developer orgs by uploading packages to the Force.com​ AppExchange. In addition to being
+        critical for quality assurance, Apex unit tests are also
+        requirements for deploying and distributing Apex. The following are the
+        benefits of Apex unit
+        tests.</p>
+<ul class="ul bulletList">
+<li class="li">Ensuring that your Apex
+          classes and triggers work as expected</li>
+<li class="li">Having a suite of regression tests that can be rerun every time classes and triggers are
+          updated to ensure that future updates you make to your app don’t break existing
+          functionality</li>
+<li class="li">Meeting the code coverage requirements for deploying Apex to production or
+          distributing Apex to
+          customers via packages</li>
+<li class="li">High-quality apps delivered to the production org, which makes production users more
+          productive</li>
+<li class="li">High-quality apps delivered to package subscribers, which increase your customers
+          trust</li>
+</ul>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>Before each major service upgrade, Salesforce runs all Apex tests on your behalf
+        through a process called Apex
+        Hammer. The Hammer process runs in the current version and next release and compares the
+        test results. This process ensures that the behavior in your custom code hasn’t been altered
+        as a result of service upgrades. The Hammer process picks orgs selectively and doesn’t run
+        in all orgs. Issues found are triaged based on certain criteria. Salesforce strives to fix all issues found
+        before each new release.<p class="p">Maintaining the security of your data is our highest priority. We
+          don't view or modify any data in your org, and all testing is done in a copy that runs in
+          a secure data center.</p>
+</p></div></div></div></div></div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading4">Code Coverage Requirement for Deployment</h3>
+<p class="p">Before you can deploy your code or package it for the Force.com​ AppExchange, at least 75% of Apex code must be covered by
+        tests, and all those tests must pass. In addition, each trigger must have some coverage.
+        Even though code coverage is a requirement for deployment, don’t write tests only to meet
+        this requirement. Make sure to test the common use cases in your app, including positive and
+        negative test cases, and bulk and single-record processing.</p>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading5">Test Method Syntax</h3>
+<p class="p">Test methods take no arguments and have the following syntax:</p>
+<div class="codeblock"><pre>@isTest static void testName() {
+    // code_block
+}</pre></div>
+<p class="p">Alternatively, a test method can have this syntax:</p>
+<div class="codeblock"><pre>static testMethod void testName() {
+    // code_block
+}</pre></div>
+<p class="p">Using the <samp>isTest</samp> annotation instead of the <samp>testMethod</samp> keyword is more flexible as you can specify
+        parameters in the annotation. We’ll cover one such parameter later.</p>
+<p class="p">The visibility of a test method doesn’t matter, so declaring a test method as public or
+        private doesn’t make a difference as the testing framework is always able to access test
+        methods. For this reason, the access modifiers are omitted in the syntax.</p>
+<p class="p">Test methods must be defined in test classes, which are classes annotated with <samp>isTest</samp>. This sample class shows a definition of a test
+        class with one test method.</p>
+<div class="codeblock"><pre>@isTest
+private class MyTestClass {
+    @isTest static void myTest() {
+        // code_block
+    }
+}</pre></div>
+<p class="p">Test classes can be either private or public. If you’re using a test class for unit testing
+        only, declare it as private. Public test classes are typically used for test data factory
+        classes, which are covered later.</p>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading6">Unit Test Example: Test the TemperatureConverter Class </h3>
+<p class="p">The following simple example is of a test class with three test methods. The class method
+        that’s being tested takes a temperature in Fahrenheit as an input. It converts this
+        temperature to Celsius and returns the converted result. Let’s add the custom class and its
+        test class.</p>
+<ol class="ol enumList">
+<li class="li">In the Developer Console, click <span class="ph menucascade"><strong class="ph uicontrol">File</strong> | <strong class="ph uicontrol">New</strong> | <strong class="ph uicontrol">Apex
+              Class</strong></span>, and enter <kbd class="ph userinput">TemperatureConverter</kbd> for the class name,
+          and then click <strong class="ph uicontrol">OK</strong>.</li>
+<li class="li">Replace the default class body with the
+          following.<div class="codeblock"><pre>public class TemperatureConverter {
+    // Takes a Fahrenheit temperature and returns the Celsius equivalent.
+    public static Decimal FahrenheitToCelsius(Decimal fh) {
+        Decimal cs = (fh - 32) * 5/9;
+        return cs.setScale(2);
+    }
+}</pre></div>
+</li>
+<li class="li">Press Ctrl+S to save your class.</li>
+<li class="li">Repeat the previous steps to create the <kbd class="ph userinput">TemperatureConverterTest</kbd>
+          class. Add the following for this
+          class.<div class="codeblock"><pre>@isTest
+private class TemperatureConverterTest {
+
+    @isTest static void testWarmTemp() {
+        Decimal celsius = TemperatureConverter.FahrenheitToCelsius(70);
+        System.assertEquals(21.11,celsius);
+    }
+    
+    @isTest static void testFreezingPoint() {
+        Decimal celsius = TemperatureConverter.FahrenheitToCelsius(32);
+        System.assertEquals(0,celsius);
+    }
+
+    @isTest static void testBoilingPoint() {
+        Decimal celsius = TemperatureConverter.FahrenheitToCelsius(212);        
+        System.assertEquals(100,celsius,'Boiling point temperature is not expected.');
+    } 
+    
+    @isTest static void testNegativeTemp() {
+        Decimal celsius = TemperatureConverter.FahrenheitToCelsius(-10);
+        System.assertEquals(-23.33,celsius);
+    }
+      
+}</pre></div>
+</li>
+</ol>
+<p class="p">The <samp>TemperatureConverterTest</samp> test class verifies
+        that the method works as expected by calling it with different inputs for the temperature in
+        Fahrenheit. Each test method verifies one type of input: a warm temperature, the freezing
+        point temperature, the boiling point temperature, and a negative temperature. The
+        verifications are done by calling the <samp>System.assertEquals()</samp> method, which takes two parameters: the first is the
+        expected value, and the second is the actual value. There is another version of this method
+        that takes a third parameter—a string that describes the comparison being done, which
+        is used in <samp>testBoilingPoint()</samp>. This optional string
+        is logged if the assertion fails.</p>
+<p class="p">Let’s run the methods in this class.</p>
+<ol class="ol enumList">
+<li class="li">In the Developer Console, click <span class="ph menucascade"><strong class="ph uicontrol">Test</strong> | <strong class="ph uicontrol">New Run</strong></span>.</li>
+<li class="li">Under Test Classes, click <strong class="ph uicontrol">TemperatureConverterTest</strong>.</li>
+<li class="li">To add all the test methods in the <samp>TemperatureConverterTest</samp> class to the test run, click <strong class="ph uicontrol">Add
+            Selected</strong>.</li>
+<li class="li">Click <strong class="ph uicontrol">Run</strong>.</li>
+<li class="li">In the Tests tab, you see the status of your tests as they’re running. Expand the test
+          run, and expand again until you see the list of individual tests that were run. They all
+          have green checkmarks.<div class="fig fignone">
+<div class="imagecenter"><span class="image image-block"><img alt="Inspect test results in the Developer Console" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us4036761bb25bb58c7b3eeeb9b777f25f.png"/></span></div>
+</div>
+</li>
+</ol>
+<p class="p">After you run tests, code coverage is automatically generated for the Apex classes and triggers in the
+        org. You can check the code coverage percentage in the Tests tab of the Developer Console.
+        In this example, the class you’ve tested, the <samp>TemperatureConverter</samp> class, has 100% coverage, as shown in this image.</p>
+<div class="fig fignone">
+<div class="imagecenter"><span class="image image-block"><img alt="View code coverage percentage in the Developer Console" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usddacd2f8a343a1cdecee325063bebfba.png"/></span></div>
+</div>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>
+<p class="p">Whenever you modify your Apex code, rerun your tests to refresh code coverage results.</p>
+<p class="p"><span class="ph" id="code_coverage_bug"><a name="code_coverage_bug"></a>A known issue with the Developer Console prevents it from
+            updating code coverage correctly when running a subset of tests. To update your code
+            coverage results, use <span class="ph menucascade"><strong class="ph uicontrol">Test</strong> | <strong class="ph uicontrol">Run All</strong></span> rather than <span class="ph menucascade"><strong class="ph uicontrol">Test</strong> | <strong class="ph uicontrol">New Run</strong></span>.</span></p>
+</p></div></div></div></div></div>
+<p class="p">While one test method would have resulted in full coverage of the <samp>TemperatureConverter</samp> class, it’s still important to test
+        for different inputs to ensure the quality of your code. Obviously, it isn’t possible to
+        verify every data point, but you can test for common data points and different ranges of
+        input. For example, you can verify passing positive and negative numbers, boundary values,
+        and invalid parameter values to verify negative behavior. The tests for the <samp>TemperatureConverter</samp> class verify common data points, like
+        the boiling temperature, and negative temperatures.</p>
+<p class="p">The <samp>TemperatureConverterTest</samp> test class doesn’t
+        cover invalid inputs or boundary conditions. Boundary conditions are about minimum and
+        maximum values. In this case, the temperature conversion method accepts a Decimal, which can
+        accept large numbers, higher than Double values. For invalid inputs, there is no invalid
+        temperature but the only invalid input is <samp>null</samp>. How
+        does the conversion method handle this value? In this case, when the Apex runtime dereferences the
+        parameter variable to evaluate the formula, it throws a <samp>System.NullPointerException</samp>. You can modify the <samp>FahrenheitToCelsius()</samp> method to check for an invalid input and return <samp>null</samp> in that case, and then add a test to verify the
+        invalid input behavior.</p>
+<p class="p">Up to this point, all tests pass because the conversion formula used in the class method is
+        correct. But that’s boring! Let’s try to simulate a failure just to see what happens when an
+        assertion fails. For example, let’s modify the boiling point temperature test and pass in a
+        false expected value for the boiling point Celsius temperature (0 instead of 100). This
+        causes the corresponding test method to fail.</p>
+<ol class="ol enumList">
+<li class="li">Change the <samp>testBoilingPoint()</samp> test method to the
+          following.<div class="codeblock"><pre>    @isTest static void testBoilingPoint() {
+        Decimal celsius = TemperatureConverter.FahrenheitToCelsius(212);        
+        // Simulate failure
+        System.assertEquals(0,celsius,'Boiling point temperature is not expected.');
+    }</pre></div>
+</li>
+<li class="li">To execute the same test run, click the latest run in the Tests tab, and then click <span class="ph menucascade"><strong class="ph uicontrol">Test</strong> | <strong class="ph uicontrol">Rerun</strong></span>.<p class="p">The assertion in <samp>testBoilingPoint()</samp> fails and throws a fatal error (an AssertException that
+            can’t be caught).</p>
+</li>
+<li class="li">Check the results in the Tests tab by expanding the latest test run. The test run
+          reports one out of four tests failed. To get more details about the failure, double-click
+          the test run.<p class="p">Detailed results appear in a separate tab as shown in this image.</p>
+<div class="fig fignone">
+<div class="imagecenter"><span class="image image-block"><img alt="Inspect results of a failed test in the Developer Console" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us60397e7aabef0d075ac51d8d35ffc480.png"/></span></div>
+</div>
+</li>
+<li class="li">To get the error message for the test failure, double-click inside the Errors column for
+          the failed test. You’ll see the following. The descriptive text next to
+            <samp class="ph systemoutput">Assertion Failed:</samp> is the text we provided in the <samp>System.assertEquals()</samp>
+              statement.<p class="p"><samp class="ph systemoutput">System.AssertException: Assertion Failed: Boiling point
+              temperature is not expected.: Expected: 0, Actual: 100.00</samp></p>
+</li>
+</ol>
+<p class="p">The test data in these test methods are numbers and not Salesforce records. You’ll find out more
+        about how to test Salesforce records and
+        how to set up your data in the next unit.</p>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading7">Increase Your Code Coverage</h3>
+<p class="p">When writing tests, try to achieve the highest code coverage possible. Don’t just aim for
+        75% coverage, which is the lowest coverage that the Force.com platform requires for
+        deployments and packages. The more test cases that your tests cover, the higher the
+        likelihood that your code is robust. Sometimes, even after you write test methods for all
+        your class methods, code coverage is not at 100%. One common cause is not covering all data
+        values for conditional code execution. For example, some data values tend to be ignored when
+        your class method has <samp>if</samp> statements that cause
+        different branches to be executed based on whether the evaluated condition is met. Ensure
+        that your test methods account for these different values.</p>
+<p class="p">This example includes the class method, <samp>getTaskPriority()</samp>, which contains two <samp>if</samp>
+        statements. The main task of this method is to return a priority string value based on the
+        given lead state. The method validates the state first and returns <samp>null</samp> if the state is invalid. If the state is CA, the
+        method returns 'High'; otherwise, it returns 'Normal' for any other state value.</p>
+<div class="codeblock"><pre>public class TaskUtil {
+    public static String getTaskPriority(String leadState) {
+        // Validate input
+        if (String.isBlank(leadState) || leadState.length() &gt; 2) {
+            return null;
+        }
+            
+        String taskPriority;
+        
+        if (leadState == 'CA') {
+             taskPriority = 'High'; 
+        } else {
+             taskPriority = 'Normal';
+        }
+        
+        return taskPriority;
+    }
+}</pre></div>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>The equality operator (<samp>==</samp>) performs
+        case-insensitive string comparisons, so there is no need to convert the string to lower case
+        first. This means that passing in <samp>'ca'</samp> or <samp>'Ca'</samp> will satisfy the equality condition with the string
+        literal <samp>'CA'</samp>.</p></div></div></div></div></div>
+<p class="p">This is the test class for the <samp>getTaskPriority()</samp>
+        method. The test method simply calls <samp>getTaskPriority()</samp> with one state (<samp>'NY'</samp>).</p>
+<div class="codeblock"><pre>@isTest
+private class TaskUtilTest {
+    @isTest static void testTaskPriority() {
+        String pri = TaskUtil.getTaskPriority('NY');
+        System.assertEquals('Normal', pri);
+    }
+}</pre></div>
+<p class="p">Let’s run this test class (<samp>TaskUtilTest</samp>) in the
+        Developer Console and check code coverage for the corresponding <samp>TaskUtil</samp> class that this test covers. After the test run
+        finishes, the code coverage for <samp>TaskUtil</samp> is shown as
+        75%. If you open this class in the Developer Console, you see six blue (covered) lines and
+        two red (uncovered) lines, as shown in this image.</p>
+<div class="fig fignone">
+<div class="imagecenter"><span class="image image-block"><img alt="Lines covered for the TaskUtil class in the Developer Console" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us4177c5d150c4add6e968944ddd37e9de.png"/></span></div>
+</div>
+<p class="p">The reason why line 5 wasn’t covered is because our test class didn’t contain a test to
+        pass an invalid state parameter. Similarly, line 11 wasn’t covered because the test method
+        didn’t pass <samp>'CA'</samp> as the state. Let’s add two more
+        test methods to cover those scenarios. The following shows the full test class after adding
+        the <samp>testTaskHighPriority()</samp> and <samp>testTaskPriorityInvalid()</samp> test methods. If you rerun this
+        test class, the code coverage for <samp>TaskUtil</samp> is now at
+        100%!</p>
+<div class="codeblock"><pre>@isTest
+private class TaskUtilTest {
+    @isTest static void testTaskPriority() {
+        String pri = TaskUtil.getTaskPriority('NY');
+        System.assertEquals('Normal', pri);
+    }
+    
+    @isTest static void testTaskHighPriority() {
+        String pri = TaskUtil.getTaskPriority('CA');
+        System.assertEquals('High', pri);
+    }
+    
+    @isTest static void testTaskPriorityInvalid() {
+        String pri = TaskUtil.getTaskPriority('Montana');
+        System.assertEquals(null, pri);
+    }
+}</pre></div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading8">Create and Execute a Test Suite</h3>
+<p class="p"><span class="ph" id="d654536e504-d654961e15"><a name="d654536e504-d654961e15"></a>A test suite is a collection of Apex test classes
+                        that you run together. For example, create a suite of tests that you run
+                        every time you prepare for a deployment or Salesforce releases a new
+                        version.</span> Set up a test suite in the Developer Console to define a set of test
+                  classes that you execute together regularly.</p>
+<p class="p">You now have two test classes in your org. These two classes aren’t related, but let’s
+        pretend for the moment that they are. Assume that there are situations when you want to run
+        these two test classes but don’t want to run all the tests in your org. Create a test suite
+        that contains both classes, and then execute the tests in the suite.</p>
+<ol class="ol enumList">
+<li class="li">In the Developer Console, select <span class="ph menucascade"><strong class="ph uicontrol">Test</strong> | <strong class="ph uicontrol">New Suite</strong></span>.</li>
+<li class="li">Enter <kbd class="ph userinput">TempConverterTaskUtilSuite</kbd> for the suite name, and then
+          click <strong class="ph uicontrol">OK</strong>.</li>
+<li class="li">Select <strong class="ph uicontrol">TaskUtilTest</strong>, hold down the Ctrl key, and then select
+            <strong class="ph uicontrol">TemperatureConverterTest</strong>.</li>
+<li class="li"><p class="p">To add the selected test classes to the suite, click
+            <strong class="ph uicontrol">&gt;</strong>.</p>
+<img alt="Test suite editing window with two selected test classes" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us56a109222e1ff08d024046dfba43781f.png"/></li>
+<li class="li">Click <strong class="ph uicontrol">Save</strong>.</li>
+<li class="li">Select <span class="ph menucascade"><strong class="ph uicontrol">Test</strong> | <strong class="ph uicontrol">New Suite Run</strong></span>.</li>
+<li class="li">Select <strong class="ph uicontrol">TempConverterTaskUtilSuite</strong>, and then click
+            <strong class="ph uicontrol">&gt;</strong> to move <samp>TempConverterTaskUtilSuite</samp> to the Selected Test Suites column.</li>
+<li class="li">Click <strong class="ph uicontrol">Run Suites</strong>.</li>
+<li class="li">On the Tests tab, monitor the status of your tests as they’re running. Expand the test
+          run, and expand again until you see the list of individual tests that were run. Like in a
+          run of individual test methods, you can double-click method names to see detailed test
+          results.</li>
+</ol>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading9">Creating Test Data</h3>
+<p class="p">Salesforce records that are created in
+        test methods aren’t committed to the database. They’re rolled back when the test finishes
+        execution. This rollback behavior is handy for testing because you don’t have to clean up
+        your test data after the test executes.</p>
+<p class="p">By default, Apex tests don’t
+        have access to pre-existing data in the org, except for access to setup and metadata
+        objects, such as the User or Profile objects. Set up test data for your tests. Creating test
+        data makes your tests more robust and prevents failures that are caused by missing or
+        changed data in the org. You can create test data directly in your test method, or by using
+        a utility test class as you’ll find out later.</p>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>Even though it is not a best practice to do so, there are
+        times when a test method needs access to pre-existing data. To access org data, annotate the
+        test method with <samp>@isTest(SeeAllData=true)</samp>. The test
+        method examples in this unit don’t access org data and therefore don’t use the <samp>SeeAllData</samp> parameter.</p></div></div></div></div></div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading10">Tell Me More...</h3>
+<ul class="ul bulletList">
+<li class="li">You can save up to 3 MB of Apex code in each org.
+          Test classes annotated with <samp>@isTest</samp> don’t count
+          toward this limit.</li>
+<li class="li">Even though test data rolls back, no separate database is used for testing. As a result,
+          for some sObjects that have fields with unique constraints, inserting duplicate sObject
+          records results in an error.</li>
+<li class="li">Test methods don’t send emails.</li>
+<li class="li">Test methods can’t make callouts to external services. You can use mock callouts in
+          tests.</li>
+<li class="li">SOSL searches performed in a test return empty results. To ensure predictable results,
+          use <samp>Test.setFixedSearchResults()</samp> to define the
+          records to be returned by the search. </li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="apex_testing_intro_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="apex_testing_intro_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading11"><span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span></h2>
+<div class="body">
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading12">Documentation</h3>
+<p class="p">Check out the following in the <cite class="cite">Apex Developer Guide</cite>.</p>
+<ul class="ul bulletList">
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.apexcode.meta/apexcode/apex_testing_best_practices.htm" target="_blank" title="HTML (New Window)">Testing Best Practices</a></li>
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.apexcode.meta/apexcode/apex_testing_unit_tests_running.htm" target="_blank" title="HTML (New Window)">What are Apex Unit Tests?</a></li>
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.apexcode.meta/apexcode/apex_testing_data_access.htm" target="_blank" title="HTML (New Window)">Isolation of Test Data from Organization
+Data in Unit Tests</a></li>
+</ul>
+<p class="p">Check out the following in the Salesforce Help.</p>
+<ul class="ul bulletList">
+<li class="li"><a class="xref" href="https://help.salesforce.com/apex/HTViewHelpDoc?id=code_dev_console_tests_coverage.htm&amp;language=en_US" target="_blank" title="HTML (New Window)">Checking Code Coverage</a></li>
+</ul>
+</div>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>Remember, this module is meant for
+            Salesforce Classic. When you launch your hands-on org, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank">switch to Salesforce Classic</a> to complete this
+            challenge.</p></div></div></div></div></div>
+</div>
+</div>
+</body></div>

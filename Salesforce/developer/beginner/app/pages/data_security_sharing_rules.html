@@ -1,0 +1,430 @@
+<div class="unit-content">
+<body id="data_security_sharing_rules_learning_objectives"><a name="data_security_sharing_rules_learning_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you'll be able to: <ul class="ul bulletList">
+<li class="li">Use sharing rules to extend access beyond the role hierarchy structure.</li>
+<li class="li">Create a public group that includes users with different profiles and
+                    roles.</li>
+<li class="li">Manually share records with other users.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="data_security_records_sharing_rules" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security_records_sharing_rules"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Use Sharing Rules</span></h2>
+<div class="body">
+<p class="p">Your organization-wide default sharing settings give you a baseline level of access for each
+      object. If the default access is too restrictive, you can open access back up to selected
+      users with role hierarchies or sharing rules. Sharing rules represent automatic exceptions to
+      your organization-wide default settings. If you have organization-wide sharing defaults of
+      Public Read Only or Private, you can define rules that give more users access to records they
+      do not own. </p>
+<p class="p">You can create sharing
+      rules based on record owner or field values in the record. This enables you to make automatic
+      exceptions to your organization-wide sharing settings for defined sets of users. For example,
+      use sharing rules to extend sharing access to users in public groups or roles. As with role
+      hierarchies, sharing rules can never be stricter than your organization-wide default settings.
+      They simply allow greater access for particular users.</p>
+<p class="p">Watch this video to get an overview of the different ways to grant access to records using
+      sharing rules.</p>
+<p class="p"><iframe allowfullscreen="1" class="doc_embedded_video" frameborder="0" height="360" mozallowfullscreen="1" src="//play.vidyard.com/pC88Jy7-Q3e4R51zh1XFYA" webkitallowfullscreen="1" width="640"></iframe>
+</p>
+<div class="p">Each sharing rule has three components:<ul class="ul bulletList">
+<li class="li"><strong class="ph b">Share which records?</strong> You can share records owned by certain users or meeting
+          certain criteria. Criteria-based sharing rules determine what records to share based on
+          field values other than ownership. </li>
+<li class="li"><strong class="ph b">With which users? </strong>You can define groups of users by role or by defining a public
+          group. A public group is an administrator-defined grouping of users that can be used to
+          simplify the creation of sharing rules. Each public group can be a combination of:<ul class="ul bulletList">
+<li class="li">individual users</li>
+<li class="li">roles</li>
+<li class="li">roles and subordinates</li>
+<li class="li">other public groups</li>
+</ul>
+</li>
+<li class="li"><strong class="ph b">What kind of access?</strong> You can assign either Read-Only or Read/Write access.</li>
+</ul>
+</div>
+<p class="p">Sharing rules work best when they're defined for a particular group of users that you can
+      determine or predict in advance, rather than a set of users that frequently changes. For
+      example, in the Recruiting app, it’s important to share every position, candidate, job
+      application, and review with every recruiter. Since recruiters all belong to either the
+      Recruiting Manager or Recruiter roles in the role hierarchy, we can easily use a sharing rule
+      to share those objects with the Recruiting Manager role and its subordinates.</p>
+<p class="p">Alternatively, consider another use case from the Recruiting app: interviewers need read
+      access on the candidates and job applications for people they're interviewing. In this case,
+      the set of interviewers is a lot harder to predict in advance—hiring managers might use
+      different sets of interviewers depending on the position for which they're hiring, and the
+      interviewers might come from different groups in the role hierarchy. So, this use case
+      probably shouldn't be handled with sharing rules—the team of interviewers for any given
+      manager is just too hard to predict. </p>
+<div class="p">Let's go through the set of required permissions we still want to implement and pick out the
+      ones that would work best with sharing rules:
+<div class="data colSort"><table class="featureTable sort_table" summary="">
+<thead align="left" class="thead sorted">
+<tr>
+<th class="featureTableHeader vertical-align-top " id="d103648e119">Use Case</th>
+<th class="featureTableHeader vertical-align-top " id="d103648e122">Should we use a sharing rule?</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr>
+<td class="entry" data-title="Use Case" headers="d103648e119">Recruiters need read and update access on every position, candidate, job
+                application, and review record that exists in the app.</td>
+<td class="entry" data-title="Should we use a sharing rule?" headers="d103648e122"><strong class="ph b">Yes</strong>. As we discussed previously, it's easy to pick out the group of
+                recruiters in our role hierarchy.</td>
+</tr>
+<tr>
+<td class="entry" data-title="Use Case" headers="d103648e119">Hiring managers need read and update access on position and job posting records
+                on which they're the hiring manager.</td>
+<td class="entry" data-title="Should we use a sharing rule?" headers="d103648e122"><strong class="ph b">No</strong>. It's too hard to predict which positions will be assigned to which
+                hiring manager. We'll need to handle this use case some other way.</td>
+</tr>
+<tr>
+<td class="entry" data-title="Use Case" headers="d103648e119">Hiring managers need read access on candidate records on which they're the
+                hiring manager.</td>
+<td class="entry" data-title="Should we use a sharing rule?" headers="d103648e122"><strong class="ph b">No</strong>. Again, it's too hard to predict which positions will be assigned to
+                which hiring manager.</td>
+</tr>
+<tr>
+<td class="entry" data-title="Use Case" headers="d103648e119">Hiring managers need read and update access on every job application and review
+                record.</td>
+<td class="entry" data-title="Should we use a sharing rule?" headers="d103648e122"><strong class="ph b">Yes</strong>. Since we're not restricting which job applications and reviews a
+                hiring manager gets to read and update, we can easily pick out all of the hiring
+                managers from our role hierarchy and define a sharing rule for them.</td>
+</tr>
+<tr>
+<td class="entry" data-title="Use Case" headers="d103648e119">Interviewers need read access on the candidate and job application records for
+                people they're interviewing.</td>
+<td class="entry" data-title="Should we use a sharing rule?" headers="d103648e122"><strong class="ph b">No</strong>. As we discussed previously, it's hard to predict who will be a
+                member of an interview team for a particular position.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="p">This table summarizes the key sharing rules we might define for the Recruiting app.
+<div class="data colSort"><table class="featureTable sort_table" summary="">
+<thead align="left" class="thead sorted">
+<tr>
+<th class="featureTableHeader vertical-align-top " id="d103648e208">Object</th>
+<th class="featureTableHeader vertical-align-top " id="d103648e211">Rule Label</th>
+<th class="featureTableHeader vertical-align-top " id="d103648e214">Owned by...</th>
+<th class="featureTableHeader vertical-align-top " id="d103648e217">Should be shared with...</th>
+<th class="featureTableHeader vertical-align-top " id="d103648e220">Access Level</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr>
+<td class="entry" data-title="Object" headers="d103648e208">Review</td>
+<td class="entry" data-title="Rule Label" headers="d103648e211">Edit Reviews</td>
+<td class="entry" data-title="Owned by..." headers="d103648e214">Entire Organization</td>
+<td class="entry" data-title="Should be shared with..." headers="d103648e217">Recruiters and Hiring Managers</td>
+<td class="entry" data-title="Access Level" headers="d103648e220">Read/Write</td>
+</tr>
+<tr>
+<td class="entry" data-title="Object" headers="d103648e208">Candidate</td>
+<td class="entry" data-title="Rule Label" headers="d103648e211">Edit Candidates</td>
+<td class="entry" data-title="Owned by..." headers="d103648e214">Entire Organization</td>
+<td class="entry" data-title="Should be shared with..." headers="d103648e217">The role and subordinates of the Recruiting Manager</td>
+<td class="entry" data-title="Access Level" headers="d103648e220">Read/Write</td>
+</tr>
+<tr>
+<td class="entry" data-title="Object" headers="d103648e208">Position</td>
+<td class="entry" data-title="Rule Label" headers="d103648e211">Edit Positions</td>
+<td class="entry" data-title="Owned by..." headers="d103648e214">The role and subordinates of the Recruiting Manager</td>
+<td class="entry" data-title="Should be shared with..." headers="d103648e217">The role and subordinates of the Recruiting Manager</td>
+<td class="entry" data-title="Access Level" headers="d103648e220">Read/Write</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="data_security__define_public_group" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security__define_public_group"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3"><span class="ph" id="topic-title"><a name="topic-title"></a>Define a Public Group</span></h2>
+<div class="body">
+<p class="p">Before creating a sharing rule, it’s
+      important to set up the appropriate public group. A public group is a collection of individual
+      users, other groups, individual roles, and/or roles with their subordinates that all have a
+      function in common. For example, users with the Recruiter profile as well as users in the SW
+      Dev Manager role both review job applications. </p>
+<p class="p">Using a public group when defining a
+      sharing rule makes the rule easier to create and, more important, easier to understand later,
+      especially if it's one of many sharing rules that you're trying to maintain in a large
+      organization. You'll need to create a public group if you ever want to define a sharing rule
+      that encompasses more than one or two groups or roles, or any individual.</p>
+<p class="p">Looking at the required permissions
+      that we want to implement, there are just two objects that need a public group for their
+      sharing rules: Job Application and Review. The good news is that we can cover these objects in
+      a single group because the Review object is on the detail side of a master-detail
+      relationship, so it inherits the sharing settings we apply to the Job Application object.
+      Since both recruiters and hiring managers need read and update access to job applications and
+      reviews, we can define a public group called Reviewers that includes both recruiters and
+      hiring managers.</p>
+<ol class="ol enumList">
+<li class="li">From Setup, enter <kbd class="ph userinput">Public Groups</kbd> in the <span class="keyword parmname">Quick Find</span> box, then select <strong class="ph uicontrol">Public Groups</strong>.</li>
+<li class="li">Click <strong class="ph uicontrol">New</strong>.<div class="fig fignone">
+<span class="image image-block"><img alt="The Sharing Group Membership page for the new group Reviewers. The selected members include those in the SW Dev Manager role and members and subordinates of the Recruiting Manager role." class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usee4f907e83ce57b15cf6d8de6011b6b5.jpg"/></span>
+</div>
+<p class="p">The New Public Group page allows you to choose other public groups, individual
+          roles, individual roles including the roles' subordinates, or individual users. </p>
+</li>
+<li class="li">In the <span class="keyword parmname">Label</span> text box, enter <kbd class="ph userinput">Reviewers</kbd>. Click
+        in the <span class="keyword parmname">Group Name</span> text box to populate it automatically.
+          <span class="keyword parmname">Group Name</span> refers to the unique name used by the API and managed
+        packages.</li>
+<li class="li">In the <span class="keyword parmname">Search</span> drop-down list, choose Roles.</li>
+<li class="li">In the <span class="keyword parmname">Available Members</span> list, select SW Dev Manager, Director
+        Product Management, and Director QA, then click <strong class="ph uicontrol">Add</strong>.</li>
+<li class="li">Go back up to the <span class="keyword parmname">Search</span> drop-down list, and this time choose Role
+        and Subordinates.</li>
+<li class="li">In the <span class="keyword parmname">Available Members</span> list, select Recruiting Manager, and click
+          <strong class="ph uicontrol">Add</strong>.</li>
+<li class="li">Click <strong class="ph uicontrol">Save</strong>.</li>
+</ol>
+<p class="p">Once you’ve defined your group(s), you
+      can use them to define sharing rules.</p>
+</div>
+</div>
+<div class="topic nested0" id="data_security_define_sharing_rule" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security_define_sharing_rule"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading4"><span class="ph" id="topic-title"><a name="topic-title"></a>Define a Sharing Rule</span></h2>
+<div class="body">
+<p class="p">Suppose you want to use the Reviewers
+      public group to define a sharing rule for review records.</p>
+<ol class="ol enumList">
+<li class="li">From Setup, enter <kbd class="ph userinput">Sharing Settings</kbd> in the <span class="keyword parmname">Quick Find</span> box, then select <strong class="ph uicontrol">Sharing Settings</strong>. This is the same page used to define organization-wide defaults.</li>
+<li class="li">In the <span class="keyword parmname">Manage sharing settings for</span> drop-down list, choose Job
+        Application. <p class="p">Choosing an object in this drop-down list allows you to focus in on the
+          org-wide defaults and sharing rules for a single object at a time rather than looking at
+          all of them in a long page—a really useful thing if you've got a large organization
+          with several custom objects.</p>
+<p class="p">If you had chosen Review instead of Job Application,
+          you wouldn’t have the option of creating sharing rules, since you can’t
+          create sharing rules for a detail record in a master-detail relationship. However, since
+          you chose Job Application, a Sharing Rules related list appears. Let’s use that to create
+          a sharing rules that will apply to both the Job Application and the Review
+        objects.</p>
+</li>
+<li class="li">In the Job Application Sharing Rules area, click <strong class="ph uicontrol">New</strong>.</li>
+<li class="li">In the <span class="keyword parmname">Label</span> text box, enter <kbd class="ph userinput">Review
+        Records</kbd>.</li>
+<li class="li">Click the <span class="keyword parmname">Rule Name</span> text box to populate it automatically.</li>
+<li class="li">For the rule type, make sure <span class="keyword parmname">Based on record owner</span> is selected.</li>
+<li class="li">In the <span class="keyword parmname">Job Application: owned by members of</span> drop-down list, select
+        Public Groups.</li>
+<li class="li">Next to that drop-down list, choose Entire Organization.<p class="p">As mentioned earlier, you can
+          define a sharing rule only for a single public group, role, or role with all of its
+          subordinates. By default, the platform includes a default public group that encompasses
+          every user in your organization.</p>
+</li>
+<li class="li">In the <span class="keyword parmname">Share with</span> drop-down list, select Public Groups.</li>
+<li class="li">Next to that drop-down list choose Reviewers.</li>
+<li class="li">In the <span class="keyword parmname">Access Level</span> drop-down list, select Read/Write.</li>
+<li class="li">Click <strong class="ph uicontrol">Save</strong>.</li>
+<li class="li">Click <strong class="ph uicontrol">OK</strong> in the dialog box that says this operation could take
+        significant time.</li>
+</ol>
+<p class="p">We just created a rule that shares
+      reviews written and owned by any member of the organization with all recruiters and hiring
+      managers. Since reviewers and hiring managers all need the power to read and update reviews,
+      we handled everyone with a single sharing rule and a public group.</p>
+</div>
+</div>
+<div class="topic nested0" id="data_security_records_manual_sharing" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security_records_manual_sharing"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading5"><span class="ph" id="topic-title"><a name="topic-title"></a>Share Records Manually</span></h2>
+<div class="body">
+<p class="p">A record owner can share
+                        individual records with other users by using the Share button on the record.
+                        This method of granting access is also known as a manual share. In some
+                        cases, granting access to one record includes access to all its associated
+                        records.  For example, if you grant another user access to an account, the
+                        user will automatically have access to all the opportunities and cases
+                        associated with that account. </p>
+<p class="p">Sometimes it’s impossible to define a consistent group of users who need
+                        access to a particular set of records. In those situations, record owners
+                        can use manual sharing to give read and edit permissions to users who would
+                        not have access to the record any other way. <span class="ph" id="manual_not_automated"><a name="manual_not_automated"></a>Although manual sharing isn’t automated like
+                                organization-wide sharing settings, role hierarchies, or sharing
+                                rules, it gives record owners the flexibility to share particular
+                                records with users that need to see them. Furthermore, record owners
+                                can easily remove the manual shares if the access is not needed
+                                anymore.</span></p>
+<div class="p">To grant access to a record, you must be one of the following users. <ul class="ul bulletList">
+<li class="li">The record owner</li>
+<li class="li">A user in a role above the owner in the hierarchy (if your organization’s sharing
+     settings control access through hierarchies)</li>
+<li class="li">Any user granted “Full Access” to the record</li>
+<li class="li">An administrator</li>
+</ul>
+</div>
+<p class="p">To grant access to a
+                        record using a manual share:</p>
+<ol class="ol enumList">
+<li class="li">Click <strong class="ph uicontrol">Sharing</strong> on the record you want to
+                                        share.<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>The <strong class="ph uicontrol">Sharing</strong> button is
+                                        available when your sharing model is either Private or
+                                        Public Read Only for a type of record or related record. For
+                                        example, the <strong class="ph uicontrol">Sharing</strong> button may
+                                        appear on an account even though your sharing model for
+                                        accounts is Public Read/Write if your sharing model for
+                                        related opportunities is Public Read Only.</p></div></div></div></div></div>
+</li>
+<li class="li">Click <strong class="ph uicontrol">Add</strong>.<div class="fig fignone">
+<span class="image image-block"><img alt="The Sharing Detail page for the CA-00002 object" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us18112b86b001d6e40d7f41fbf999c451.jpg"/></span>
+</div>
+</li>
+<li class="li">From the <span class="keyword parmname">Search</span> drop-down list, select the type of
+                                group, user, role, or territory to add.<p class="p"> Depending on the data in
+                                        your organization, your options can include:</p>
+<div class="data colSort"><table class="featureTable sort_table" summary="">
+<thead align="left" class="thead sorted">
+<tr>
+<th class="featureTableHeader " id="d103648e584">Type</th>
+<th class="featureTableHeader " id="d103648e587">Description</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr>
+<td class="entry" data-title="Type" headers="d103648e584">Managers Groups</td>
+<td class="entry" data-title="Description" headers="d103648e587">All direct and indirect managers of a
+                                                  user.</td>
+</tr>
+<tr>
+<td class="entry" data-title="Type" headers="d103648e584">Manager Subordinates Groups</td>
+<td class="entry" data-title="Description" headers="d103648e587">A manager and all direct and indirect
+                                                  reports who he or she manages.</td>
+</tr>
+<tr>
+<td class="entry" data-title="Type" headers="d103648e584">Public Groups</td>
+<td class="entry" data-title="Description" headers="d103648e587">All public groups defined by your
+                                                  administrator.</td>
+</tr>
+<tr>
+<td class="entry" data-title="Type" headers="d103648e584">Personal Groups</td>
+<td class="entry" data-title="Description" headers="d103648e587">All personal groups defined by the record
+                                                  owner. Only the record owner can share with his or
+                                                  her personal groups.</td>
+</tr>
+<tr>
+<td class="entry" data-title="Type" headers="d103648e584">Users</td>
+<td class="entry" data-title="Description" headers="d103648e587">All users in your organization. Does not
+                                                  include portal users.</td>
+</tr>
+<tr>
+<td class="entry" data-title="Type" headers="d103648e584">Roles</td>
+<td class="entry" data-title="Description" headers="d103648e587">All roles defined for your organization.
+                                                  This includes all of the users in each
+                                                  role.</td>
+</tr>
+<tr>
+<td class="entry" data-title="Type" headers="d103648e584">Roles and Subordinates</td>
+<td class="entry" data-title="Description" headers="d103648e587">All of the users in the role plus all of
+                                                  the users in roles below that role in the
+                                                  hierarchy. Only available when no portals are
+                                                  enabled for your organization.</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li class="li">Choose the specific groups, users, or roles who should have access by
+                                adding their names to the Share With list. Use the
+                                        <strong class="ph uicontrol">Add</strong> and <strong class="ph uicontrol">Remove</strong>
+                                arrows to move the items from the Available list to the Share With
+                                list. </li>
+<li class="li">Choose the access level for the record you are sharing and any
+                                associated records that you own. <div class="p"><span class="ph" id="Possible"><a name="Possible"></a>The available
+                                                access levels are:</span>
+<div class="data colSort"><table class="featureTable sort_table" summary="">
+<thead align="left" class="thead sorted">
+<tr>
+<th class="featureTableHeader " id="d103648e683">Access Level</th>
+<th class="featureTableHeader " id="d103648e686">Description</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr>
+<td class="entry" data-title="Access Level" headers="d103648e683">Full Access</td>
+<td class="entry" data-title="Description" headers="d103648e686">User can view, edit, delete, and transfer
+                                                  the record. User can also extend sharing access to
+                                                  other users; however, the user cannot grant Full
+                                                  Access to other users.</td>
+</tr>
+<tr>
+<td class="entry" data-title="Access Level" headers="d103648e683">Read/Write</td>
+<td class="entry" data-title="Description" headers="d103648e686">User can view and edit the record, and add
+                                                  associated records, notes, and attachments to
+                                                  it.</td>
+</tr>
+<tr>
+<td class="entry" data-title="Access Level" headers="d103648e683">Read Only</td>
+<td class="entry" data-title="Description" headers="d103648e686">User can view the record, and add
+                                                  associated records to it. They cannot edit the
+                                                  record or add notes or attachments.</td>
+</tr>
+<tr>
+<td class="entry" data-title="Access Level" headers="d103648e683">Private</td>
+<td class="entry" data-title="Description" headers="d103648e686">User cannot access the record in any
+                                                  way.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</li>
+<li class="li">When sharing a forecast, select <span class="keyword parmname">Submit Allowed</span> to
+                                enable the user, group, or role to submit the forecast.</li>
+<li class="li">Select the reason you’re sharing the record so users and
+                                administrators can understand.</li>
+<li class="li">Click <strong class="ph uicontrol">Save</strong>.</li>
+</ol>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading6">Manual Sharing in the Recruiting App</h3>
+<div class="p">After implementing the sharing rules for the Recruiting app, the
+                                following required permissions remain: <ul class="ul bulletList">
+<li class="li">Hiring managers need read and update access on position
+                                                records on which they're the hiring manager. </li>
+<li class="li">Hiring managers need read access on candidate records on
+                                                which they're the hiring manager.</li>
+<li class="li">Interviewers need read access on the candidate and job
+                                                application records for people they're interviewing.
+                                        </li>
+</ul>
+</div>
+<p class="p">It’s difficult to assign these permissions using sharing rules because
+                                there’s no way to define a consistent group of users who would need
+                                access to a particular set of records. It makes more sense for the
+                                person who owns a record to grant access to specific users, when
+                                required. </p>
+<p class="p">For example, a recruiter, like Mario, who owns the position, candidate,
+                                and job application records for jobs he's trying to fill, also knows
+                                the hiring manager and interviewers who should be assigned to them.
+                                Mario can use manual sharing to grant read or read/write access on
+                                records that he owns to any other user, role, or public group. </p>
+<p class="p">Although it isn't automated like organization-wide defaults, role
+                                hierarchies, or sharing rules, manual sharing gives Mario the
+                                flexibility to share particular records with the ever-changing
+                                groups of interviewers and hiring managers he works with every day.
+                                With this final step, we’ve implemented all of the required sharing
+                                and security settings, which we discussed at the beginning of this
+                                module, for the Recruiting app.</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="data_security_sharing_rules_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security_sharing_rules_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading7">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation"><a class="xref" href="https://help.salesforce.com/apex/HTViewHelpDoc?id=security_about_sharing_rules.htm&amp;language=en_US" target="_blank" title="HTML (New Window)">Sharing Rules
+                    Overview</a></li>
+<li class="li Documentation"><a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=security_sharing_data_set_categories.htm&amp;language=en_US" target="_blank" title="HTML (New Window)">Sharing Rule Categories</a></li>
+<li class="li Documentation"><a class="xref" href="https://help.salesforce.com/apex/HTViewHelpDoc?id=security_sharing_considerations.htm&amp;language=en_US" target="_blank" title="HTML (New Window)">Sharing
+                                        Considerations</a></li>
+</ul>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>Remember, this module is meant for
+            Salesforce Classic. When you launch your hands-on org, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank">switch to Salesforce Classic</a> to complete this
+            challenge.</p></div></div></div></div></div>
+</div>
+</div>
+</body></div>

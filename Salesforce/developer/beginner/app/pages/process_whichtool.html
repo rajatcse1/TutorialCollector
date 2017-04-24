@@ -1,0 +1,272 @@
+<div class="unit-content">
+<body id="blank_ref_classic"><a name="blank_ref_classic"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a> </span></h2>
+<div class="body">
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>
+<p class="p"><strong class="ph b">Attention Trailblazer!</strong></p>
+<p class="p">Salesforce has two different user interfaces: Lightning Experience and Salesforce
+                Classic. It’s easy to switch between the two. You can learn about <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank" title="html (New Window)">switching between interfaces</a>, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_enable_intro.htm&amp;language=en_US" target="_blank" title="html (New Window)">enabling Lightning Experience</a>, and more in the <a class="xref" href="https://trailhead.salesforce.com/module/lex_migration_introduction" target="_blank" title="html (New Window)">Lightning Experience Basics</a> module here on Trailhead.</p>
+<p class="p">This module is designed for <strong class="ph b">Salesforce Classic</strong>.</p>
+</p></div></div></div></div></div>
+</div>
+</div>
+<div class="topic concept nested0" id="process_whichtool_learning_objectives" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="process_whichtool_learning_objectives"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body conbody">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you'll be able to: <ul class="ul bulletList">
+<li class="li">Describe and compare the different options for automating
+                                        business processes in Salesforce.</li>
+<li class="li">Determine which tool is right for a given use case.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="process_whichtool_intro" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="process_whichtool_intro"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3"><span class="ph" id="topic-title"><a name="topic-title"></a>Salesforce Process Automation Suite</span></h2>
+<div class="body conbody">
+<p class="p">Salesforce provides
+                        multiple tools to automate your org’s repetitive business processes:
+                        Lightning Process Builder, Visual Workflow, Workflow, and Approvals. The
+                        automation tool that you need depends on the type of business process that
+                        you’re automating.</p>
+<ul class="ul bulletList">
+<li class="li">What to do when a record has certain values<p class="p">Example: Notify the account owner
+            when a related case is escalated.</p>
+</li>
+<li class="li">Collecting information from users or customers and then doing something
+                                with that information<p class="p">Example: Customer support uses a wizard to
+            step through a call script, and cases are created based on the information that they
+            enter.</p>
+</li>
+<li class="li">How a record gets approved<p class="p">Example: Managers approve their direct
+            reports’ requests for vacation.</p>
+</li>
+</ul>
+</div>
+<div class="topic concept nested1" id="process_whichtool_recordvalues" lang="en-us" xml:lang="en-us"><a name="process_whichtool_recordvalues"></a>
+<h3 class="helpHead3" id="Tdxn4tBK-heading4"><span class="ph" id="topic-title"><a name="topic-title"></a>What to Do When a Record Has Certain Values</span></h3>
+<div class="body conbody">
+<p class="p">Three of our tools can address this use case: Workflow,
+        Process Builder, and Visual Workflow. Respectively, these tools create workflow rules,
+        processes, and flows.</p>
+<p class="p">We recommend starting with Process Builder, especially for business
+        processes that can be simplified to if/then statements. For example: if a case is escalated,
+        then notify the account owner.</p>
+<p class="p">Process Builder includes almost all the functionality that’s
+        available in workflow rules, and more. In fact, a single process can do what it would
+        normally take multiple workflow rules to do. The only thing you can do with workflow that
+        you can’t do with processes is send outbound messages without code. However, you can work
+        around this limitation by calling Apex code from a process.</p>
+<div class="p">If the process is too complicated for the Process Builder or
+        requires more advanced functionality, create a flow by using the Cloud Flow Designer. For
+        example, create a flow to:<ul class="ul bulletList">
+<li class="li">Use complex branching logic (if certain conditions are true, evaluate for further
+            conditions) <p class="p">Example: First, check whether a case is escalated. If the case is
+              escalated, check the account’s region and route the case accordingly.</p>
+</li>
+<li class="li">Sort through, iterate over, and operate on several records <p class="p">Example: After an
+              opportunity is closed and won, calculate the opportunity’s discount. Then apply that
+              discount to all the related opportunity products.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic concept nested1" id="process_whichtool_wizard" lang="en-us" xml:lang="en-us"><a name="process_whichtool_wizard"></a>
+<h3 class="helpHead3" id="Tdxn4tBK-heading5"><span class="ph" id="topic-title"><a name="topic-title"></a>Get Information from Users or Customers and Do Something with
+                        It</span></h3>
+<div class="body conbody">
+<p class="p">If you need to build a wizard to collect information, Visual Workflow
+        is the tool for you. Create a flow that displays information to and requests information
+        from a user. Then take the information that they enter and perform actions in Salesforce
+        with it.</p>
+<p class="p">For example, create a flow that walks customer support
+        representatives through a call script. The flow uses information that the representative
+        entered, such as the caller’s name and account number, to create a case that’s assigned to
+        the right person. </p>
+<div class="p">You can add more complexity to the flow to match your business
+        process. For example:<ul class="ul bulletList">
+<li class="li">Route the representative to different screens, depending on earlier choices. This
+            prevents the representative from doing things like trying to upsell a product to a
+            customer who already bought that product.</li>
+<li class="li">Check whether the reported problem is blocking the customer’s business and the account
+            is high-value. If so, the flow notifies the region director.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic concept nested1" id="process_whichtool_approve" lang="en-us" xml:lang="en-us"><a name="process_whichtool_approve"></a>
+<h3 class="helpHead3" id="Tdxn4tBK-heading6"><span class="ph" id="topic-title"><a name="topic-title"></a>How a Record Gets Approved</span></h3>
+<div class="body conbody">
+<p class="p">For example, when an employee requests time off, that time has
+        to be approved by the employee’s manager. You need to ensure that when a time-off request is
+        submitted for approval, the right person (the employee’s manager) receives the request. </p>
+<p class="p">To automate your organization’s processes for approving records,
+        create approval processes.</p>
+</div>
+</div>
+</div>
+<div class="topic reference nested0" id="process_whichtool_featurecomparison" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="process_whichtool_featurecomparison"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading7"><span class="ph" id="topic-title"><a name="topic-title"></a>Automation Tool Features</span></h2>
+<div class="body refbody">
+<div class="section">
+<p class="p">Here’s a breakdown of all the features and actions that are supported in
+                                each automation tool. Use it to determine which tool is best for
+                                your business needs.</p>
+<div class="data colSort"><table class="featureTable sort_table" summary="">
+<thead align="left" class="thead sorted">
+<tr>
+<th class="featureTableHeader text-center" id="d388301e228"></th>
+<th class="featureTableHeader text-center" id="d388301e230">Process Builder</th>
+<th class="featureTableHeader text-center" id="d388301e233">Visual Workflow</th>
+<th class="featureTableHeader text-center" id="d388301e236">Workflow</th>
+<th class="featureTableHeader text-center" id="d388301e239">Approvals</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr>
+<td class=" text-center" data-title="" headers="d388301e228"><strong class="ph b">Complexity</strong></td>
+<td class=" text-center" data-title="Process Builder" headers="d388301e230">Multiple if/then statements</td>
+<td class=" text-center" data-title="Visual Workflow" headers="d388301e233">Complex</td>
+<td class=" text-center" data-title="Workflow" headers="d388301e236">A single if/then statement</td>
+<td class=" text-center" data-title="Approvals" headers="d388301e239">A single if/then statement</td>
+</tr>
+<tr>
+<td class=" text-center" data-title="" headers="d388301e228"><strong class="ph b">Visual designer</strong></td>
+<td class=" text-center" data-title="Process Builder" headers="d388301e230"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Visual Workflow" headers="d388301e233"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Workflow" headers="d388301e236"></td>
+<td class=" text-center" data-title="Approvals" headers="d388301e239"></td>
+</tr>
+<tr>
+<td class=" text-center" data-title="" headers="d388301e228"><strong class="ph b">Browser support</strong></td>
+<td class=" text-center" data-title="Process Builder" headers="d388301e230">All (Chrome recommended)</td>
+<td class=" text-center" data-title="Visual Workflow" headers="d388301e233">All (Safari not recommended)</td>
+<td class=" text-center" data-title="Workflow" headers="d388301e236">All</td>
+<td class=" text-center" data-title="Approvals" headers="d388301e239">All</td>
+</tr>
+<tr>
+<td class=" text-center" data-title="" headers="d388301e228"><strong class="ph b">Starts when</strong></td>
+<td class=" text-left" data-title="Process Builder" headers="d388301e230">
+<ul class="ul bulletList">
+<li class="li">Record is changed</li>
+<li class="li">Invoked by another process</li>
+</ul>
+</td>
+<td class=" text-left" data-title="Visual Workflow" headers="d388301e233">
+<ul class="ul bulletList">
+<li class="li">User clicks button or link</li>
+<li class="li">User accesses custom tab</li>
+<li class="li">Process starts</li>
+<li class="li">Apex is called</li>
+</ul>
+</td>
+<td class=" text-center" data-title="Workflow" headers="d388301e236">Record is changed</td>
+<td class=" text-left" data-title="Approvals" headers="d388301e239">
+<ul class="ul bulletList">
+<li class="li">User clicks button or link</li>
+<li class="li">Process or flow starts that includes a Submit for Approval action</li>
+<li class="li">Apex is called</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class=" text-center" data-title="" headers="d388301e228"><strong class="ph b">Supports time-based actions</strong></td>
+<td class=" text-center" data-title="Process Builder" headers="d388301e230">
+<span class="image image-block"><img alt="check icon indicating true" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></span>
+</td>
+<td class=" text-center" data-title="Visual Workflow" headers="d388301e233"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Workflow" headers="d388301e236"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Approvals" headers="d388301e239"></td>
+</tr>
+<tr>
+<td class=" text-center" data-title="" headers="d388301e228"><strong class="ph b">Supports user interaction</strong></td>
+<td class=" text-center" data-title="Process Builder" headers="d388301e230"></td>
+<td class=" text-center" data-title="Visual Workflow" headers="d388301e233"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Workflow" headers="d388301e236"></td>
+<td class=" text-center" data-title="Approvals" headers="d388301e239"></td>
+</tr>
+<tr>
+<td class=" text-center" colspan="5" headers="d388301e228 d388301e230 d388301e233 d388301e236 d388301e239"><strong class="ph b">Supported Actions</strong></td>
+</tr>
+<tr>
+<td class=" text-center" data-title="" headers="d388301e228"><strong class="ph b">Call Apex code</strong></td>
+<td class=" text-center" data-title="Process Builder" headers="d388301e230"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Visual Workflow" headers="d388301e233"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Workflow" headers="d388301e236"></td>
+<td class=" text-center" data-title="Approvals" headers="d388301e239"></td>
+</tr>
+<tr>
+<td class=" text-center" data-title="" headers="d388301e228"><strong class="ph b">Create records</strong></td>
+<td class=" text-center" data-title="Process Builder" headers="d388301e230"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Visual Workflow" headers="d388301e233"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Workflow" headers="d388301e236">Tasks only</td>
+<td class=" text-center" data-title="Approvals" headers="d388301e239">Tasks only</td>
+</tr>
+<tr>
+<td class=" text-center" data-title="" headers="d388301e228"><strong class="ph b">Invoke processes</strong></td>
+<td class=" text-center" data-title="Process Builder" headers="d388301e230"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Visual Workflow" headers="d388301e233"></td>
+<td class=" text-center" data-title="Workflow" headers="d388301e236"></td>
+<td class=" text-center" data-title="Approvals" headers="d388301e239"></td>
+</tr>
+<tr>
+<td class=" text-center" data-title="" headers="d388301e228"><strong class="ph b">Delete records</strong></td>
+<td class=" text-center" data-title="Process Builder" headers="d388301e230"></td>
+<td class=" text-center" data-title="Visual Workflow" headers="d388301e233"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Workflow" headers="d388301e236"></td>
+<td class=" text-center" data-title="Approvals" headers="d388301e239"></td>
+</tr>
+<tr>
+<td class=" text-center" data-title="" headers="d388301e228"><strong class="ph b">Launch a flow</strong></td>
+<td class=" text-center" data-title="Process Builder" headers="d388301e230"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Visual Workflow" headers="d388301e233"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Workflow" headers="d388301e236"><span class="image image-block"><img alt="check icon indicating true" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></span> (Pilot)<sup class="ph sup">1</sup></td>
+<td class=" text-center" data-title="Approvals" headers="d388301e239"></td>
+</tr>
+<tr>
+<td class=" text-center" data-title="" headers="d388301e228"><strong class="ph b">Post to Chatter</strong></td>
+<td class=" text-center" data-title="Process Builder" headers="d388301e230"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Visual Workflow" headers="d388301e233"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Workflow" headers="d388301e236"></td>
+<td class=" text-center" data-title="Approvals" headers="d388301e239"></td>
+</tr>
+<tr>
+<td class=" text-center" data-title="" headers="d388301e228"><strong class="ph b">Send email</strong></td>
+<td class=" text-center" data-title="Process Builder" headers="d388301e230"><span class="image image-block"><img alt="check icon indicating true" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></span>(Email alerts only)</td>
+<td class=" text-center" data-title="Visual Workflow" headers="d388301e233"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Workflow" headers="d388301e236"><span class="image image-block"><img alt="check icon indicating true" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></span>(Email alerts only)</td>
+<td class=" text-center" data-title="Approvals" headers="d388301e239"><span class="image image-block"><img alt="check icon indicating true" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></span>(Email alerts only)</td>
+</tr>
+<tr>
+<td class=" text-center" data-title="" headers="d388301e228"><strong class="ph b">Send outbound messages without code</strong></td>
+<td class=" text-center" data-title="Process Builder" headers="d388301e230"></td>
+<td class=" text-center" data-title="Visual Workflow" headers="d388301e233"></td>
+<td class=" text-center" data-title="Workflow" headers="d388301e236"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Approvals" headers="d388301e239"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+</tr>
+<tr>
+<td class=" text-center" data-title="" headers="d388301e228"><strong class="ph b">Submit for approval</strong></td>
+<td class=" text-center" data-title="Process Builder" headers="d388301e230"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Visual Workflow" headers="d388301e233"><img alt="check icon indicating true" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us68cdc42b112b13f66432c742b3b95266.png"/></td>
+<td class=" text-center" data-title="Workflow" headers="d388301e236"></td>
+<td class=" text-center" data-title="Approvals" headers="d388301e239"></td>
+</tr>
+<tr>
+<td class=" text-center" data-title="" headers="d388301e228"><strong class="ph b">Update fields</strong></td>
+<td class=" text-center" data-title="Process Builder" headers="d388301e230">Any related record</td>
+<td class=" text-center" data-title="Visual Workflow" headers="d388301e233">Any record</td>
+<td class=" text-center" data-title="Workflow" headers="d388301e236">The record or its parent</td>
+<td class=" text-center" data-title="Approvals" headers="d388301e239">The record or its parent</td>
+</tr>
+</tbody>
+</table></div>
+<p class="p"><sup class="ph sup">1</sup>The Process Builder has superseded flow trigger workflow
+                                actions, previously available in a pilot program. Orgs that are
+                                using flow trigger workflow actions can continue to create and edit
+                                them, but they aren’t available for new orgs.</p>
+</div>
+</div>
+</div>
+</body></div>

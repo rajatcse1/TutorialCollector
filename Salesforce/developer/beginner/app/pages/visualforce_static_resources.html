@@ -1,0 +1,307 @@
+<div class="unit-content">
+<body id="visualforce_static_resources_learning_objectives"><a name="visualforce_static_resources_learning_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you’ll be able to: <ul class="ul bulletList">
+<li class="li">Explain what static resources are and why to use them.</li>
+<li class="li">Explain the difference between individual and zipped static resources.</li>
+<li class="li">Create and upload a static resource.</li>
+<li class="li">Add static resources to a Visualforce page.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="visualforce_static_resources_intro" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_static_resources_intro"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Introduction to Static Resources</span></h2>
+<div class="body conbody"><div class="shortdesc">Static resources allow you to upload content that you can reference in a
+   Visualforce page. Resources
+  can be archives (such as .zip and .jar files), images, stylesheets, JavaScript, and
+  other files.</div>
+<p class="p">Static resources are managed and distributed by Force.com, which acts as a
+   content distribution network (CDN) for the files. Caching and distribution are
+   handled automatically.</p>
+<p class="p">Static resources are referenced using the <samp>$Resource</samp> global variable, which can be used directly by Visualforce, or used as a
+   parameter to functions such as <samp>URLFOR()</samp>.</p>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_static_resources_simple_create" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_static_resources_simple_create"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3"><span class="ph" id="topic-title"><a name="topic-title"></a>Create and Upload a Simple Static
+        Resource</span></h2>
+<div class="body taskbody"><div class="shortdesc">Create a simple, stand-alone static resource for independent static
+        assets.</div>
+<div class="section context">
+<p class="p">When your static asset is not related to other assets—that is, not
+                part of a set of similar assets such as a group of icons—it’s easiest
+                to create a stand-alone static resource.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Download the current version of the jQuery JavaScript library. At this writing
+                    it’s <a class="xref" href="http://code.jquery.com/jquery-3.1.0.js" target="_blank" title="html (New Window)">jQuery 3.1.0</a>.</span>
+<div class="itemgroup info">If the link doesn’t work, or if you want to make sure you’re downloading the
+                    very latest version, go to <a class="xref" href="http://jquery.com/download/" target="_blank" title="html (New Window)">http://jquery.com/download/</a> and download the latest version
+                    available there.<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>Right-click on the direct link to download the file,
+                        rather than opening it in a browser window.</p></div></div></div></div></div>
+</div>
+</li>
+<li class="li step">
+<span class="ph cmd">From Setup, enter <kbd class="ph userinput">Static Resources</kbd> in the <span class="keyword parmname">Quick Find</span> box, then select <strong class="ph uicontrol">Static Resources</strong>, and then click <strong class="ph uicontrol">New</strong>.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Enter <kbd class="ph userinput">jQuery</kbd> for the
+                        <var class="keyword varname">Name</var>.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Click <strong class="ph uicontrol">Choose File</strong>, and then choose the
+                    jQuery JavaScript file you downloaded previously.</span>
+<div class="itemgroup info">
+<div class="fig fignone">
+<span class="image image-block"><img alt="Creating a simple static resource" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usd5803fb0a793d41f45c5e8420afe2d33.png"/></span>
+</div>
+</div>
+</li>
+<li class="li step">
+<span class="ph cmd">If you see the <strong class="ph uicontrol">Cache Control</strong> menu, choose
+                        <span class="keyword parmname">Public</span>.</span>
+<div class="itemgroup info">This item isn’t visible in all organizations.</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Click <strong class="ph uicontrol">Save</strong>.</span>
+</li>
+</ol>
+<div class="section result">
+<p class="p">You now have a static resource version of jQuery that you can use in your Visualforce pages by referencing
+                it in an expression, such as <samp>{! $Resource.jQuery
+                    }</samp>. What’s really nice is that you can edit the static resource and
+                update it to, say, jQuery 3.1.2, without having to change any of your Visualforce pages. The static
+                resource reference handles the details.</p>
+</div>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_static_resources_simple_page" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_static_resources_simple_page"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading4"><span class="ph" id="topic-title"><a name="topic-title"></a>Add a Static Resource to a Visualforce
+        Page</span></h2>
+<div class="body taskbody"><div class="shortdesc">Use the <samp>$Resource</samp> global
+        variable and dot notation to reference a stand-alone static
+        resource.</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Open the Developer Console and
+                    click <span class="ph menucascade"><strong class="ph uicontrol">File</strong> | <strong class="ph uicontrol">New</strong> | <strong class="ph uicontrol">Visualforce Page</strong></span> to create a new Visualforce
+                    page. Enter <kbd class="ph userinput">HelloJQuery</kbd> for the page
+                    name.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">In the editor, replace any markup with the following.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:page&gt;
+    
+    &lt;!-- Add the static resource to page's &lt;head&gt; --&gt;
+    &lt;apex:includeScript value="{! $Resource.jQuery }"/&gt;
+    
+    &lt;!-- A short bit of jQuery to test it's there --&gt;
+    &lt;script type="text/javascript"&gt;
+        jQuery.noConflict();
+        jQuery(document).ready(function() {
+            jQuery("#message").html("Hello from jQuery!");
+        });
+    &lt;/script&gt;
+    
+    &lt;!-- Where the jQuery message will appear --&gt;
+    &lt;h1 id="message"&gt;&lt;/h1&gt;
+    
+&lt;/apex:page&gt;</pre></div>
+</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Click <strong class="ph uicontrol">Preview</strong> to open a preview of your
+                    page that you can look at while you make changes.</span>
+<div class="itemgroup stepresult">A new window should open, showing the standard Salesforce page header and sidebar elements, and a short message from
+                    jQuery.</div>
+</li>
+</ol>
+<div class="section result">
+<p class="p">This page doesn’t do much except illustrate how to include a
+                JavaScript resource on your Visualforce page.
+                The key is the use of the <samp>$Resource</samp> global variable. Use dot notation to combine
+                it with the name of the resource in an <samp>&lt;apex:includeScript&gt;</samp> (for JavaScript files), <samp>&lt;apex:stylesheet&gt;</samp> (for CSS
+                stylesheets), or <samp>&lt;apex:image&gt;</samp> (for graphics files) tag to add it to
+                your page.</p>
+</div>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_static_resources_zipped_create" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_static_resources_zipped_create"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading5"><span class="ph" id="topic-title"><a name="topic-title"></a>Create and Upload a Zipped Static
+        Resource</span></h2>
+<div class="body taskbody"><div class="shortdesc">Create zipped static resources to group together related files that
+        are usually updated together.</div>
+<div class="section context">
+<p class="p">When your static assets are a set of related items—for example, a set
+                of application icons, or a complex JavaScript library—it’s best to
+                create a zipped static resource. Create a zip file containing all of
+                the elements you want to group together, and upload only the one zip
+                file to Force.com.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Download the current version of the jQuery Mobile JavaScript library, in the
+                    ZIP format. At this writing it’s <a class="xref" href="http://jquerymobile.com/resources/download/jquery.mobile-1.4.5.zip" target="_blank" title="html (New Window)">jQuery Mobile
+                        1.4.5</a>.</span>
+<div class="itemgroup info">If the link doesn’t work, or if you want to make sure you’re
+                    downloading the very latest version, go to <a class="xref" href="http://jquerymobile.com/download/" target="_blank" title="html (New Window)">http://jquerymobile.com/download/</a> and download the
+                    latest version of the ZIP file available there.</div>
+</li>
+<li class="li step">
+<span class="ph cmd">From Setup, enter <kbd class="ph userinput">Static Resources</kbd> in the <span class="keyword parmname">Quick Find</span> box, then select <strong class="ph uicontrol">Static Resources</strong>, and then click <strong class="ph uicontrol">New</strong>.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Enter <kbd class="ph userinput">jQueryMobile</kbd> for the
+                        <var class="keyword varname">Name</var>.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Click <strong class="ph uicontrol">Choose File</strong>, and then choose the
+                    jQuery Mobile ZIP file you downloaded previously.</span>
+<div class="itemgroup info">
+<div class="fig fignone">
+<span class="image image-block"><img alt="Creating a zipped static resource" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usa2cff3e7e43b6ff911658fffdee6f81d.png"/></span>
+</div>
+</div>
+</li>
+<li class="li step">
+<span class="ph cmd">If you see the <strong class="ph uicontrol">Cache Control</strong> menu, choose
+                        <span class="keyword parmname">Public</span>.</span>
+<div class="itemgroup info">This item isn’t visible in all organizations.</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Click <strong class="ph uicontrol">Save</strong>.</span>
+<div class="itemgroup info">
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>If the jQuery Mobile ZIP file is larger than 5 MB, edit the
+                        zip file to remove the <span class="ph filepath">/demo/</span> directory
+                        and its contents, and upload the smaller zip archive.</p></div></div></div></div></div>
+</div>
+</li>
+</ol>
+<div class="section result">
+<p class="p">You now have a static resource version of jQuery Mobile that you can
+                use in your Visualforce
+                pages. You’ll learn how to reference individual files inside the
+                zipped static resource next.</p>
+</div>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_static_resources_zipped_page" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_static_resources_zipped_page"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading6"><span class="ph" id="topic-title"><a name="topic-title"></a>Add Zipped Static Resources to a Visualforce
+        Page</span></h2>
+<div class="body taskbody"><div class="shortdesc">Use the <samp>$Resource</samp> global
+        variable and the <samp>URLFOR()</samp> function to
+        reference items within a zipped static resource.</div>
+<div class="section context">
+<p class="p">The <samp>URLFOR()</samp> function can
+                combine a reference to a zipped static resource and a relative path
+                to an item within it to create a URL that can be used with Visualforce
+                components that reference static assets. For example, <samp>URLFOR($Resource.jQueryMobile,
+                    'images/icons-png/cloud-black.png')</samp> returns a URL to a
+                specific graphic asset within the zipped static resource, which can
+                be used by the <samp>&lt;apex:image&gt;</samp> component. You can construct similar
+                URLs for JavaScript and stylesheet files for the <samp>&lt;apex:includeScript&gt;</samp> and
+                    <samp>&lt;apex:stylesheet&gt;</samp>
+                components.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Open the Developer Console and
+                    click <span class="ph menucascade"><strong class="ph uicontrol">File</strong> | <strong class="ph uicontrol">New</strong> | <strong class="ph uicontrol">Visualforce Page</strong></span> to create a new Visualforce
+                    page. Enter <kbd class="ph userinput">jQueryMobileResources</kbd> for the
+                    page name.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">In the editor, replace any markup with the following.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:page showHeader="false" sidebar="false" standardStylesheets="false"&gt;
+    
+     &lt;!-- Add static resources to page's &lt;head&gt; --&gt;
+    &lt;apex:stylesheet value="{! 
+        URLFOR($Resource.jQueryMobile, 'jquery.mobile-1.4.5.css') }"/&gt;
+    &lt;apex:includeScript value="{! $Resource.jQuery }"/&gt;
+    &lt;apex:includeScript value="{! 
+        URLFOR($Resource.jQueryMobile, 'jquery.mobile-1.4.5.js') }"/&gt;
+    
+    &lt;div style="margin-left: auto; margin-right: auto; width: 50%"&gt;
+        &lt;!-- Display images directly referenced in a static resource --&gt;
+        &lt;h3&gt;Images&lt;/h3&gt;
+        &lt;p&gt;A hidden message: 
+           &lt;apex:image alt="eye" title="eye"
+               url="{!URLFOR($Resource.jQueryMobile, 'images/icons-png/eye-black.png')}"/&gt; 
+           &lt;apex:image alt="heart" title="heart"
+               url="{!URLFOR($Resource.jQueryMobile, 'images/icons-png/heart-black.png')}"/&gt; 
+           &lt;apex:image alt="cloud" title="cloud"
+               url="{!URLFOR($Resource.jQueryMobile, 'images/icons-png/cloud-black.png')}"/&gt; 
+        &lt;/p&gt;
+    
+        &lt;!-- Display images referenced by CSS styles, 
+             all from a static resource. --&gt;
+        &lt;h3&gt;Background Images on Buttons&lt;/h3&gt;
+        &lt;button class="ui-btn ui-shadow ui-corner-all 
+            ui-btn-icon-left ui-icon-action"&gt;action&lt;/button&gt;
+        &lt;button class="ui-btn ui-shadow ui-corner-all 
+            ui-btn-icon-left ui-icon-star"&gt;star&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/apex:page&gt;</pre></div>
+</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Click <strong class="ph uicontrol">Preview</strong> to open a preview of your
+                    page that you can look at while you make changes.</span>
+<div class="itemgroup stepresult">A new window opens and displays a few images from the
+                    jQuery Mobile static resource.<div class="fig fignone">
+<span class="image image-block"><img alt="jQuery buttons via static resources" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us9d7c75f4d02f18d1e033450fc900cbf2.png"/></span>
+</div>
+</div>
+</li>
+</ol>
+<div class="section result">
+<p class="p">For simplicity, this page shows only how to reference zipped static
+                resources on your Visualforce page.
+                See the additional resources if you’d like to learn more about how to
+                combine Visualforce and JavaScript libraries like jQuery Mobile, for example.</p>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="visualforce_static_resources_tell_me_more" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_static_resources_tell_me_more"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading7"><span class="ph" id="topic-title"><a name="topic-title"></a>Tell Me More...</span></h2>
+<div class="body conbody"><div class="shortdesc">Static resources are often the best way to include design and script
+  assets in your Force.com
+  apps, and there are a multitude of ways to combine these assets with your Visualforce pages.</div>
+<p class="p">If you liked putting together a few static resources for jQuery and jQuery
+   Mobile, you’ll love our pre-packaged collections of static resources. <a class="xref" href="https://developer.salesforce.com/mobile/services/mobile-packs" target="_blank" title="html (New Window)">Salesforce Mobile
+    Packs</a> let you build web and hybrid apps that integrate with the Salesforce Platform using
+   industry standard web technologies like HTML5, CSS3 and JavaScript, and popular
+   frameworks like jQuery Mobile, AngularJS and Backbone.js.</p>
+</div>
+</div>
+<div class="topic nested0" id="visualforce_static_resources_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_static_resources_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading8">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_resources.htm" target="_blank" title="html (New Window)">Using Static Resources</a></li>
+<li class="li Documentation"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_resources_reference.htm" target="_blank" title="html (New Window)">Referencing a Static Resource in Visualforce Markup</a></li>
+<li class="li Documentation"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_styling.htm" target="_blank" title="html (New Window)">Styling Visualforce Pages</a></li>
+<li class="li Documentation"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_javascript_intro.htm" target="_blank" title="html (New Window)">Using JavaScript in Visualforce Pages</a></li>
+<li class="li Documentation"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_variables_global_resource.htm" target="_blank" title="html (New Window)"><samp>$Resource</samp></a></li>
+</ul>
+<ul class="ul bulletList">
+<li class="li Articles"><a class="xref" href="https://developer.salesforce.com/page/Delivering_Static_Resources_with_Visualforce" target="_blank">Delivering Static Resources with
+            Visualforce</a></li>
+<li class="li Articles"><a class="xref" href="https://developer.salesforce.com/blogs/developer-relations/2013/05/instantly-reloading-visualforce-static-resources.html" target="_blank">Instantly reloading Visualforce static
+               resources</a></li>
+<li class="li Articles"><a class="xref" href="https://developer.salesforce.com/page/Developing_Apps_with_jQuery" target="_blank">Developing Apps with jQuery</a></li>
+</ul>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>Remember, this module is meant for
+            Salesforce Classic. When you launch your hands-on org, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank">switch to Salesforce Classic</a> to complete this
+            challenge.</p></div></div></div></div></div>
+</div>
+</div>
+</body></div>

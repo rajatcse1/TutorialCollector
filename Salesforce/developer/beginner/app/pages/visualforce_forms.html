@@ -1,0 +1,361 @@
+<div class="unit-content">
+<body id="visualforce_forms_learning_objectives"><a name="visualforce_forms_learning_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you’ll be able to: <ul class="ul bulletList">
+<li class="li">Explain the essential requirements for a Visualforce form.</li>
+<li class="li">Distinguish Visualforce form
+          elements using the platform visual style from those that don’t.</li>
+<li class="li">List four or more standard input form tags.</li>
+<li class="li">Create a Visualforce form to edit
+          and save a record.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="visualforce_forms_intro" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_forms_intro"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Introduction to Visualforce Forms</span></h2>
+<div class="body conbody"><div class="shortdesc">Creating and editing data is a fundamental aspect of any app. Visualforce provides everything
+  you need to easily create pages that can create new records, or retrieve a record,
+  edit its values, and save the changes back to the database. </div>
+<p class="p">Here we’ll combine the standard controller with the <samp>&lt;apex:form&gt;</samp> component and a few easy to
+   understand form elements to create a fairly sophisticated record editing page.</p>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_forms_basic" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_forms_basic"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3"><span class="ph" id="topic-title"><a name="topic-title"></a>Create a Basic Form</span></h2>
+<div class="body taskbody"><div class="shortdesc">Use <samp>&lt;apex:form&gt;</samp> and <samp>&lt;apex:inputField&gt;</samp> to create a page to
+        edit data. Combine <samp>&lt;apex:commandButton&gt;</samp> with the <samp>save</samp> action built into the standard controller to create a new
+        record, or save changes to an existing one.</div>
+<div class="section context">
+<div class="p">A page that lets someone edit and update a record needs to do all of
+                the following.<ul class="ul bulletList">
+<li class="li">Look up the record to edit and retrieve it from the
+                        database.</li>
+<li class="li">Put the relevant record data on the page in an editing
+                        form.</li>
+<li class="li">Receive a form submission with changed data.</li>
+<li class="li">Validate the new values.</li>
+<li class="li">Save valid changes back to the database.</li>
+<li class="li">Provide appropriate messages to the person submitting the
+                        changes, whether the new data is saved successfully or if
+                        there are errors.</li>
+</ul>
+</div>
+<p class="p">Visualforce does
+                most of these things for you automatically when you use the standard
+                controller and the <samp>&lt;apex:form&gt;</samp> component.</p>
+<p class="p">Let’s start with the basics.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Open the Developer Console and
+                    click <span class="ph menucascade"><strong class="ph uicontrol">File</strong> | <strong class="ph uicontrol">New</strong> | <strong class="ph uicontrol">Visualforce Page</strong></span> to create a new Visualforce
+                    page. Enter <kbd class="ph userinput">AccountEdit</kbd> for the page
+                    name.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">In the editor, replace any markup with the following.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:page standardController="Account"&gt;
+    
+    &lt;h1&gt;Edit Account&lt;/h1&gt;
+    
+    &lt;apex:form&gt;
+    
+        &lt;apex:inputField value="{! Account.Name }"/&gt;
+        
+        &lt;apex:commandButton action="{! save }" value="Save" /&gt;
+    
+    &lt;/apex:form&gt;
+    
+&lt;/apex:page&gt;</pre></div>
+</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Click <strong class="ph uicontrol">Preview</strong> to open a preview of your
+                    page that you can look at while you make changes.</span>
+<div class="itemgroup stepresult">A new window should open, showing the standard Salesforce page header and sidebar elements, and a form with a single
+                    empty field in the body.</div>
+</li>
+<li class="li step">
+<span class="ph cmd">In the preview window, add the ID for an account to the URL, and
+                    press ENTER.</span>
+<div class="itemgroup info">The URL should be something like this:
+                            <span class="ph filepath">https://<var class="keyword varname">SalesforceInstance</var>/apex/AccountEdit?core.apexpages.request.devconsole=1<strong class="ph b">&amp;id=001D000000JRBes</strong></span></div>
+<div class="itemgroup stepresult">You should now see the name of the account in the form
+                    field. <div class="fig fignone">
+<span class="image image-block"><img alt="A basic form to edit account name" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us9911d1cbde655b310bd42104e4bc3063.png"/></span>
+</div>
+This verifies that you’ve got the standard controller
+                    working and a valid record ID.</div>
+</li>
+</ol>
+<div class="section result">
+<p class="p">It might not look like much, but in a half-dozen lines of markup
+                you’ve got a fully functional form for updating an account’s name.
+                Give it a whirl!</p>
+<div class="p">These are the essential aspects of this form to understand.<ul class="ul bulletList">
+<li class="li">The page uses the standard controller for accounts, defined
+                        in the <samp>&lt;apex:page&gt;</samp>
+                        component.</li>
+<li class="li"><samp>&lt;apex:form&gt;</samp> is a
+                            Visualforce component that packages everything inside it into
+                        something that can be sent back to the server as part of a
+                        page action. If you need to send data back to Salesforce, most of the time you’ll do it inside an <samp>&lt;apex:form&gt;</samp>.</li>
+<li class="li"><samp>&lt;apex:inputField&gt;</samp>
+                        creates an onscreen form field for the record data field
+                        that’s associated with it. You do this by providing an
+                        expression that references the relevant field in the <samp>value</samp> attribute. Here
+                        that expression is <samp>{!
+                            Account.Name }</samp>, which you should have no
+                        difficulty guessing is the account’s Name field.</li>
+<li class="li">Finally, <samp>&lt;apex:commandButton&gt;</samp> adds a button to the
+                        page’s user interface. This button fires an
+                            <dfn class="term">action</dfn> when it’s clicked. In this case, the
+                        action is the <samp>save()</samp>
+                        action method in the standard controller. Like with <samp>&lt;apex:inputField&gt;</samp>, you
+                        connect the<samp>&lt;apex:commandButton&gt;</samp> with its action by
+                        referencing the action method to be called in an expression
+                        provided to the <samp>&lt;apex:commandButton&gt;</samp>
+<samp>action</samp>
+                        attribute.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_forms_labels_styling" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_forms_labels_styling"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading4"><span class="ph" id="topic-title"><a name="topic-title"></a>Add Field Labels and Platform Styling</span></h2>
+<div class="body taskbody"><div class="shortdesc">Place form elements within <samp>&lt;apex:pageBlock&gt;</samp> and <samp>&lt;apex:pageBlockSection&gt;</samp> tags to organize and group them, and
+        to have the form adopt the platform visual style.</div>
+<div class="section context">
+<p class="p">Let’s revise your form so that it looks more familiar.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Inside the <samp>&lt;apex:form&gt;</samp> component, wrap the two form
+                    elements in <samp>&lt;apex:pageBlock&gt;</samp> and <samp>&lt;apex:pageBlockSection&gt;</samp>
+                    tags, so that your markup looks like this.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:page standardController="Account"&gt;
+    &lt;apex:form&gt;
+    
+    &lt;apex:pageBlock title="Edit Account"&gt;
+
+        &lt;apex:pageBlockSection&gt;
+            &lt;apex:inputField value="{! Account.Name }"/&gt;        
+        &lt;/apex:pageBlockSection&gt;
+
+        &lt;apex:pageBlockButtons&gt;
+            &lt;apex:commandButton action="{! save }" value="Save" /&gt;        
+        &lt;/apex:pageBlockButtons&gt;
+
+    &lt;/apex:pageBlock&gt;
+    
+    &lt;/apex:form&gt;
+&lt;/apex:page&gt;</pre></div>
+</div>
+<div class="itemgroup stepresult">The styling for this version of the form is quite
+                    different! As with output components, when you use input
+                    components within <samp>&lt;apex:pageBlock&gt;</samp> and <samp>&lt;apex:pageBlockSection&gt;</samp>
+                    tags they adopt the platform visual styling. Use these tags any
+                    time you want your page to look like “standard Salesforce.”</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Below the account name field, add three more fields so that your
+                    markup looks like this.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:pageBlockSection columns="1"&gt;
+    &lt;apex:inputField value="{! Account.Name }"/&gt;
+    &lt;apex:inputField value="{! Account.Phone }"/&gt;        
+    &lt;apex:inputField value="{! Account.Industry }"/&gt;        
+    &lt;apex:inputField value="{! Account.AnnualRevenue }"/&gt;
+&lt;/apex:pageBlockSection&gt;</pre></div>
+</div>
+<div class="itemgroup stepresult">Now you have a more complete, realistic form to work with.<div class="fig fignone">
+<span class="image image-block"><img alt="Edit account form with platform styling" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-uscc3668a263501ef715bf2e8c10d1b09f.png"/></span>
+</div>
+</div>
+</li>
+</ol>
+<div class="section result">
+<p class="p">The <samp>&lt;apex:inputField&gt;</samp>
+                component renders the appropriate input widget based on a standard or
+                custom object field’s type. For example, if you use an <samp>&lt;apex:inputField&gt;</samp> tag to
+                display a date field, a calendar widget displays on the form. If you
+                use an <samp>&lt;apex:inputField&gt;</samp>
+                tag to display a picklist field, as we did here for the industry
+                field, a drop-down list displays instead.</p>
+<p class="p"><samp>&lt;apex:inputField&gt;</samp> can be
+                used to capture user input for any standard or custom object field,
+                and respects any metadata that is set on the field definition, such
+                as whether the field is required or unique, or whether the current
+                user has permission to view or edit it.</p>
+</div>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_forms_errors_messages" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_forms_errors_messages"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading5"><span class="ph" id="topic-title"><a name="topic-title"></a>Display Form Errors and Messages</span></h2>
+<div class="body taskbody"><div class="shortdesc">Use <samp>&lt;apex:pageMessages&gt;</samp> to
+        display any form handling errors or messages.</div>
+<div class="section context">
+<p class="p">Your page should provide useful feedback when things go wrong, such as
+                when a required field is missing, or when a field value fails
+                validation. The standard controller actually handles all of that for
+                you. All you need to do is tell it where to put the messages on the
+                page.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Under the <samp>&lt;apex:pageBlock&gt;</samp> tag, add the following
+                    line.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:pageMessages/&gt;</pre></div>
+</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Try deleting the account’s name, and saving the record with a
+                    blank name.</span>
+<div class="itemgroup stepresult">Validation errors are displayed for the page.<div class="fig fignone">
+<img alt="Edit account with page error messages" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us99bbbfde94e7e7f3ebfa83f251d1f8eb.png"/>
+</div>
+</div>
+</li>
+</ol>
+<div class="section result">
+<p class="p">As you can see, <samp>&lt;apex:inputField&gt;</samp> displays errors for its own field,
+                but for a longer form it’s a nice touch to list all of the page’s
+                errors in one place at the top of the page.</p>
+<p class="p">The standard controller already collects all of the page’s messages
+                when the form is processed. The <samp>&lt;apex:pageMessages&gt;</samp> component enables you to display
+                those messages wherever you see fit.</p>
+</div>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_forms_edit_related_records" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_forms_edit_related_records"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading6"><span class="ph" id="topic-title"><a name="topic-title"></a>Edit Related Records</span></h2>
+<div class="body taskbody"><div class="shortdesc">Make it easy for users to edit related information by providing links
+        to related records.</div>
+<div class="section context">
+<p class="p">So far our forms have only edited one record at a time. More
+                specifically, because they use the standard controller for the
+                account object, the form can <em class="ph i">only</em> make changes to account
+                records.</p>
+<p class="p">That’s not always the most efficient workflow for users to use. While
+                you can’t save changes to multiple object types in one request with
+                the standard controller, you can make it easier to navigate to
+                related records by offering links that perform actions such as edit
+                or delete on those records.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Below the existing closing <samp>&lt;/apex:pageBlock&gt;</samp> tag, add the following
+                    markup.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:pageBlock title="Contacts"&gt;
+    &lt;apex:pageBlockTable value="{!Account.contacts}" var="contact"&gt;
+        &lt;apex:column&gt;
+            &lt;apex:outputLink
+                value="{! URLFOR($Action.Contact.Edit, contact.Id) }"&gt;
+                Edit
+            &lt;/apex:outputLink&gt;
+            &amp;nbsp;
+            &lt;apex:outputLink
+                value="{! URLFOR($Action.Contact.Delete, contact.Id) }"&gt;
+                Del
+            &lt;/apex:outputLink&gt;
+        &lt;/apex:column&gt;
+        &lt;apex:column value="{!contact.Name}"/&gt;
+        &lt;apex:column value="{!contact.Title}"/&gt;
+        &lt;apex:column value="{!contact.Phone}"/&gt;
+    &lt;/apex:pageBlockTable&gt;
+&lt;/apex:pageBlock&gt;</pre></div>
+</div>
+<div class="itemgroup stepresult">A list of the account’s contacts appears below the account
+                    editing form.<div class="fig fignone">
+<img alt="Edit account with related contact records" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usfb7466f9c6649b6d1740bf4c4e680b54.png"/>
+</div>
+</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Try clicking the <u class="ph u">Edit</u> link for a contact.</span>
+<div class="itemgroup stepresult">Where does the link take you? What happens when you save
+                    your changes, or click cancel on that page?</div>
+</li>
+</ol>
+<div class="section result">
+<p class="p">The <samp>&lt;apex:pageBlockTable&gt;</samp>
+                component creates a table with a list of the account’s contacts.
+                What’s new here is the column with the <samp>&lt;apex:outputLink&gt;</samp> components. These use an
+                expression that references a global variable, <samp>$Action</samp>, and combines it with the
+                contact’s ID inside the <samp>URLFOR()</samp> function. The result is a link to the
+                contact’s edit or delete page, depending on the action referenced.
+                This can be a very useful shortcut for users of this form.</p>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="visualforce_forms_tell_me_more" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_forms_tell_me_more"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading7"><span class="ph" id="topic-title"><a name="topic-title"></a>Tell Me More...</span></h2>
+<div class="body conbody"><div class="shortdesc">There’s obviously a great deal more to learn about building useful,
+  usable forms for your web apps.</div>
+<p class="p">For starters, Visualforce
+   offers a dozen or so input components, not just <samp>&lt;apex:inputField&gt;</samp>. <samp>&lt;apex:inputField&gt;</samp> works well with the standard controller and for
+   directly editing record data. For pages where you’re using your own custom
+   controller code, or when form input doesn’t map directly to fields on a record,
+   you’ll want to know about some of the others. Most of these components have names
+   that begin with “apex:input”, and you can find them grouped together in the
+   component reference. For select lists and radio button controls, look for the
+   components with names that start with “apex:select” instead.</p>
+<p class="p">For user interfaces intended to be used on mobile devices, you’ll want to check
+   out <samp>&lt;apex:input&gt;</samp>, which is designed to
+   be used in HTML5 pages, and allows you to use a variety of features that make the
+   resulting input user elements mobile friendly.</p>
+<p class="p">The code you wrote here made use of a number of actions provided by the standard
+   controller for the page. We call these <dfn class="term">standard actions</dfn>, and there
+   are quite a few of them. There’s a core set that are available for all objects
+   with standard controllers, but many of the built-in standard objects have
+   additional actions you can use.</p>
+<p class="p">Speaking of actions, you were able to add actions to edit and delete existing
+   related contacts. How can you add the ability to create new related contacts? It’s
+   not quite as easy as creating a link using the <samp>create</samp> action, the way you did with <samp>edit</samp> and <samp>delete</samp>. This is
+   because those actions worked on existing records, which already have a
+   relationship to the associated account. But when you create a new record, you need
+   to create that relationship yourself. That will require you to write some custom
+   controller code of your own.</p>
+</div>
+</div>
+<div class="topic nested0" id="visualforce_forms_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_forms_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading8">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation">
+<a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_quick_start_input_components.htm" target="_blank" title="html (New Window)">Using Input Components in a Page</a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_controller_std_actions.htm" target="_blank" title="html (New Window)">Using Standard Controller Actions</a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_variables_global_action_valid_values.htm" target="_blank">Valid Values for the <span class="keyword parmname">$Action</span> Global Variable</a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_controller_std.htm" target="_blank" title="html (New Window)">Standard Controllers</a>
+</li>
+</ul>
+<ul class="ul bulletList">
+<li class="li Articles"><a class="xref" href="https://developer.salesforce.com/page/Building_Visualforce_Pages_Using_the_Standard_Controller" target="_blank" title="html (New Window)">Building Visualforce Pages
+               Using the Standard Controller</a>
+</li>
+<li class="li Articles"><a class="xref" href="https://developer.salesforce.com/page/Force.com_Books" target="_blank" title="html (New Window)">“The Standard Controller,” in <em class="ph i">Visualforce
+                  in Practice</em></a>
+</li>
+</ul>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>Remember, this module is meant for
+            Salesforce Classic. When you launch your hands-on org, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank">switch to Salesforce Classic</a> to complete this
+            challenge.</p></div></div></div></div></div>
+</div>
+</div>
+</body></div>

@@ -1,0 +1,286 @@
+<div class="unit-content">
+<body id="blank_ref_classic"><a name="blank_ref_classic"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a> </span></h2>
+<div class="body">
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>
+<p class="p"><strong class="ph b">Attention Trailblazer!</strong></p>
+<p class="p">Salesforce has two different user interfaces: Lightning Experience and Salesforce
+                Classic. It’s easy to switch between the two. You can learn about <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank" title="html (New Window)">switching between interfaces</a>, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_enable_intro.htm&amp;language=en_US" target="_blank" title="html (New Window)">enabling Lightning Experience</a>, and more in the <a class="xref" href="https://trailhead.salesforce.com/module/lex_migration_introduction" target="_blank" title="html (New Window)">Lightning Experience Basics</a> module here on Trailhead.</p>
+<p class="p">This module is designed for <strong class="ph b">Salesforce Classic</strong>.</p>
+</p></div></div></div></div></div>
+</div>
+</div>
+<div class="topic nested0" id="objects_intro_learning_objectives" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="objects_intro_learning_objectives"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you'll be able to: <ul class="ul bulletList">
+<li class="li">Describe the advantages of Force.com objects for app development.</li>
+<li class="li">Explain the difference between standard objects and custom objects.</li>
+<li class="li">List the types of custom fields an object can have.</li>
+<li class="li">List the two types of relationships between objects.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="objects_intro_overview" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="objects_intro_overview"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3"><span class="ph" id="topic-title"><a name="topic-title"></a>Overview of Objects</span></h2>
+<div class="body">
+<p class="p">The Force.com platform provides a powerful database, with many features that make
+                        it faster and easier to create applications. In a relational database, data
+                        is stored in tables. Each table comprises a number of columns of a
+                        particular data type, such as text, number, or date. Information is stored
+                        in rows of the table. Tables can be related to other tables, using primary
+                        and foreign keys. Apps manage information by creating, reading, updating,
+                        and deleting rows in a table. </p>
+<p class="p">The database in Force.com, on the other hand, uses objects to store data. Objects
+                        contain all the functionality you expect in a table, with additional
+                        enhancements that make them more powerful and versatile. Each object
+                        comprises a number of fields, which correspond to columns in a database.
+                        Data is stored in records of the object, which correspond to rows in a
+                        database. </p>
+<div class="p">There are two types of objects.<ul class="ul bulletList">
+<li class="li"><strong class="ph b">Standard Objects</strong>—These are objects included with
+                                        Salesforce, by default, for example the objects used to
+                                        store data in standard tabs such as accounts, contacts, or
+                                        opportunities.</li>
+<li class="li">
+<p class="p"><strong class="ph b">Custom Objects</strong>—These are new objects you
+                                                create to store information unique to your
+                                                organization. Custom objects extend the
+                                                functionality that standard objects provide. For
+                                                example, if you’re building an app to track product
+                                                inventory, you can create custom objects called
+                                                Merchandise and Invoices, as shown in the figure
+                                                below.</p>
+</li>
+</ul>
+</div>
+<div class="fig fignone">
+<img alt="Schema Builder interface" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us25171c6176eb4560c139f6276c52912b.png"/>
+</div>
+<p class="p">Objects can have relationship fields that define how records in one object relate
+                        to records in another object. These fields play the same role as primary and
+                        foreign keys in a database, but they’re more flexible, making it easier to
+                        design and implement your data model. </p>
+<p class="p">Whether they’re standard or custom, Force.com objects not only provide structure
+                        for storing data but also power the interface elements that allow users to
+                        interact with the data, such as tabs, the layout of fields on a page, and
+                        lists of related records. They also have built-in support for features such
+                        as access management, validation, formulas, and history tracking. All
+                        attributes of an object are described with metadata, making it easy to
+                        create and modify records either through a visual interface or
+                        programmatically. </p>
+<p class="p">As you can see, objects are a lot more than simply containers for storing data.
+                        They provide a rich set of functionality that frees you up to focus on
+                        building the features unique to your product. This ensures you can focus
+                        your development efforts on the features unique to your product, enhancing
+                        productivity and reducing time to market.</p>
+</div>
+</div>
+<div class="topic nested0" id="objects_structure" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="objects_structure"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading4">Fields and Relationships</h2>
+<div class="body">
+<p class="p">Each standard or custom object consists of a set of fields. There are several
+                        different types of fields, as described below.</p>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading5">Identity Field</h3>
+<p class="p">Force.com automatically assigns an identity field (called ID) to every
+                                object, and manages the identity data in every record. This identity
+                                field usually comes in a 15-character case sensitive form, which you
+                                may have already seen while using the platform. For example, when
+                                looking at the details of a record, the URL has the form: </p>
+<div class="codeblock"><pre>https://yourInstance.salesforce.com/0015000000Gv7qJ</pre></div>
+<p class="p">Here, <span class="keyword parmname">0015000000Gv7qJ</span> is the identifier for the
+                                record. Every record in your application will have such an
+                                identifier, and as a result you can view every record (across all
+                                objects) by simply using a URL of the above form. The platform will
+                                automatically retrieve the record and the associated metadata, and
+                                display that record using the automatically generated user
+                                interface. </p>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading6">System Fields</h3>
+<div class="p">All objects have a number of read-only system fields automatically
+                                associated with them. The ID field, discussed above, is one such
+                                field. Others include:<ul class="ul bulletList">
+<li class="li"><strong class="ph b">CreatedDate</strong>—the Date and time when the
+                                                object was created  </li>
+<li class="li"><strong class="ph b">CreatedById</strong>—the ID of the User who created
+                                                the object</li>
+<li class="li"><strong class="ph b">LastModifiedById</strong>—the ID of the User who
+                                                last modified the object</li>
+<li class="li"><strong class="ph b">LastModifiedDate</strong>—the date and time when
+                                                the object was last modified by a user  </li>
+<li class="li"><strong class="ph b">SystemModStamp</strong>—the date and time when the
+                                                object was last modified by a user or process, such
+                                                as a trigger </li>
+</ul>
+The database automatically assigns values to these fields when
+                                an object is created or modified. </div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading7">Name Field</h3>
+<p class="p">The name field of an object is a required field that has a special place
+                                in the life of the object. The record name is intended as a
+                                human-readable identifier for a record. It's not required to be a
+                                unique identifier, but it is supposed to be the primary way users
+                                distinguish one record from another. In the automatically generated
+                                user interfaces, you’ll see that the value for the name is always
+                                displayed as a link to the record itself, to its own detail
+                                page.</p>
+<p class="p">A name can be one of two types: a text string or an auto-number field.
+                                For an auto-number field, you must specify the format for the field
+                                and the starting number. Auto number fields increment by one each
+                                time a record is created. </p>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading8">Custom Fields</h3>
+<p class="p">You can define custom fields, either to extend the functionality of a
+                                standard object, or when creating new custom objects. All fields in
+                                an object must be defined as a particular data type. Here's a
+                                summary of many of the supported data types: </p>
+<ul class="ul bulletList">
+<li class="li"><strong class="ph b">Auto Number</strong>—a system-generated read-only sequence
+                                        number, analogous to the SQL identity type. These fields can
+                                        be used to provide a unique ID that is independent of the
+                                        internal object ID. These fields are not used in creating
+                                        object relationships. </li>
+<li class="li"><strong class="ph b">Checkbox</strong>—for representing Boolean data. </li>
+<li class="li"><strong class="ph b">Date or Date/Time</strong>—for representing dates or date
+                                        and time combinations. </li>
+<li class="li"><strong class="ph b">Number</strong>—for representing real numbers, with
+                                        optional decimal points. </li>
+<li class="li"><strong class="ph b">Email, Phone and URL</strong>—format-validated email, phone
+                                        and URL string representations. </li>
+<li class="li"><strong class="ph b">Picklist and Multi-Select Picklists</strong>—represent
+                                        values from a list. </li>
+<li class="li"><strong class="ph b">Text and Text Areas</strong>—for representing text of
+                                        various lengths. </li>
+<li class="li"><strong class="ph b">Currency</strong>—a formatted number type, with optional
+                                        multi-currency support. </li>
+<li class="li"><strong class="ph b">Formula</strong>—a read-only field holding data generated
+                                        from a formula expression. </li>
+<li class="li"><strong class="ph b">Geolocation</strong>—allows you to identify locations by
+                                        their latitude and longitude and calculate distances between
+                                        locations.</li>
+</ul>
+<p class="p">The basic Text, Auto Number and Number are found on many relational
+                                databases. The Formula field type is somewhat different to the
+                                others. Instead of holding a value, it derives its value from a
+                                supplied formula expression. The field is then updated whenever any
+                                of the source fields are changed. Checkbox fields, Email fields, URL
+                                fields and Phone fields include some automatic formatting
+                                capabilities when displayed as part of the automatically generated
+                                user interface. </p>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading9">Relationship Fields</h3>
+<p class="p">The Force.com database differs from relational databases in the way that
+                                record relationships are implemented. Instead of having to deal with
+                                primary keys and foreign keys, to define relationships between data,
+                                Force.com uses relationship fields. A relationship field stores the
+                                ID of the parent record in a relationship, as well as optionally
+                                providing user interface representations in both the parent and
+                                child records.</p>
+<p class="p">You can define two types of relationship fields.</p>
+<ul class="ul bulletList">
+<li class="li"><strong class="ph b">Lookup</strong>—This creates a relationship that links one
+                                        object to another object. The relationship field allows you
+                                        to navigate from records in one object to the related
+                                        records in another object (both visually, and
+                                        programmatically). Lookup relationships can be used to
+                                        create one-to-one and one-to-many relationships. </li>
+<li class="li"><strong class="ph b">Master-Detail</strong>—This creates a special type of
+                                        relationship between two objects (the child, or "detail")
+                                        and another object (the parent, or "master"). Master-detail
+                                        relationships can be used whenever there is a tight binding
+                                        between two objects. For example, consider a blog and blog
+                                        posts. If the blog is deleted, the blog posts should go too.
+                                        They can also be used to create many-many
+                                                relationships.<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>The master object in a master-detail relationship
+                                                can also contain rollup summary fields. These fields
+                                                store values aggregated from the child records in
+                                                the relationship. For example, you can use these
+                                                fields to count the number of child records, sum
+                                                values in field of a child record, or determine the
+                                                maximum/minimum of a field in a filtered set of
+                                                child record. </p></div></div></div></div></div>
+</li>
+</ul>
+<p class="p">The use of relationship fields greatly simplifies the task of designing
+                                and implementing an effective data model for your app.</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="objects_tell_me_more" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="objects_tell_me_more"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading10">Other Features of Objects</h2>
+<div class="body">
+<p class="p">Here is a partial list of features available with all objects.</p>
+<ul class="ul bulletList">
+<li class="li"><strong class="ph b">Formulas</strong>—Formulas can be used in many places, such as
+                                setting up validation rules, creating workflow rule criteria, and
+                                even to define a field. A formula field type behaves much like a
+                                spreadsheet formula—it reflects some calculation based on
+                                other fields and operations on those fields. The formula language is
+                                a rich expression language that lets you perform calculations and
+                                manipulate strings, dates, numbers and regular expressions. </li>
+<li class="li"><strong class="ph b">Validation</strong>—Validation rules help improve data quality by
+                                preventing users from saving incorrect data. These rules use the
+                                same formula syntax as found in formula field types to define a
+                                formula which is evaluated each time a record is saved. If the
+                                formula for a validation rule evaluates as “True”, the save is
+                                aborted and an error message displayed. You can define one or more
+                                validation rules that consist of an error condition and
+                                corresponding error message. For example, you can create a
+                                validation rule to ensure that a number falls within a particular
+                                range. </li>
+<li class="li"><strong class="ph b">Triggers</strong>—Triggers, written in the Apex language, are
+                                pieces of code that can fire before or after a record is saved,
+                                updated or deleted. </li>
+<li class="li"><strong class="ph b">Labels</strong>—Every object and record has a label and can include
+                                a description, for help, which is automatically included in the user
+                                interface. </li>
+<li class="li"><strong class="ph b">Notes and Attachments</strong>—You can create, view, and edit notes
+                                and add attachments for any record in an object that has this
+                                functionality enabled. This provides users of the object the ability
+                                to easily add arbitrary text notes, and upload associated documents,
+                                for each record. </li>
+<li class="li"><strong class="ph b">Track Field History</strong>—Certain fields on your objects can be
+                                configured to track their history. Any time a user modifies any of
+                                the field data whose history is set to be tracked, a new entry is
+                                added to an automatically created History related list. This History
+                                list tracks the date, time, nature of the change, and who made the
+                                change. </li>
+<li class="li"><strong class="ph b">Security</strong>—Database services provide a flexible security
+                                model that you can use to control who has access to objects, records
+                                and/or fields.</li>
+</ul>
+<p class="p">In most cases, you can simply activate and configure these features on your
+                        objects to get the desired functionality.</p>
+</div>
+</div>
+<div class="topic nested0" id="objects_intro_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="objects_intro_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading11">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=dev_objectedit.htm&amp;language=en_US" target="_blank">Managing Custom Objects</a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=overview_of_custom_object_relationships.htm&amp;language=en_US" target="_blank">Object Relationships
+                Overview</a>
+</li>
+</ul>
+<ul class="ul bulletList">
+<li class="li Articles">
+<a class="xref" href="https://developer.salesforce.com/page/An_Introduction_to_Force_Database" target="_blank">Introduction to the Force.com
+                    Database</a>
+</li>
+<li class="li Articles">
+<a class="xref" href="https://developer.salesforce.com/page/Build_Your_Cloud_Database" target="_blank">Build Your Cloud Database</a>
+</li>
+<li class="li Articles">
+<a class="xref" href="https://developer.salesforce.com/page/Architecting_Force.com_Apps_A_Design_Primer" target="_blank">Designing Force.com Apps</a>
+</li>
+</ul>
+</div>
+</div>
+</body></div>

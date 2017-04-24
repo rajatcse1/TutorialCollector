@@ -1,0 +1,337 @@
+<div class="unit-content">
+<body id="creating_custom_objects_fields_learning_objectives"><a name="creating_custom_objects_fields_learning_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you’ll be able to: <ul class="ul bulletList">
+<li class="li">Create and edit custom objects.</li>
+<li class="li">Describe typical use cases for custom fields.</li>
+<li class="li">Create and edit custom fields.</li>
+<li class="li">Modify the page layout for custom objects.</li>
+<li class="li">Create a help page for a custom object.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="creating_custom_objects_fields_overview" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="creating_custom_objects_fields_overview"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Overview of Custom Objects and Fields</span></h2>
+<div class="body">
+<p class="p">Custom objects and fields let you tailor which data is stored to fit your
+                        organization’s needs. Though the Force.com database provides several
+                        standard objects, you can easily customize how you track and report on your
+                        data. </p>
+<p class="p">Custom objects give you the flexibility to store any type of enterprise data
+                        that’s relevant to your app, by creating new objects. For example, if you’re
+                        building a recruiting app, you can create custom objects called Position and
+                        Candidate to track information on job openings and candidates,
+                        respectively.</p>
+<p class="p">Categorize and track your data  even more granularly by using custom fields. Like
+                        standard objects, custom objects have fields that define the data for those
+                        object records. By default custom objects include several standard fields,
+                        including Name, Created By, Last Modified, and Owner.</p>
+<div class="fig fignone"><span class="figcap">Custom Objects Already Have Standard Fields</span>
+<img alt="Standard fields on a custom object" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us165d4c35c952ce8d6430d86439f0f82e.png"/>
+</div>
+<p class="p">You can add custom fields to standard <em class="ph i">or</em> custom objects based on the type
+                        of data you want to store. </p>
+<p class="p">Let’s say you want your recruiting app to sort candidates by how well they’d fit
+                        a position. Create a field named Prospect Rating on the Candidate object and
+                        use picklist values to indicate how closely a candidate fits a job
+                        description. We’ll do this in the next section.</p>
+<p class="p">To associate your custom object with other objects, you can create custom
+                        relationship fields. For more about object relationships, check out the
+                        Creating Object Relationships unit.</p>
+<p class="p">After you define a custom object, you can also:</p>
+<ul class="ul bulletList">
+<li class="li">Create a custom tab for the custom object, to display the object’s
+                                data</li>
+<li class="li">Build page layouts to control which fields users can view and edit when
+                                entering data for the custom object record</li>
+<li class="li">Import custom object records</li>
+<li class="li">Create reports and dashboards to analyze custom object data</li>
+<li class="li">View, add, or remove the object’s field history, relationships, Chatter
+                                feed tracking, custom links, search layouts, and object limits</li>
+<li class="li">Associate the custom object with other records and display the custom
+                                object data in custom related lists</li>
+<li class="li">Track tasks and events for custom object
+                                records</li>
+</ul>
+</div>
+</div>
+<div class="topic task nested0" id="creating_custom_objects" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="creating_custom_objects"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading4"><span class="ph" id="topic-title"><a name="topic-title"></a>Create a Custom Object</span></h2>
+<div class="body taskbody">
+<div class="section context">
+<p class="p">Let’s use our earlier example of a recruiting app to practice creating custom
+                objects. We want a new object named Candidate to keep track of job applicants for
+                each position. (We won’t use an existing object like Contact, because our existing
+                objects are already being used for specific purposes.)</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">From Setup, enter <kbd class="ph userinput">Objects</kbd> in the <span class="keyword parmname">Quick
+                        Find</span> box, then select <strong class="ph uicontrol">Objects</strong> under
+                    Create.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Click <strong class="ph uicontrol">New Custom Object</strong>.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Enter the Label, Plural Label, Object Name, and Description as shown. The
+                    object’s labels appear in the user interface, while the Object Name is used in
+                    the API.</span>
+<div class="itemgroup info">
+<div class="fig fignone"><span class="figcap">Define the Candidate Object</span>
+<span class="image image-block"><img alt="Create a custom object named Candidate" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usf8decbbc8006339aa34e6634a4373535.png"/></span>
+</div>
+</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Under Object Creation Options, select <strong class="ph uicontrol">Launch New Custom Tab
+                        Wizard</strong>, so you can set up a new tab for Candidates.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Click <strong class="ph uicontrol">Save</strong>.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">On the New Custom Object Tab page, select the <strong class="ph uicontrol">People</strong>
+                    style for Tab Style.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Keep the defaults for the rest of the Tab Wizard, and click
+                        <strong class="ph uicontrol">Save</strong>.</span>
+</li>
+</ol>
+</div>
+</div>
+<div class="topic nested0" id="creating_custom_fields" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="creating_custom_fields"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading6"><span class="ph" id="topic-title"><a name="topic-title"></a>Create a Custom Picklist Field for the Candidate Object</span></h2>
+<div class="body">
+<p class="p" id="video_creating_custom_field"><a name="video_creating_custom_field"></a>Watch a demo video of creating a
+      custom field.</p>
+<iframe allowfullscreen="1" class="doc_embedded_video" frameborder="0" height="360" mozallowfullscreen="1" src="//play.vidyard.com/um8ZtKv_2awfCTitmz0vtA" webkitallowfullscreen="1" width="640"></iframe>
+<p class="p">Now that we have a Candidate object, we can customize it to categorize candidates by how well
+      they fit particular positions. For example, we want reports to show all the “Hot” candidates
+      at the top, so recruiters can contact those applicants first.</p>
+<p class="p">So we’ll create a custom field named Prospect Rating, make it a picklist field, and give it
+      several values to classify candidates. We conveniently create the custom field directly on the
+      Candidate object, so it’s already associated only with that object. </p>
+<p class="p">Let’s locate the Candidate object and create the new field.</p>
+<ol class="ol enumList">
+<li class="li">From Setup, click <span class="ph menucascade"><strong class="ph uicontrol">Create</strong> | <strong class="ph uicontrol">Objects</strong></span> and click the object’s name.</li>
+<li class="li" id="new_field"><a name="new_field"></a>In Custom Fields &amp; Relationships, click <strong class="ph uicontrol">New</strong>. </li>
+<li class="li" id="Type"><a name="Type"></a>Select <strong class="ph uicontrol">Picklist</strong> and click <strong class="ph uicontrol">Next</strong>. In
+        this case we don’t need a multi-select picklist, because users should select only one value
+        for the candidate’s Prospect Rating.</li>
+<li class="li">Enter the Field Label, picklist values, Field Name, Description, and Help Text as
+          shown.<span class="image image-block"><img alt="Definition of the custom field Prospect Rating" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us636a78b706a2fef56dbcf392cef40331.png"/></span><div class="box message confirm"><div class="inner"><div class="bd"><div class="media"><img alt="Tip" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us6da477d97c76333bb64f0d69f440dc0d.gif"/><div class="mediaBd"><h4 class="mbs">Tip</h4><p>Adding help text
+          gives your users a better idea of how to use a field, and can mean more accurate data for
+          your organization.</p></div></div></div></div></div>
+</li>
+<li class="li">Click <strong class="ph uicontrol">Next</strong>.</li>
+<li class="li">For this field we won’t worry about field-level security. By default all user profiles can
+        see the Prospect Rating field, which is what we want.</li>
+<li class="li">Click <strong class="ph uicontrol">Next</strong> again.</li>
+<li class="li" id="field_payge_layout"><a name="field_payge_layout"></a>Keep the default page layout selection. The field is added to the
+        Candidate object’s page layout, because we created the field on that object.</li>
+<li class="li" id="field_click_save"><a name="field_click_save"></a>Click <strong class="ph uicontrol">Save</strong>.</li>
+</ol>
+</div>
+</div>
+<div class="topic task nested0" id="create_custom_object_help_page" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="create_custom_object_help_page"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading7"><span class="ph" id="topic-title"><a name="topic-title"></a>Create a Help Page for the Candidate Object</span></h2>
+<div class="body taskbody">
+<div class="section context">
+<p class="p">We highly recommend that you create help pages for your custom objects. It's easy to
+                provide useful information about your object by using a simple Visualforce page. Your users
+                will thank you!</p>
+<p class="p">Let’s create a simple Visualforce
+                help page to reference from your Candidate object.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">From Setup, enter <kbd class="ph userinput">Pages</kbd> in the <span class="keyword parmname">Quick
+                        Find</span> box, then select <strong class="ph uicontrol">Visualforce
+                        Pages</strong>.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Click <strong class="ph uicontrol">New</strong>.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Enter a label for your page — for example, <kbd class="ph userinput">Job Candidate
+                        Help</kbd>.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Enter a unique name for the page — for example,
+                        <kbd class="ph userinput">Job_Candidate_Help</kbd>.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">In the Visualforce Markup
+                    area, enter information about your custom object. You might want to include
+                    dependencies, next steps, or other tips for using the object.</span>
+<div class="itemgroup info">For
+                    example:<div class="codeblock"><pre>&lt;h1&gt;Help for the Candidate Object&lt;/h1&gt;
+
+    &lt;p&gt;The Candidate object is for identifying and tracking individual candidates for job positions.&lt;/p&gt;
+    &lt;p&gt;Sort candidates by Name, Location, Last Modified, and Prospect Rating.&lt;/p&gt;
+
+    </pre></div>
+</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Now let’s reference the help page you just created from your Candidate object.
+                    To do this, we’ll edit the Candidate object.</span>
+<ol class="ol substeps enumList" type="a">
+<li class="li substep">
+<span class="ph cmd">In the Setup Quick Find box, type <kbd class="ph userinput">Object</kbd>.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Under Create, click <strong class="ph uicontrol">Objects</strong>.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Click <strong class="ph uicontrol">Edit</strong> next to the Candidate object’s
+                            name.</span>
+</li>
+<li class="li substep">
+<span class="ph cmd">Select <span class="keyword parmname">Open a window using a Visualforce
+                                page</span> and choose the page you created.</span>
+<div class="itemgroup info"><img alt="Custom object help display setting" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usf3728c44c9cc283b6449fcbc8914c66c.png"/></div>
+</li>
+<li class="li substep">
+<span class="ph cmd">Click <strong class="ph uicontrol">Save</strong>.</span>
+</li>
+</ol>
+</li>
+</ol>
+<div class="section postreq"><div class="p">When your users click the Help for this Page link on a candidate record, they’ll
+            see the helpful information that you provided about the Candidate object. </div></div>
+</div>
+</div>
+<div class="topic task nested0" id="editing_custom_fields" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="editing_custom_fields"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading8"><span class="ph" id="topic-title"><a name="topic-title"></a>Edit the Picklist Field</span></h2>
+<div class="body taskbody">
+<div class="section context">
+<p class="p">After your users start tracking Candidates, they decide to sort candidates a little
+                more granularly. The hiring managers request an additional picklist value, to easily
+                see who’s a top candidate for a job. </p>
+<p class="p">To add a value to the picklist, you modify the Prospect Rating field.</p>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>Editing fields can involve changing a large number of records at once. If this
+                process takes a long time, it might be queued. You’ll get an email when the process
+                is complete.</p></div></div></div></div></div>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">In the Setup Quick Find box, type <strong class="ph uicontrol">Object</strong>.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Under Create, click <strong class="ph uicontrol">Object</strong>.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Click the Candidate object’s name.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Under Custom Fields &amp; Relationships, click the <strong class="ph uicontrol">Prospect
+                        Rating</strong> field name.</span>
+<div class="itemgroup info"><img alt="Add a value to the Prospect Rating picklist" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us99a8cd53ac1ba0b63496f00950ad8ea8.png"/></div>
+</li>
+<li class="li step">
+<span class="ph cmd">In the Picklist Values section, click <strong class="ph uicontrol">New</strong>.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Type <strong class="ph uicontrol">Manager Favorite</strong> in the text box.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">Click <strong class="ph uicontrol">Save</strong>.</span>
+</li>
+</ol>
+</div>
+</div>
+<div class="topic nested0" id="custom_objects_best_practices" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="custom_objects_best_practices"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading9"><span class="ph" id="topic-title"><a name="topic-title"></a>Best Practices for Custom Objects and Fields</span></h2>
+<div class="body">
+<p class="p">Custom objects and fields shape your data! Here are a few tips for creating
+                        custom objects that enhance instead of clutter your organization’s records
+                        and reports.</p>
+<ul class="ul bulletList">
+<li class="li"><strong class="ph uicontrol">Unique naming:</strong> Make object and field names and
+                                labels concise, specific, and descriptive. And very importantly,
+                                unique. For example, if your recruiting app’s Position object has a
+                                field named Skill Set, use something like Candidate Skill Set on the
+                                Candidate object to describe applicants’ skills.</li>
+<li class="li"><strong class="ph uicontrol">Thoughtful architecture:</strong> When adding fields to an
+                                object, what’s the cleanest and most efficient way to capture data?
+                                For example, instead of a long list of checkboxes to track the
+                                regions that currently have a particular position open, use a
+                                picklist.</li>
+<li class="li"><strong class="ph uicontrol">Default field values:</strong> Don’t assign default values
+                                to fields that are both required and unique, as this can cause
+                                uniqueness errors.</li>
+<li class="li"><strong class="ph uicontrol">Careful renaming:</strong> If you’ve renamed objects or
+                                fields, check that these items reflect the new names:<ul class="ul bulletList">
+<li class="li">List view names</li>
+<li class="li">Standard report names or descriptions that include the
+                                                objects or fields</li>
+<li class="li">Email templates that contain the object or field
+                                                names</li>
+<li class="li">Any other items you customized along with the renamed
+                                                object or field — custom fields, page layout,
+                                                or record types </li>
+</ul>
+</li>
+<li class="li"><strong class="ph uicontrol">Global data updates:</strong> Before changing a field type
+                                (for example from checkbox to picklist), make sure the change makes
+                                sense for all records that have that field.</li>
+<li class="li"><strong class="ph uicontrol">Help for users:</strong> Add help text when defining new
+                                objects or fields. Help text should describe exactly what the object
+                                or field is for.</li>
+</ul>
+</div>
+</div>
+<div class="topic nested0" id="creating_custom_objects_fields_tell_me_more" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="creating_custom_objects_fields_tell_me_more"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading10">Tell Me More ...</h2>
+<div class="body">
+<p class="p">Page layouts define which fields users can view and edit when entering data for a
+                        custom object record. </p>
+<p class="p">When you create a custom object it comes with a default page layout. Tailor which
+                        data users enter for that object’s records by building your own page layout
+                        with related lists and custom links. For details, see <a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=building_page_layouts_for_custom_objects.htm&amp;language=en_US" target="_blank">Building Page Layouts for Custom
+                                Objects</a>.</p>
+<p class="p">When you create a custom field on an object, the New Custom Field wizard guides
+                        you through defining the type of field you choose. For example for a formula
+                        field you’re prompted to select the type of calculation and to define the
+                        fields, operators, and functions in your formula. Or for a percent field,
+                        specify the number of decimal places.</p>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>If you don’t use any page layout with your custom object, you can still
+                        interact with it by using the Force.com API to manage custom data or build a
+                        custom user interface.</p></div></div></div></div></div>
+</div>
+</div>
+<div class="topic nested0" id="creating_custom_objects_fields_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="creating_custom_objects_fields_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading11">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=fields_defining_default_values.htm&amp;language=en_US" target="_blank">Default Custom Field Values</a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=additional_custom_field_options.htm&amp;language=en_US" target="_blank">Additional Custom Field Options</a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=custom_field_attributes.htm&amp;language=en_US" target="_blank">Custom Field Attributes</a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=customize_fieldtype.htm&amp;language=en_US" target="_blank">Customize Field Type</a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=limits_custom_fields.htm&amp;language=en_US" target="_blank">Custom Field Limits</a>
+</li>
+<li class="li documentation"><a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=customhelp_getting_started_OLH.htm&amp;language=en_US" target="_blank">Getting Started with Object-Level Help</a></li>
+</ul>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>Remember, this module is meant for
+            Salesforce Classic. When you launch your hands-on org, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank">switch to Salesforce Classic</a> to complete this
+            challenge.</p></div></div></div></div></div>
+</div>
+</div>
+</body></div>

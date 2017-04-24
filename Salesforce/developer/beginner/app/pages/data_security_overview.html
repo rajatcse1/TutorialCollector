@@ -1,0 +1,202 @@
+<div class="unit-content">
+<body id="blank_ref_classic"><a name="blank_ref_classic"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a> </span></h2>
+<div class="body">
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>
+<p class="p"><strong class="ph b">Attention Trailblazer!</strong></p>
+<p class="p">Salesforce has two different user interfaces: Lightning Experience and Salesforce
+                Classic. It’s easy to switch between the two. You can learn about <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank" title="html (New Window)">switching between interfaces</a>, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_enable_intro.htm&amp;language=en_US" target="_blank" title="html (New Window)">enabling Lightning Experience</a>, and more in the <a class="xref" href="https://trailhead.salesforce.com/module/lex_migration_introduction" target="_blank" title="html (New Window)">Lightning Experience Basics</a> module here on Trailhead.</p>
+<p class="p">This module is designed for <strong class="ph b">Salesforce Classic</strong>.</p>
+</p></div></div></div></div></div>
+</div>
+</div>
+<div class="topic nested0" id="data_security_overview_learning_objectives" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security_overview_learning_objectives"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you'll be able to: <ul class="ul bulletList">
+<li class="li">Explain the importance of securing access to data.</li>
+<li class="li">List the four different levels at which you can control data access on the
+                    platform.</li>
+<li class="li">Describe a typical use case for limiting data access at each of the four
+                    levels.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="data_security_overview_intro" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security_overview_intro"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3"><span class="ph" id="topic-title"><a name="topic-title"></a>Introduction</span></h2>
+<div class="body">
+<p class="p" dir="ltr">Choosing the data set each user or group of users can see is one of the
+                        key decisions that affects the security of your app. Once you’ve designed
+                        and implemented the data model for your app, it’s important to think about
+                        the different types of users and the types of data they need access to. </p>
+<p class="p" dir="ltr">For example, suppose you’re building a Recruiting app that contains
+                        information about open positions, candidates, and job applications. The app
+                        will store confidential data, such as social security numbers, salary
+                        amounts, and applicant reviews that should only be exposed to specific types
+                        of users. For such an app, it’s important to secure the sensitive data
+                        without making it harder for recruiters, hiring managers, and interviewers
+                        to do their jobs.</p>
+<p class="p" dir="ltr">The Force.com platform provides a flexible, layered sharing model that
+                        makes it easy to assign different data sets to different sets of users. This
+                        ensures you can balance security and convenience, minimizing the risk of
+                        stolen or misused data while making sure all users can easily access the
+                        data they need. </p>
+<p class="p">The platform includes simple-to-configure security controls that make it easy to
+                        specify which users can view, create, edit, or delete any record or field in
+                        the app. You can configure access at the level of the organization, objects,
+                        fields, or individual records. By combining security controls at different
+                        levels, you can provide just the right level of data access to thousands of
+                        users without having to specify permissions for each user individually. </p>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>Although you can configure the security and sharing model entirely using the
+                        user interface, it is implemented at the API level. That means any
+                        permissions you specify for objects, records, and fields apply even if you
+                        query or update the data via API calls. This ensures the security of your
+                        data is protected, regardless of how it is accessed.</p></div></div></div></div></div>
+<p class="p">Watch this video to get an overview of the different ways to manage access to
+                        data.</p>
+<p class="p"><iframe allowfullscreen="1" class="doc_embedded_video" frameborder="0" height="360" mozallowfullscreen="1" src="//play.vidyard.com/kXk6BaNlWJP27UyFO8vNUg" webkitallowfullscreen="1" width="640"></iframe>
+</p>
+</div>
+</div>
+<div class="topic nested0" id="data_security_access_levels" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security_access_levels"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading4"><span class="ph" id="topic-title"><a name="topic-title"></a>Levels of Data Access</span></h2>
+<div class="body">
+<p class="p">There are four main levels
+                        at which you can configure access to data on the platform.</p>
+<div class="p">
+<dl class="dl detailList">
+<dt class="dt dlterm"><strong class="ph b">Organization</strong></dt>
+<dd class="dd">
+<p class="p">At the highest level, you can secure access to
+                                                  your organization by maintaining a list of
+                                                  authorized users, setting password policies, and
+                                                  limiting login access to certain hours and certain
+                                                  locations. </p>
+</dd>
+<dt class="dt dlterm"><strong class="ph b">Objects</strong></dt>
+<dd class="dd">Object-level security provides the simplest way to
+                                                control which users have access to which data. By
+                                                setting permissions on a particular type of object,
+                                                you can prevent a group of users from creating,
+                                                viewing, editing, or deleting any records of that
+                                                object. For example, you can use object permissions
+                                                to ensure that interviewers can view positions and
+                                                job applications but not edit or delete them.</dd>
+<dt class="dt dlterm"><strong class="ph b">Fields</strong></dt>
+<dd class="dd">You can use field-level security to restrict access to
+                                                certain fields, even for objects a user has access
+                                                to. For example, you can make the salary field in a
+                                                position object invisible to interviewers but
+                                                visible to hiring managers and recruiters. </dd>
+<dt class="dt dlterm"><strong class="ph b">Records</strong></dt>
+<dd class="dd">To control data with greater precision, you can allow
+                                                particular users to view an object, but then
+                                                restrict the individual object records they're
+                                                allowed to see. For example, record-level access
+                                                allows an interviewer to see and edit her own
+                                                reviews, without exposing the reviews of other
+                                                interviewers. You can manage record-level access in
+                                                these four ways.</dd>
+<dd class="dd">
+<ul class="ul bulletList">
+<li class="li"><strong class="ph b"><dfn class="term">Organization-wide defaults</dfn></strong>
+                                                  specify the default level of access users have to
+                                                  each others’ records. You use organization-wide
+                                                  sharing settings to lock down your data to the
+                                                  most restrictive level, and then use the other
+                                                  record-level security and sharing tools to
+                                                  selectively give access to other users.</li>
+<li class="li"><strong class="ph b"><dfn class="term">Role hierarchies</dfn></strong> open up
+                                                  access to those higher in the hierarchy so they
+                                                  inherit access to all records owned by users below
+                                                  them in the hierarchy. Role hierarchies don’t have
+                                                  to match your organization chart exactly. Instead,
+                                                  each role in the hierarchy should represent a
+                                                  level of data access that a user or group of users
+                                                  needs. </li>
+<li class="li"><strong class="ph b"><dfn class="term">Sharing rules</dfn></strong> enable you
+                                                  to make automatic exceptions to organization-wide
+                                                  defaults for particular groups of users, to give
+                                                  them access to records they don’t own or can’t
+                                                  normally see. Sharing rules, like role
+                                                  hierarchies, are only used to give additional
+                                                  users access to records—they can’t be stricter
+                                                  than your organization-wide default settings. </li>
+<li class="li"><strong class="ph b"><dfn class="term">Manual sharing</dfn></strong> allows
+                                                  owners of particular records to share them with
+                                                  other users. Although manual sharing isn’t
+                                                  automated like organization-wide sharing settings,
+                                                  role hierarchies, or sharing rules, it can be
+                                                  useful in some situations, for example, if a
+                                                  recruiter going on vacation needs to temporarily
+                                                  assign ownership of a job application to another
+                                                  employee.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<p class="p">The following units provide more details about each of these methods for
+                        controlling data.</p>
+<div class="box message confirm"><div class="inner"><div class="bd"><div class="media"><img alt="Tip" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us6da477d97c76333bb64f0d69f440dc0d.gif"/><div class="mediaBd"><h4 class="mbs">Tip</h4><p>When
+                        implementing security and sharing rules for your organization, make a table
+                        of the various types of users in your organization. In the table, specify
+                        the level of access to data that each type of user needs for each object and
+                        for fields and records within the object. You can then refer to this table
+                        as you set up your security model. </p></div></div></div></div></div>
+<div class="fig fignone"><span class="figcap">Controlling Data Access with the Force.com Platform</span>
+<img alt="A diagram of the sharing and security settings available for different types of users" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usab1b4360799e29b571fb9fc51cd003e8.jpg"/>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="data_security_auditing_system" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security_auditing_system"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading6"><span class="ph" id="topic-title"><a name="topic-title"></a>Audit System Usage</span></h2>
+<div class="body">
+<p class="p">Auditing features does not secure your organization by itself. It provides
+                        important information about system usage, which can be useful in diagnosing
+                        potential or real security issues. It is important that someone in your
+                        organization perform regular audits to detect potential abuse. The other
+                        security features provided by Salesforce are preventative. To verify that
+                        your system is secure, perform audits to monitor for unexpected changes or
+                        usage trends.</p>
+<p class="p">Auditing features
+                        include:</p>
+<dl class="dl detailList">
+<dt class="dt dlterm"><strong class="ph b">Record Modification Fields</strong></dt>
+<dd class="dd">All objects include fields to store the name of the user who
+                                        created the record and who last modified the record. This
+                                        provides some basic auditing information.</dd>
+<dt class="dt dlterm"><strong class="ph b">Login History</strong></dt>
+<dd class="dd">You can review a list of successful and failed login attempts to
+                                        your organization for the past six months. For more
+                                        information, see <a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=users_login_history.htm&amp;language=en_US" target="_blank">Monitoring
+                                                Login History</a>.</dd>
+<dt class="dt dlterm"><strong class="ph b">Field History Tracking</strong></dt>
+<dd class="dd">You can also enable auditing for individual fields, which will
+                                        automatically track any changes in the values of selected
+                                        fields. Although auditing is available for all custom
+                                        objects, only some standard objects allow field-level
+                                        auditing. For more information, see <a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=tracking_field_history.htm&amp;language=en_US" target="_blank">Tracking Field
+                                                History</a>.</dd>
+<dt class="dt dlterm"><strong class="ph b">Setup Audit Trail</strong></dt>
+<dd class="dd">Administrators can also view a Setup Audit Trail, which logs
+                                        when modifications are made to your organization’s
+                                        configuration. For more information, see <a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=admin_monitorsetup.htm&amp;language=en_US" target="_blank">Monitor Setup
+                                                Changes</a>.</dd>
+</dl>
+</div>
+</div>
+<div class="topic nested0" id="data_security_overview_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="data_security_overview_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading7">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.fundamentals.meta/fundamentals/" target="_blank" title="HTML (New Window)"> Force.com Fundamentals
+        Guide</a></li>
+<li class="li Documentation"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.securityImplGuide.meta/securityImplGuide/" target="_blank" title="HTML (New Window)">Security Implementation Guide</a></li>
+</ul>
+</div>
+</div>
+</body></div>

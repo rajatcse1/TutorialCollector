@@ -1,0 +1,205 @@
+<div class="unit-content">
+<body id="blank_ref_classic"><a name="blank_ref_classic"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a> </span></h2>
+<div class="body">
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>
+<p class="p"><strong class="ph b">Attention Trailblazer!</strong></p>
+<p class="p">Salesforce has two different user interfaces: Lightning Experience and Salesforce
+                Classic. It’s easy to switch between the two. You can learn about <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank" title="html (New Window)">switching between interfaces</a>, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_enable_intro.htm&amp;language=en_US" target="_blank" title="html (New Window)">enabling Lightning Experience</a>, and more in the <a class="xref" href="https://trailhead.salesforce.com/module/lex_migration_introduction" target="_blank" title="html (New Window)">Lightning Experience Basics</a> module here on Trailhead.</p>
+<p class="p">This module is designed for <strong class="ph b">Salesforce Classic</strong>.</p>
+</p></div></div></div></div></div>
+</div>
+</div>
+<div class="topic concept nested0" id="search_solution_basics_choosing_objectives" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="search_solution_basics_choosing_objectives"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body conbody">
+<p class="p">After completing this unit, you’ll be able to:</p>
+<ul class="ul bulletList">
+<li class="li">Explain when to create a customized search solution.</li>
+<li class="li">Describe the difference between SOSL and SOQL.</li>
+<li class="li">Identify which API protocols are available for search. </li>
+</ul>
+</div>
+</div>
+<div class="topic concept nested0" id="search_solution_basics_choosing_search" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="search_solution_basics_choosing_search"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3"><span class="ph" id="topic-title"><a name="topic-title"></a>Search, The Salesforce Way</span></h2>
+<div class="body conbody">
+<p class="p">Do you know what the No. 1 most-used Salesforce feature is? Here’s a hint: It’s not posting cat
+   pictures on Chatter.</p>
+<p class="p">If you said search, you’re right! How else do users expect to find the one record they want
+   among the thousands of other pieces of data? Browsing? Come on, no one has time for that.</p>
+<p class="p">Speaking of time, you’re spending it wisely by taking this Trailhead module. You’re going to
+   learn a bit about how Salesforce search works and how to determine whether a custom search
+   solution is right for you. You’ll also learn how to jump-start (or rebuild) a custom solution
+   using the Salesforce API for some common use cases. Finally, you’re going to learn how to
+   optimize search queries for more targeted, relevant results. In short, you’ll come away with a
+   great understanding of search and how it can help users be more productive.</p>
+<p class="p">To get started, let’s discuss how this whole search thing actually works.</p>
+<p class="p">All records are stored as data fields in the org’s database. When you update or create a
+   record, the search engine comes along, makes a copy of the data, and breaks up the content into
+   smaller pieces called tokens. We store these tokens in the search index, along with a link back
+   to the original record.</p>
+<p class="p">From the user’s perspective, the search process is similar to when a record is created. When
+   users enter a term in the search field (1), the search engine breaks up the search term into
+   tokens (2). It matches those tokens to the record information stored in the search index (3),
+   ranks the associated records by relevance (4), and returns the results that users have access to
+   (5).</p>
+<p class="p"><img alt="Search Index" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us48f173ad5a57f6bdfc339989e8faef95.png"/></p>
+<p class="p">Let’s take a moment to consider the search index. Why go to all the trouble to make tokens when
+   we could search the org database? Well, the reason is that the search index has certain
+   superpowers. Not quite take-over-the-world superpowers, but enough to allow the index to be super
+   smart about which results to return to the user.</p>
+<p class="p">The search index and tokens allow the search engine to apply advanced features like spell
+   correction, nicknames, lemmatization, and synonym groups. All this means we can present records
+   that include variations on the user’s search term to widen the net of results. (Also, in case you
+   were wondering, lemmatization has nothing to do with fuzzy lemmings. It has more to do with
+   identifying and returning variants of the search term, such as <em class="ph i">add</em>, <em class="ph i">adding</em>, and
+    <em class="ph i">added</em>, in search results.)</p>
+<p class="p">The search index also provides the opportunity to introduce relevance ranking into the mix.
+   This is our secret sauce to find and rank the records users are looking for. What are the special
+   ingredients? A dash of search term frequency, order, and uniqueness; a sprinkle of record
+   activity; a spoonful of access permissions; and a handful of other factors. Sounds delicious,
+   doesn’t it?</p>
+<p class="p">Let’s do a comparison. A database search for <em class="ph i">bunny slippers</em> only returns records with
+   the exact match for bunny slippers. Your basic “find” functionality, nothing to get excited
+   about. But with the search index, you get records with <em class="ph i">bunny slippers</em>, yes. But there’s
+   more! Users see more records with similar terms like <em class="ph i">rabbit slippers</em> or <em class="ph i">bunny
+    slipper</em> (singular). Plus, let’s say you entered <em class="ph i">slippers bunny </em>or mis-spelled bunny
+   (it happens). With out-of-order matching and spell check, you still see relevant results. And all
+   the results are ordered by what is relevant to the specific user who performed the search. Pretty
+   cool, right?</p>
+<p class="p">Maybe you’re thinking: The out-of-the-box Salesforce search sure sounds great (and it is) and
+   works for most use cases. So why would you need a custom solution at all?</p>
+<p class="p">In general, you need a custom search solution when your org uses a custom UI instead of the
+   standard Salesforce UI. Examples of home grown UIs are a customer-facing knowledge base or an
+   internal product data site for your employees. Just a word of caution: Building a custom user
+   interface isn’t for everyone and requires extra work. The good news is that a custom search still
+   allows you to take advantage of some of the advanced features of Salesforce search. So, if your
+   company has decided to build a custom UI and needs a custom search, this is the module for
+   you.</p>
+<p class="p">Now that we’ve covered Salesforce Search 101, let’s talk about the APIs that let you find
+   records in your custom search solution.</p>
+</div>
+</div>
+<div class="topic concept nested0" id="search_solution_basics_choosing_connecting" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="search_solution_basics_choosing_connecting"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading4"><span class="ph" id="topic-title"><a name="topic-title"></a>Connect to Search with APIs</span></h2>
+<div class="body conbody">
+<p class="p">You need to keep in mind two main APIs. We’ll talk about a surprise third type a little
+   later.</p>
+<ul class="ul bulletList">
+<li class="li">Salesforce Object Query Language (SOQL)</li>
+<li class="li">Salesforce Object Search Language (SOSL)</li>
+</ul>
+<p class="p">Both SOQL and SOSL format text queries in a given API. But that’s where the similarities end. A
+   SOQL query is the equivalent of a SELECT SQL statement and searches the org database. On the
+   other hand, SOSL is a programmatic way of performing a text-based search against the search
+   index. SOSL uses all the super cool, previously mentioned features of the search index.</p>
+<p class="p">SOQL and SOSL also have different syntaxes. We’ve included links to developer docs in the
+   resource section. Don’t worry about them now, but we thought you’d like to have them for
+   reference later. You know, in case you want to do a little late-night API reading in your new
+   bunny slippers.</p>
+<p class="p">Now that you’ve been properly introduced, here are some guidelines on when to use SOQL or
+   SOSL.</p>
+<p class="p">Use SOQL when you know in which objects or fields the data resides and you want to:</p>
+<ul class="ul bulletList">
+<li class="li">Retrieve data from a single object or from multiple objects that are related to one
+    another.</li>
+<li class="li">Count the number of records that meet specified criteria.</li>
+<li class="li">Sort results as part of the query.</li>
+<li class="li">Retrieve data from number, date, or checkbox fields.</li>
+</ul>
+<p class="p">Use SOSL when you don’t know in which object or field the data resides and you want to:</p>
+<ul class="ul bulletList">
+<li class="li">Retrieve data for a specific term that you know exists within a field. Because SOSL can
+    tokenize multiple terms within a field and build a search index from this, SOSL searches are
+    faster and can return more relevant results.</li>
+<li class="li">Retrieve multiple objects and fields efficiently, and the objects might or might not be
+    related to one another.</li>
+<li class="li">Retrieve data for a particular division in an organization using the divisions feature, and
+    you want to find it in the most efficient way possible.</li>
+</ul>
+<p class="p">Remember when we said that there would be a surprise third API type? Well, we weren’t fibbing.
+   Meet suggested records API. Perhaps you might already know suggested records by its aliases:
+   auto-suggestion, instant results, type-ahead, or Tommy Two Types. OK, that last one isn’t a real
+   thing.</p>
+<p class="p">You’re probably familiar with the behavior, too. Let’s say you’re using a website that sells
+   the coolest running shoes available. They use a customized Salesforce search solution for their
+   knowledge base to encourage a community of runners. You want to know which shoes to buy for trail
+   running (your newest passion, besides this Trailhead module). You start typing <kbd class="ph userinput">trail
+    running</kbd> in the search bar, and it presents options for articles that include the
+   search terms in the title.</p>
+<p class="p"><img alt="Typeahead example" class="image" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us0127fab9ddcd5646be6539d839e9dca1.gif"/></p>
+<p class="p">The search box knew exactly what you wanted to read!</p>
+<p class="p">Search Suggested Records and Search Suggested Articles REST methods are available for you to
+   use to bring your own users the same immediate satisfaction. We’ll show you more about how to use
+   those later.</p>
+<p class="p">Speaking of REST, let’s talk about how to use protocols to send SOSL and SOQL queries. No rest
+   for the search enthusiast!</p>
+</div>
+</div>
+<div class="topic concept nested0" id="search_solution_basics_choosing_sending" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="search_solution_basics_choosing_sending"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading5"><span class="ph" id="topic-title"><a name="topic-title"></a>Send Queries with Protocols</span></h2>
+<div class="body conbody">
+<p class="p">You can write all the beautiful search queries that you want. But they aren’t any good unless
+      you use an API protocol like REST, SOAP, or Apex to actually send them. It’s like writing a
+      love letter and leaving it on your desk. <em class="ph i">Sigh</em>. Such a waste.</p>
+<p class="p">Just like any group of friends, some protocols get along better with some APIs than others.
+      In general, we talk about queries with SOQL and searches with SOSL. </p>
+<ul class="ul bulletList">
+<li class="li"><strong class="ph b"><span class="keyword parmname">Query</span> (REST) and <span class="keyword parmname">query()</span>
+        (SOAP)</strong>—Executes a SOQL query against the specified object and returns data that
+        matches the specified criteria. </li>
+<li class="li"><strong class="ph b"><span class="keyword parmname">Search</span> (REST) and <span class="keyword parmname">search()</span>
+        (SOAP)</strong>—Executes a SOSL text string search against your org’s data.</li>
+</ul>
+<p class="p">More resources to perform other common search tasks, like auto-suggesting records, articles,
+      and queries, are also available. And, if you’d rather not use SOSL or SOQL, consider
+      Parameterized Search in REST. Instead of a search string in the URL, you use parameters (hence
+      the name) in the URL.</p>
+<p class="p">As for Apex, you can use SOQL or SOSL on the fly by surrounding the statement in square
+      brackets. You can also use a Search Class to perform dynamic SOSL queries and a Search
+      Namespace for getting search results and suggestion results.</p>
+<p class="p">We’ve included a handy list in the resources section of this unit. And we’re going to give
+      you an introduction to using the protocols in the next unit to get you started. Be sure to
+      read up on the developer docs for all the information and examples. Just not right now. You’ve
+      got a quiz to take!</p>
+</div>
+</div>
+<div class="topic concept nested0" id="search_solution_basics_choosing_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="search_solution_basics_choosing_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading6"><span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span></h2>
+<div class="body conbody">
+<ul class="ul bulletList">
+<li class="li">Force.com SOQL and SOSL Reference<ul class="ul bulletList">
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm" target="_blank">Salesforce Object Query Language (SOQL)</a></li>
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.soql_sosl.meta/soql_sosl/sforce_api_calls_sosl.htm" target="_blank">Salesforce Object Search Language (SOSL)</a></li>
+</ul>
+</li>
+<li class="li">Force.com REST API Developer Guide<ul class="ul bulletList">
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.api_rest.meta/api_rest/resources_search.htm" target="_blank">Search</a></li>
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.api_rest.meta/api_rest/resources_search_suggest_records.htm" target="_blank">Search Suggested Records</a></li>
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.api_rest.meta/api_rest/resources_search_suggest_title_matches.htm" target="_blank">Search Suggested Article Title Matches</a></li>
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.api_rest.meta/api_rest/resources_search_suggest_queries.htm" target="_blank">Search Suggested Queries</a></li>
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.api_rest.meta/api_rest/resources_search_parameterized.htm" target="_blank">Parameterized Search</a></li>
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.api_rest.meta/api_rest/resources_query.htm" target="_blank">Query</a></li>
+</ul>
+</li>
+<li class="li">SOAP API Developer Guide<ul class="ul bulletList">
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.api.meta/api/sforce_api_calls_search.htm" target="_blank">search()</a></li>
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.api.meta/api/sforce_api_calls_query.htm" target="_blank">query()</a></li>
+</ul>
+</li>
+<li class="li">Apex Developer Guide<ul class="ul bulletList">
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.apexcode.meta/apexcode/langCon_apex_SOQL.htm" target="_blank">SOQL and SOSL Queries</a></li>
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.apexcode.meta/apexcode/apex_namespace_Search.htm" target="_blank">Search Namespace</a></li>
+<li class="li"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.apexcode.meta/apexcode/apex_methods_system_search.htm#apex_System_Search_find" target="_blank">Search Class</a></li>
+</ul>
+</li>
+<li class="li">Help Documentation<ul class="ul bulletList">
+<li class="li"><a class="xref" href="https://help.salesforce.com/apex/HTViewHelpDoc?id=search_terms.htm&amp;language=en_US" target="_blank">How Does Search Break Up Information?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</body></div>

@@ -1,0 +1,15 @@
+  {
+    "id": "Tutorial_Salesforce_Developer_Beginner",
+    "routes": [
+      {
+        "name": "apex_database_dml",
+        "url": "/apex_database_dml",
+        "templateUrl": "./pages/apex_database_dml.html"
+      },
+      {
+        "name": "apex_database_intro",
+        "url": "/apex_database_intro",
+        "templateUrl": "./pages/apex_database_intro.html"
+      }
+    ]
+  }

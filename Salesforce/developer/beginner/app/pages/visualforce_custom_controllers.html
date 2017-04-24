@@ -1,0 +1,387 @@
+<div class="unit-content">
+<body id="visualforce_custom_controllers_learning_objectives"><a name="visualforce_custom_controllers_learning_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you’ll be able to: <ul class="ul bulletList">
+<li class="li">Explain what a custom controller is and describe its key attributes.</li>
+<li class="li">Create a custom controller class.</li>
+<li class="li">Use a custom controller on a Visualforce page.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="visualforce_custom_controllers_intro" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_custom_controllers_intro"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Introduction to Custom Controllers</span></h2>
+<div class="body conbody"><div class="shortdesc">Custom controllers contain custom logic and data manipulation that can be
+  used by a Visualforce page. For
+  example, a custom controller can retrieve a list of items to be displayed, make a
+  callout to an external web service, validate and insert data, and more—and all of
+  these operations will be available to the Visualforce page that uses it as a
+  controller.</div>
+<p class="p">Elsewhere you were introduced to how Visualforce supports the
+   Model–View–Controller (MVC) design pattern for building web apps. Controllers
+   typically retrieve the data to be displayed in a Visualforce page, and contain
+   code that executes in response to page actions, such as a button being clicked.
+   When you use the standard controller, a great deal of, well, <em class="ph i">standard</em>
+   functionality is provided for you by the platform.</p>
+<p class="p">But one size does not fit all, and not all web apps are “standard.” When you
+   want to override existing functionality, customize the navigation through an
+   application, use callouts or Web services, or if you need finer control for how
+   information is accessed for your page, Visualforce lets you take the
+   reigns. You can write a custom controller using Apex and completely
+   control your app’s logic from start to finish.</p>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_custom_controllers_create_page" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_custom_controllers_create_page"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3"><span class="ph" id="topic-title"><a name="topic-title"></a>Create a Visualforce Page that
+            Uses a Custom Controller</span></h2>
+<div class="body taskbody"><div class="shortdesc">Add a custom controller to a Visualforce page by
+        referencing the name of the controller class in the <samp>&lt;apex:page&gt;</samp>
+<samp>controller</samp> attribute.</div>
+<div class="section context">
+<p class="p">When your page uses a custom controller, you can’t use a standard
+                controller. Pages use a different attribute to set the custom
+                controller.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Open the Developer Console and
+                    click <span class="ph menucascade"><strong class="ph uicontrol">File</strong> | <strong class="ph uicontrol">New</strong> | <strong class="ph uicontrol">Visualforce Page</strong></span> to create a new Visualforce
+                    page. Enter <kbd class="ph userinput">ContactsListWithController</kbd> for
+                    the page name.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">In the editor, replace any markup with the following.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:page controller="ContactsListController"&gt;
+    &lt;apex:form&gt;
+        &lt;apex:pageBlock title="Contacts List" id="contacts_list"&gt;
+            
+            &lt;!-- Contacts List goes here --&gt;
+
+        &lt;/apex:pageBlock&gt;
+    &lt;/apex:form&gt;
+&lt;/apex:page&gt;</pre></div>
+</div>
+<div class="itemgroup stepresult">When you try to save this page, you’ll get an error,
+                    because <samp>ContactsListController</samp> doesn’t exist yet. No
+                    worries, we’ll fix that next.</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_custom_controllers_create_controller" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_custom_controllers_create_controller"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading4"><span class="ph" id="topic-title"><a name="topic-title"></a>Create a Custom Controller Apex Class</span></h2>
+<div class="body taskbody"><div class="shortdesc">A custom controller is just an Apex class,
+        which you write yourself using the Developer Console.</div>
+<div class="section context">
+<p class="p">There are a lot of system and utility classes to help you write custom
+                controller logic, but the only <em class="ph i">requirement</em> for a class to be
+                used as a custom controller is that it exists.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Open the Developer Console and
+                    click <span class="ph menucascade"><strong class="ph uicontrol">File</strong> | <strong class="ph uicontrol">New</strong> | <strong class="ph uicontrol">Apex Class</strong></span> to create a new Apex class. Enter <kbd class="ph userinput">ContactsListController</kbd> for
+                    the class name.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">In the editor, replace any code with the following.</span>
+<div class="itemgroup info"><div class="codeblock"><pre>public class ContactsListController {
+
+    // Controller code goes here
+
+}</pre></div>
+As
+                    with Visualforce
+                    pages, you need to save your changes to Apex when you change it.</div>
+<div class="itemgroup stepresult">It’s not much, and it doesn’t do anything yet, but it
+                        <em class="ph i">does</em> make the error go away on the Visualforce
+                    page. So…</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Switch back to the Visualforce
+                    page and save it again.</span>
+<div class="itemgroup stepresult">The error message should go away, and the page is saved
+                    successfully.</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Click <strong class="ph uicontrol">Preview</strong> to open a preview of your
+                    page that you can look at while you make changes.</span>
+<div class="itemgroup stepresult">A new window should open, showing the standard Salesforce page header and sidebar elements, but no content
+                    yet.</div>
+</li>
+</ol>
+<div class="section result">
+<p class="p">At first glance, these two new items you’ve created don’t seem very
+                interesting. But even though they are 90% placeholder code, the two
+                    items—Visualforce page
+                and Apex controller—are linked to each other. As soon as you add some more
+                code to the controller your page will be able to use it.</p>
+<div class="btb callout box guidedTour"><div class="inner"><div class="bd"><div class="media"><div class="mediaBd"><h4 class="mbs">Beyond the Basics</h4><p>You might have noticed that this
+                custom controller class doesn’t inherit from another class, nor does
+                it implement an interface promising to conform to the requirements of
+                a Visualforce
+                controller. Even complex controllers don’t do these things, because
+                there isn’t any such class to inherit from or interface to implement.
+                This leaves you free to create your own classes and interfaces as
+                your experience with Apex
+                increases.</p></div></div></div></div></div>
+</div>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_custom_controllers_retrieve_records" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_custom_controllers_retrieve_records"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading5"><span class="ph" id="topic-title"><a name="topic-title"></a>Add a Method to Retrieve Records</span></h2>
+<div class="body taskbody"><div class="shortdesc">Create a getter method that runs a SOQL query that returns records you
+        want to display on your page.</div>
+<div class="section context">
+<p class="p">The primary purpose of most controllers is to retrieve data for
+                display, or handle updates to data. In this simple controller, all
+                you need to do is run a basic SOQL query that finds contact records,
+                and then make those records available to the Visualforce
+                page.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">In the <samp>ContactsListController</samp> class, replace the <samp>// Controller code goes here</samp>
+                    comment line with the following code.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>private String sortOrder = 'LastName';
+    
+public List&lt;Contact&gt; getContacts() {
+    
+    List&lt;Contact&gt; results = Database.query(
+        'SELECT Id, FirstName, LastName, Title, Email ' +
+        'FROM Contact ' +
+        'ORDER BY ' + sortOrder + ' ASC ' +
+        'LIMIT 10'
+    );
+    return results;
+}</pre></div>
+</div>
+<div class="itemgroup stepresult">This code adds one private member variable, a string
+                    named <samp>sortOrder</samp>, and one
+                    public method, <samp>getContacts()</samp>. <samp>sortOrder</samp> is pretty easy to understand, it’s just
+                    the name of the field to sort the contacts by.<p class="p"><samp>getContacts()</samp> is also
+                        fairly simple, but if you haven’t seen Apex before, it might be hard to parse at first. The effect of
+                        the method is to perform a SOQL query to get a list of
+                        contact records, and then return that list of contacts to the
+                        method caller. And who will the caller be? The Visualforce page, of course!</p>
+</div>
+</li>
+<li class="li step">
+<span class="ph cmd">In the <samp>ContactsListWithController</samp> page, replace the
+                        <samp>&lt;!-- Contacts List goes
+                        here --&gt;</samp> comment line with the following
+                    markup.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;!-- Contacts List --&gt;
+&lt;apex:pageBlockTable value="{! contacts }" var="ct"&gt;
+
+    &lt;apex:column value="{! ct.FirstName }"/&gt;
+    &lt;apex:column value="{! ct.LastName }"/&gt;
+    &lt;apex:column value="{! ct.Title }"/&gt;
+    &lt;apex:column value="{! ct.Email }"/&gt;
+    
+&lt;/apex:pageBlockTable&gt;</pre></div>
+</div>
+<div class="itemgroup stepresult">When you save this page you should see a familiar looking
+                    table of contact information.<div class="fig fignone">
+<span class="image image-block"><img alt="A contacts list backed by a custom controller" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usab55baefb9a972ea06c57810ce063163.png"/></span>
+</div>
+</div>
+</li>
+</ol>
+<div class="section result">
+<p class="p">The markup for the <samp>ContactsListWithController</samp> page should look fairly
+                familiar. Except for the <samp>controller</samp> attribute of the <samp>&lt;apex:page&gt;</samp> tag, it’s pretty
+                much the same code you would use to create the page with the standard
+                controller.</p>
+<p class="p">What’s different is what happens when the <samp>{! contacts }</samp> expression is
+                evaluated. On this page, Visualforce
+                translates that expression into a call to your controller’s <samp>getContacts()</samp> method. That method
+                returns a list of contact records, which is exactly what the <samp>&lt;apex:pageBlockTable&gt;</samp> is
+                expecting.</p>
+<p class="p">The <samp>getContacts()</samp> method is
+                called a <dfn class="term">getter method</dfn>, and it’s a general pattern,
+                where <samp>{!
+                        <var class="keyword varname">someExpression</var> }</samp> in your Visualforce
+                markup automatically connects to a method named <samp><var class="keyword varname">getSomeExpression</var>()</samp> in your
+                controller. This is the simplest way for your page to get access to
+                the data it needs to display.</p>
+</div>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_custom_controllers_action_method" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_custom_controllers_action_method"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading6"><span class="ph" id="topic-title"><a name="topic-title"></a>Add a New Action Method</span></h2>
+<div class="body taskbody"><div class="shortdesc">Create action methods in your custom controller to respond to user
+        input on the page.</div>
+<div class="section context">
+<p class="p">Showing data is great, but responding to user actions is essential to
+                any web app. With a custom controller, you can create as many custom
+                actions as you want to support on a page, by writing <dfn class="term">action
+                    methods</dfn> to respond to user activity.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">In the <samp>ContactsListController</samp> class, below the <samp>getContacts()</samp> method, add the
+                    following two methods.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>public void sortByLastName() {
+    this.sortOrder = 'LastName';
+}
+    
+public void sortByFirstName() {
+    this.sortOrder = 'FirstName';
+}</pre></div>
+</div>
+<div class="itemgroup stepresult">These two methods change the value of the <samp>sortOrder</samp> private variable.
+                        <samp>sortOrder</samp> is used in
+                    the SOQL query that retrieves the contacts, and changing <samp>sortOrder</samp> will change the
+                    order of the results.</div>
+</li>
+<li class="li step">
+<span class="ph cmd">In the <samp>ContactsListWithController</samp> page, replace the two
+                        <samp>&lt;apex:column&gt;</samp> tags
+                    for <samp>ct.FirstName</samp> and
+                        <samp>ct.LastName</samp> with the
+                    following markup.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:column value="{! ct.FirstName }"&gt;
+    &lt;apex:facet name="header"&gt;
+        &lt;apex:commandLink action="{! sortByFirstName }" 
+            reRender="contacts_list"&gt;First Name
+        &lt;/apex:commandLink&gt;
+    &lt;/apex:facet&gt;
+&lt;/apex:column&gt;
+
+&lt;apex:column value="{! ct.LastName }"&gt;
+    &lt;apex:facet name="header"&gt;
+        &lt;apex:commandLink action="{! sortByLastName }" 
+            reRender="contacts_list"&gt;Last Name
+        &lt;/apex:commandLink&gt;
+    &lt;/apex:facet&gt;
+&lt;/apex:column&gt;</pre></div>
+</div>
+<div class="itemgroup stepresult">Although the visual appearance remains the same, if you
+                    click the First Name and Last Name column headers now, they will
+                    change the sort order for the contacts list. Nice!</div>
+</li>
+</ol>
+<div class="section result">
+<p class="p">The new markup adds two nested components to each of the <samp>&lt;apex:column&gt;</samp> components.
+                    <samp>&lt;apex:column&gt;</samp> by
+                itself has a plain text header, but we want to make the header
+                clickable. <samp>&lt;apex:facet&gt;</samp>
+                lets us set the contents of the column header to whatever we want.
+                And what we want is a link that calls the right action method. The
+                link is created using the <samp>&lt;apex:commandLink&gt;</samp> component, with the <samp>action</samp> attribute set to an
+                expression that references the action method in our controller. (Note
+                that action methods, in contrast to getter methods, are named the
+                same as the expression that references them.)</p>
+<p class="p">When the link is clicked, it fires the action method in the
+                controller. The action method changes the sort order private
+                variable, and then the table is rerendered. When the table is
+                rerendered, <samp>{! contacts }</samp> is
+                reevaluated, which reruns the query with whatever sort order was just
+                set. The final result is the table is resorted in the order requested
+                by the user’s click.</p>
+<div class="btb callout box guidedTour"><div class="inner"><div class="bd"><div class="media"><div class="mediaBd"><h4 class="mbs">Beyond the Basics</h4><p>The header text for the first name and
+                last name columns is hard-coded in this markup. But what if your
+                users don’t all use English? The standard Salesforce user interface
+                has translated versions of the field names for all standard objects,
+                and you can provide your own translations for custom objects. How
+                would you access these? Instead of the plain text, try this markup:
+                    <samp>&lt;apex:outputText value="{!
+                    $ObjectType.Contact.Fields.FirstName.Label }"/&gt;</samp>. That’s
+                the right way to reference a field’s label, even if your organization
+                all uses the same language, because it will automatically update if
+                the field name is ever changed.</p></div></div></div></div></div>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="visualforce_custom_controllers_tell_me_more" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_custom_controllers_tell_me_more"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading7"><span class="ph" id="topic-title"><a name="topic-title"></a>Tell Me More...</span></h2>
+<div class="body conbody"><div class="shortdesc">Custom controllers and the Apex language let you do
+  pretty much anything you can think of in your Visualforce pages. </div>
+<p class="p">Getter methods pull data out of your controller onto your page. There are
+   corresponding setter methods that let you submit values from the page back up to
+   your controller. Like getter methods, you prefix your setters with “set”, and
+   other than that, they’re just methods that take an argument.</p>
+<div class="p">An alternative to getters and setters is to use Apex <dfn class="term">properties</dfn>.
+   Properties are kind of a combination of a variable with getter and setter methods,
+   with a syntax that groups them together more clearly. A simple property that
+   references a custom object might be declared like this.
+   <div class="codeblock"><pre>public MyObject__c myVariable { get; set; }</pre></div>
+</div>
+<p class="p">Properties can be public or private, and can be read-only, or even write-only,
+   by omitting the get or set. And you can create implementations for the get or set
+   methods, when you want to perform additional logic besides simply saving and
+   retrieving a value. </p>
+<p class="p">Properties are a general feature of Apex, not specific to
+    Visualforce. Apex is a complete
+   programming language, and in addition to being the natural partner for building
+   complex Visualforce pages,
+   it’s used in many other Force.com development
+   contexts. See the Apex topics elsewhere here, and the resources at the end of this page for many ways
+   to learn to use Apex
+   fully.</p>
+<p class="p">The lifecycle of a Visualforce request and response can seem complex initially. In particular, it’s important
+   to understand that there’s no specific order in which getters or setters (or
+   properties, if you use them) are called, so you must not introduce
+   order-of-execution dependencies between them. There’s a lot more detail available
+   to you in the relevant sections of the <cite class="cite">Visualforce Developer’s
+    Guide</cite>, in particular the “<a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_controller.htm" target="_blank" title="html (New Window)">Custom Controllers and Controller Extensions</a>” chapter.</p>
+</div>
+</div>
+<div class="topic nested0" id="visualforce_custom_controllers_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_custom_controllers_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading8">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation">
+<a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_quick_start_controller.htm" target="_blank" title="html (New Window)">
+               Creating Your First Custom Controller
+            </a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_controller.htm" target="_blank" title="html (New Window)">
+               Custom Controllers and Controller Extensions
+            </a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.apexcode.meta/apexcode/" target="_blank">Apex Developer Guide</a>
+</li>
+</ul>
+<ul class="ul bulletList">
+<li class="li Articles">
+<a class="xref" href="https://developer.salesforce.com/page/Force.com_Books" target="_blank" title="html (New Window)">“Just
+                    Enough Code—Introduction to Controllers and Extensions,” in
+                        <em class="ph i">Visualforce in Practice</em>
+</a>
+</li>
+<li class="li Articles">
+<a class="xref" href="https://developer.salesforce.com/blogs/developer-relations/2013/01/apex-template-visualforce-controller.html" target="_blank" title="html (New Window)">Apex
+                    Template: Visualforce Controller</a>
+</li>
+<li class="li Articles">
+<a class="xref" href="https://developer.salesforce.com/blogs/tech-pubs/2011/11/controller-for-visualforce-charting.html" target="_blank" title="html (New Window)">A Real
+                    Controller for Visualforce Charting</a>
+</li>
+<li class="li Articles">
+<a class="xref" href="https://developer.salesforce.com/page/Creating_Custom_Actions_Using_Visualforce" target="_blank" title="html (New Window)">Creating
+                    Custom Actions Using Visualforce</a>
+</li>
+<li class="li Articles">
+<a class="xref" href="http://developer.force.com/cookbook/recipe/using-query-string-parameters-in-a-visualforce-page" target="_blank" title="html (New Window)">Using Query
+                    String Parameters in a Visualforce Page</a>
+</li>
+</ul>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>Remember, this module is meant for
+            Salesforce Classic. When you launch your hands-on org, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank">switch to Salesforce Classic</a> to complete this
+            challenge.</p></div></div></div></div></div>
+</div>
+</div>
+</body></div>

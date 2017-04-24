@@ -1,0 +1,262 @@
+<div class="unit-content">
+<body id="apex_triggers_bulk_learning_objectives"><a name="apex_triggers_bulk_learning_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you'll be able to: <ul class="ul bulletList">
+<li class="li">Write triggers that operate on collections of sObjects.</li>
+<li class="li">Write triggers that perform efficient SOQL and DML operations.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="apex_triggers_bulk" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="apex_triggers_bulk"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Bulk Trigger Design Patterns</span></h2>
+<div class="body conbody"><div class="shortdesc">Apex triggers are
+    optimized to operate in bulk. We recommend using bulk design patterns for processing records in
+    triggers. When you use bulk design patterns, your triggers have better performance, consume less
+    server resources, and are less likely to exceed platform limits.</div>
+<div class="section">
+<p class="p">The benefit of bulkifying your code is that bulkified code can process large numbers of
+        records efficiently and run within governor limits on the Force.com platform. These governor
+        limits are in place to ensure that runaway code doesn’t monopolize resources on the
+        multitenant platform.</p>
+<p class="p">The following sections demonstrate the main ways of bulkifying your Apex code in triggers: operating
+        on all records in the trigger, and performing SOQL and DML on collections of sObjects
+        instead of single sObjects at a time. The SOQL and DML bulk best practices apply to any Apex code, including SOQL and
+        DML in classes. The examples given are based on triggers and use the <samp>Trigger.New</samp> context variable.</p>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading3">Operating on Record Sets</h3>
+<p class="p">Let’s first look at the most basic bulk design concept in triggers. Bulkified triggers
+        operate on all sObjects in the trigger context. Typically, triggers operate on one record if
+        the action that fired the trigger originates from the user interface. But if the origin of
+        the action was bulk DML or the API, the trigger operates on a record set rather than one
+        record. For example, when you import many records via the API, triggers operate on the full
+        record set. Therefore, a good programming practice is to always assume that the trigger
+        operates on a collection of records so that it works in all circumstances. </p>
+<p class="p">The following trigger assumes that only one record caused the trigger to fire. This trigger
+        doesn’t work on a full record set when multiple records are inserted in the same
+        transaction. A bulkified version is shown in the next example.</p>
+<div class="codeblock"><pre>trigger MyTriggerNotBulk on Account(before insert) {
+    Account a = Trigger.New[0];
+    a.Description = 'New description';
+}</pre></div>
+<p class="p">This example is a modified version of <samp>MyTrigger</samp>. It
+        uses a for loop to iterate over all available sObjects. This loop works if <samp>Trigger.New</samp> contains one sObject or many sObjects.</p>
+<div class="codeblock"><pre>trigger MyTriggerBulk on Account(before insert) {
+    for(Account a : Trigger.New) {
+        a.Description = 'New description';
+    }
+}</pre></div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading4">Performing Bulk SOQL</h3>
+<p class="p">SOQL queries can be powerful. You can retrieve related records and check a combination of
+        multiple conditions in one query. By using SOQL features, you can write less code and make
+        fewer queries to the database. Making fewer database queries helps you avoid hitting query
+        limits, which are 100 SOQL queries for synchronous Apex or 200 for asynchronous Apex.</p>
+<p class="p">The following trigger shows a SOQL query pattern to avoid. The example makes a SOQL query
+        inside a for loop to get the related opportunities for each account, which runs once for
+        each Account sObject in <samp>Trigger.New</samp>. If you have a
+        large list of accounts, a SOQL query inside a for loop could result in too many SOQL
+        queries. The next example shows the recommended approach.</p>
+<div class="codeblock"><pre>trigger SoqlTriggerNotBulk on Account(after update) {   
+    for(Account a : Trigger.New) {
+        // Get child records for each account
+        // Inefficient SOQL query as it runs once for each account!
+        Opportunity[] opps = [SELECT Id,Name,CloseDate 
+                             FROM Opportunity WHERE AccountId=:a.Id];
+        
+        // Do some other processing
+    }
+}</pre></div>
+<p class="p">This example is a modified version of the previous one and shows a best practice for
+        running SOQL queries. The SOQL query does the heavy lifting and is called once outside the
+        main loop.</p>
+<ul class="ul bulletList">
+<li class="li">The SOQL query uses an inner query—<samp>(SELECT Id FROM
+            Opportunities)</samp>—to get related opportunities of accounts.</li>
+<li class="li">The SOQL query is connected to the trigger context records by using the IN clause and
+          binding the <samp>Trigger.New</samp> variable in the WHERE
+            clause—<samp>WHERE Id IN :Trigger.New</samp>. This
+          WHERE condition filters the accounts to only those records that fired this trigger.</li>
+</ul>
+<p class="p">Combining the two parts in the query results in the records we want in one call: the
+        accounts in this trigger with the related opportunities of each account.</p>
+<p class="p">After the records and their related records are obtained, the for loop iterates over the
+        records of interest by using the collection variable—in this case, <samp>acctsWithOpps</samp>. The collection variable holds the results
+        of the SOQL query. That way, the for loop iterates only over the records we want to operate
+        on. Because the related records are already obtained, no further queries are needed within
+        the loop to get those records.</p>
+<div class="codeblock"><pre>trigger SoqlTriggerBulk on Account(after update) {  
+    // Perform SOQL query once.    
+    // Get the accounts and their related opportunities.
+    List&lt;Account&gt; acctsWithOpps = 
+        [SELECT Id,(SELECT Id,Name,CloseDate FROM Opportunities) 
+         FROM Account WHERE Id IN :Trigger.New];
+  
+    // Iterate over the returned accounts    
+    for(Account a : acctsWithOpps) { 
+        Opportunity[] relatedOpps = a.Opportunities;  
+        // Do some other processing
+    }
+}</pre></div>
+<p class="p">Alternatively, if you don’t need the account parent records, you can retrieve only the
+        opportunities that are related to the accounts within this trigger context. This list is
+        specified in the <samp>WHERE</samp> clause by matching the
+          <span class="keyword parmname">AccountId</span> field of the opportunity to the ID of accounts in <samp>Trigger.New</samp>: <samp>WHERE
+          AccountId IN :Trigger.New</samp>. The returned opportunities are for all accounts in
+        this trigger context and not for a specific account. This next example shows the query used
+        to get all related opportunities.</p>
+<div class="codeblock"><pre>trigger SoqlTriggerBulk on Account(after update) {  
+    // Perform SOQL query once.    
+    // Get the related opportunities for the accounts in this trigger.
+    List&lt;Opportunity&gt; relatedOpps = [SELECT Id,Name,CloseDate FROM Opportunity
+        WHERE AccountId IN :Trigger.New];
+  
+    // Iterate over the related opportunities    
+    for(Opportunity opp : relatedOpps) { 
+        // Do some other processing
+    }
+}</pre></div>
+<p class="p">You can reduce the previous example in size by combining the SOQL query with the for loop
+        in one statement: the SOQL for loop. Here is another version of this bulk trigger using a
+        SOQL for loop.</p>
+<div class="codeblock"><pre>trigger SoqlTriggerBulk on Account(after update) {  
+    // Perform SOQL query once.    
+    // Get the related opportunities for the accounts in this trigger,
+    // and iterate over those records.
+    for(Opportunity opp : [SELECT Id,Name,CloseDate FROM Opportunity
+        WHERE AccountId IN :Trigger.New]) {
+  
+        // Do some other processing
+    }
+}</pre></div>
+<div class="btb callout box guidedTour"><div class="inner"><div class="bd"><div class="media"><div class="mediaBd"><h4 class="mbs">Beyond the Basics</h4><p>Triggers execute on batches of 200 records at a time. So if
+        400 records cause a trigger to fire, the trigger fires twice, once for each 200 records. For
+        this reason, you don’t get the benefit of SOQL for loop record batching in triggers, because
+        triggers batch up records as well. The SOQL for loop is called twice in this example, but a
+        standalone SOQL query would also be called twice. However, the SOQL for loop still looks
+        more elegant than iterating over a collection variable!</p></div></div></div></div></div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading5">Performing Bulk DML</h3>
+<p class="p">When performing DML calls in a trigger or in a class, perform DML calls on a collection of
+        sObjects when possible. Performing DML on each sObject individually uses resources
+        inefficiently. The Apex runtime allows up to 150 DML calls in one transaction.</p>
+<p class="p">This trigger performs an update call inside a <samp>for</samp> loop
+        that iterates over related opportunities. If certain conditions are met, the trigger updates
+        the opportunity description. In this example, the update statement is inefficiently called
+        once for each opportunity. If a bulk account update operation fired the trigger, there can
+        be many accounts. If each account has one or two opportunities, we can easily end up with
+        over 150 opportunities. The DML statement limit is 150 calls.</p>
+<div class="codeblock"><pre>trigger DmlTriggerNotBulk on Account(after update) {   
+    // Get the related opportunities for the accounts in this trigger.        
+    List&lt;Opportunity&gt; relatedOpps = [SELECT Id,Name,Probability FROM Opportunity
+        WHERE AccountId IN :Trigger.New];          
+
+    // Iterate over the related opportunities
+    for(Opportunity opp : relatedOpps) {      
+        // Update the description when probability is greater 
+        // than 50% but less than 100% 
+        if ((opp.Probability &gt;= 50) &amp;&amp; (opp.Probability &lt; 100)) {
+            opp.Description = 'New description for opportunity.';
+            // Update once for each opportunity -- not efficient!
+            update opp;
+        }
+    }    
+}</pre></div>
+<p class="p">This next example shows how to perform DML in bulk efficiently with only one DML call on a
+        list of opportunities. The example adds the Opportunity sObject to update to a list of
+        opportunities (<samp>oppsToUpdate</samp>) in the loop. Next, the
+        trigger performs the DML call outside the loop on this list after all opportunities have
+        been added to the list. This pattern uses only one DML call regardless of the number of
+        sObjects being updated.</p>
+<div class="codeblock"><pre>trigger DmlTriggerBulk on Account(after update) {   
+    // Get the related opportunities for the accounts in this trigger.        
+    List&lt;Opportunity&gt; relatedOpps = [SELECT Id,Name,Probability FROM Opportunity
+        WHERE AccountId IN :Trigger.New];
+          
+    List&lt;Opportunity&gt; oppsToUpdate = new List&lt;Opportunity&gt;();
+
+    // Iterate over the related opportunities
+    for(Opportunity opp : relatedOpps) {      
+        // Update the description when probability is greater 
+        // than 50% but less than 100% 
+        if ((opp.Probability &gt;= 50) &amp;&amp; (opp.Probability &lt; 100)) {
+            opp.Description = 'New description for opportunity.';
+            oppsToUpdate.add(opp);
+        }
+    }
+    
+    // Perform DML on a collection
+    update oppsToUpdate;
+}</pre></div>
+</div>
+<div class="section"><h3 class="helpHead3" id="Tdxn4tBK-heading6">Bulk Design Pattern in Action: Trigger Example for Getting Related Records</h3>
+<p class="p">Let’s apply the design patterns you’ve learned by writing a trigger that accesses accounts’
+        related opportunities. Modify the trigger example from the previous unit for the <samp>AddRelatedRecord</samp> trigger. The <samp>AddRelatedRecord</samp> trigger operates in bulk, but is not as
+        efficient as it could be because it iterates over all <samp>Trigger.New</samp> sObject records. This next example modifies the SOQL query to get
+        only the records of interest and then iterate over those records. If you haven’t created
+        this trigger, don’t worry—you can create it in this section.</p>
+<p class="p">Let’s start with the requirements for the <samp>AddRelatedRecord</samp> trigger. The trigger fires after accounts are inserted or
+        updated. The trigger adds a default opportunity for every account that doesn’t already have
+        an opportunity. The first problem to tackle is to figure out how to get the child
+        opportunity records. Because this trigger is an <em class="ph i">after</em> trigger, we can query the
+        affected records from the database. They’ve already been committed by the time the after
+        trigger is fired. Let’s write a SOQL query that returns all accounts in this trigger that
+        don’t have related opportunities. </p>
+<div class="codeblock"><pre>[SELECT Id,Name FROM Account WHERE Id IN :Trigger.New AND
+                                             Id NOT IN (SELECT AccountId FROM Opportunity)]</pre></div>
+<p class="p">Now that we got the subset of records we’re interested in, let’s iterate over those records
+        by using a SOQL for loop, as follows.</p>
+<div class="codeblock"><pre>for(Account a : [SELECT Id,Name FROM Account WHERE Id IN :Trigger.New AND
+                                         Id NOT IN (SELECT AccountId FROM Opportunity)]){
+}</pre></div>
+<p class="p"> You’ve now seen the basics of our trigger. The only missing piece is the creation of the
+        default opportunity, which we’re going to do in bulk. Here’s the complete trigger.</p>
+<ol class="ol enumList">
+<li class="li">If you’ve already created the <kbd class="ph userinput">AddRelatedRecord</kbd> trigger in the
+          previous unit, modify the trigger by replacing its contents with the following trigger.
+          Otherwise, add the following trigger using the Developer Console and enter
+            <kbd class="ph userinput">AddRelatedRecord</kbd> for the trigger name.
+          <div class="codeblock"><pre>trigger AddRelatedRecord on Account(after insert, after update) {
+    List&lt;Opportunity&gt; oppList = new List&lt;Opportunity&gt;();
+    
+    // Add an opportunity for each account if it doesn't already have one.
+    // Iterate over accounts that are in this trigger but that don't have opportunities.
+    for (Account a : [SELECT Id,Name FROM Account
+                     WHERE Id IN :Trigger.New AND
+                     Id NOT IN (SELECT AccountId FROM Opportunity)]) {
+        // Add a default opportunity for this account
+        oppList.add(new Opportunity(Name=a.Name + ' Opportunity',
+                                   StageName='Prospecting',
+                                   CloseDate=System.today().addMonths(1),
+                                   AccountId=a.Id)); 
+    }
+    
+    if (oppList.size() &gt; 0) {
+        insert oppList;
+    }
+}</pre></div>
+</li>
+<li class="li">To test the trigger, create an account in the Salesforce user interface and name it
+            <kbd class="ph userinput">Lions &amp; Cats</kbd>.</li>
+<li class="li">In the Opportunities related list on the account’s page, find the new opportunity  Lions
+          &amp; Cats. The trigger added the opportunity automatically!</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="topic nested0" id="apex_triggers_bulk_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="apex_triggers_bulk_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading7">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.apexcode.meta/apexcode/apex_triggers.htm" target="_blank" title="HTML (New Window)"><em class="ph i">Apex Developer Guide</em>: Triggers</a></li>
+</ul>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>Remember, this module is meant for
+            Salesforce Classic. When you launch your hands-on org, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank">switch to Salesforce Classic</a> to complete this
+            challenge.</p></div></div></div></div></div>
+</div>
+</div>
+</body></div>

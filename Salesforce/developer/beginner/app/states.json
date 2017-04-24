@@ -1,0 +1,353 @@
+{
+    "routes": [
+        {
+            "url": "/starting_intro",
+            "templateUrl": "./pages/starting_intro.html",
+            "moduleName": "Salesforce Platform Basics",
+            "name": "Getting Started with the Platform"
+        },
+        {
+            "url": "/starting_discovering",
+            "templateUrl": "./pages/starting_discovering.html",
+            "moduleName": "Salesforce Platform Basics",
+            "name": "Discovering Use Cases for the Platform"
+        },
+        {
+            "url": "/starting_understanding_arch",
+            "templateUrl": "./pages/starting_understanding_arch.html",
+            "moduleName": "Salesforce Platform Basics",
+            "name": "Understanding the Salesforce Architecture"
+        },
+        {
+            "url": "/starting_tour",
+            "templateUrl": "./pages/starting_tour.html",
+            "moduleName": "Salesforce Platform Basics",
+            "name": "Navigating Setup"
+        },
+        {
+            "url": "/starting_developer_console",
+            "templateUrl": "./pages/starting_developer_console.html",
+            "moduleName": "Salesforce Platform Basics",
+            "name": "Developing an AppExchange Strategy"
+        },
+        {
+            "url": "/objects_intro",
+            "templateUrl": "./pages/objects_intro.html",
+            "moduleName": "Data Modeling",
+            "name": "Understand Custom & Standard Objects"
+        },
+        {
+            "url": "/creating_custom_objects_fields",
+            "templateUrl": "./pages/creating_custom_objects_fields.html",
+            "moduleName": "Data Modeling",
+            "name": "Create Custom Objects and Fields"
+        },
+        {
+            "url": "/object_relationships",
+            "templateUrl": "./pages/object_relationships.html",
+            "moduleName": "Data Modeling",
+            "name": "Create Object Relationships"
+        },
+        {
+            "url": "/schema_builder",
+            "templateUrl": "./pages/schema_builder.html",
+            "moduleName": "Data Modeling",
+            "name": "Work with Schema Builder"
+        },
+        {
+            "url": "/data_import",
+            "templateUrl": "./pages/data_import.html",
+            "moduleName": "Data Management",
+            "name": "Import Data"
+        },
+        {
+            "url": "/data_export",
+            "templateUrl": "./pages/data_export.html",
+            "moduleName": "Data Management",
+            "name": "Export Data"
+        },
+        {
+            "url": "/data_security_overview",
+            "templateUrl": "./pages/data_security_overview.html",
+            "moduleName": "Data Security",
+            "name": "Overview of Data Security"
+        },
+        {
+            "url": "/data_security_org",
+            "templateUrl": "./pages/data_security_org.html",
+            "moduleName": "Data Security",
+            "name": "Control Access to the Organization"
+        },
+        {
+            "url": "/data_security_objects",
+            "templateUrl": "./pages/data_security_objects.html",
+            "moduleName": "Data Security",
+            "name": "Control Access to Objects"
+        },
+        {
+            "url": "/data_security_fields",
+            "templateUrl": "./pages/data_security_fields.html",
+            "moduleName": "Data Security",
+            "name": "Control Access to Fields"
+        },
+        {
+            "url": "/data_security_records",
+            "templateUrl": "./pages/data_security_records.html",
+            "moduleName": "Data Security",
+            "name": "Control Access to Records"
+        },
+        {
+            "url": "/data_security_roles",
+            "templateUrl": "./pages/data_security_roles.html",
+            "moduleName": "Data Security",
+            "name": "Create a Role Hierarchy"
+        },
+        {
+            "url": "/data_security_sharing_rules",
+            "templateUrl": "./pages/data_security_sharing_rules.html",
+            "moduleName": "Data Security",
+            "name": "Define Sharing Rules"
+        },
+        {
+            "url": "/formula_fields",
+            "templateUrl": "./pages/formula_fields.html",
+            "moduleName": "Formulas & Validations",
+            "name": "Using Formula Fields"
+        },
+        {
+            "url": "/roll_up_summary_fields",
+            "templateUrl": "./pages/roll_up_summary_fields.html",
+            "moduleName": "Formulas & Validations",
+            "name": "Implementing Roll-Up Summary Fields"
+        },
+        {
+            "url": "/validation_rules",
+            "templateUrl": "./pages/validation_rules.html",
+            "moduleName": "Formulas & Validations",
+            "name": "Creating Validation Rules"
+        },
+        {
+            "url": "/process_whichtool",
+            "templateUrl": "./pages/process_whichtool.html",
+            "moduleName": "Process Automation",
+            "name": "Figure Out Which Tool To Use"
+        },
+        {
+            "url": "/process_builder",
+            "templateUrl": "./pages/process_builder.html",
+            "moduleName": "Process Automation",
+            "name": "Automate Basic Business Processes with Process Builder"
+        },
+        {
+            "url": "/flow",
+            "templateUrl": "./pages/flow.html",
+            "moduleName": "Process Automation",
+            "name": "Collect Information from Users and then Operate on It with Visual Workflow"
+        },
+        {
+            "url": "/workflow",
+            "templateUrl": "./pages/workflow.html",
+            "moduleName": "Process Automation",
+            "name": "Automate Sets of Delayed Actions with Workflow"
+        },
+        {
+            "url": "/approvals",
+            "templateUrl": "./pages/approvals.html",
+            "moduleName": "Process Automation",
+            "name": "Customize How Records Get Approved with Approvals"
+        },
+        {
+            "url": "/salesforce1_mobile_app_intro",
+            "templateUrl": "./pages/salesforce1_mobile_app_intro.html",
+            "moduleName": "Salesforce1 Mobile Basics",
+            "name": "Getting Started with the Salesforce1 Mobile App"
+        },
+        {
+            "url": "/salesforce1_mobile_app_navigation",
+            "templateUrl": "./pages/salesforce1_mobile_app_navigation.html",
+            "moduleName": "Salesforce1 Mobile Basics",
+            "name": "Customizing Navigation"
+        },
+        {
+            "url": "/salesforce1_mobile_app_compact_layouts",
+            "templateUrl": "./pages/salesforce1_mobile_app_compact_layouts.html",
+            "moduleName": "Salesforce1 Mobile Basics",
+            "name": "Customizing Compact Layouts"
+        },
+        {
+            "url": "/salesforce1_mobile_app_actions_global",
+            "templateUrl": "./pages/salesforce1_mobile_app_actions_global.html",
+            "moduleName": "Salesforce1 Mobile Basics",
+            "name": "Creating Global Quick Actions"
+        },
+        {
+            "url": "/salesforce1_mobile_app_actions_objectspecific",
+            "templateUrl": "./pages/salesforce1_mobile_app_actions_objectspecific.html",
+            "moduleName": "Salesforce1 Mobile Basics",
+            "name": "Creating Object-Specific Quick Actions"
+        },
+        {
+            "url": "/apex_database_intro",
+            "templateUrl": "./pages/apex_database_intro.html",
+            "moduleName": "Apex Basics & Database",
+            "name": "Get Started with Apex"
+        },
+        {
+            "url": "/apex_database_sobjects",
+            "templateUrl": "./pages/apex_database_sobjects.html",
+            "moduleName": "Apex Basics & Database",
+            "name": "Use sObjects"
+        },
+        {
+            "url": "/apex_database_dml",
+            "templateUrl": "./pages/apex_database_dml.html",
+            "moduleName": "Apex Basics & Database",
+            "name": "Manipulate Records with DML"
+        },
+        {
+            "url": "/apex_database_soql",
+            "templateUrl": "./pages/apex_database_soql.html",
+            "moduleName": "Apex Basics & Database",
+            "name": "Write SOQL Queries"
+        },
+        {
+            "url": "/apex_database_sosl",
+            "templateUrl": "./pages/apex_database_sosl.html",
+            "moduleName": "Apex Basics & Database",
+            "name": "Write SOSL Queries"
+        },
+        {
+            "url": "/apex_triggers_intro",
+            "templateUrl": "./pages/apex_triggers_intro.html",
+            "moduleName": "Apex Triggers",
+            "name": "Get Started with Apex Triggers"
+        },
+        {
+            "url": "/apex_triggers_bulk",
+            "templateUrl": "./pages/apex_triggers_bulk.html",
+            "moduleName": "Apex Triggers",
+            "name": "Bulk Apex Triggers"
+        },
+        {
+            "url": "/apex_testing_intro",
+            "templateUrl": "./pages/apex_testing_intro.html",
+            "moduleName": "Apex Testing",
+            "name": "Get Started with Apex Unit Tests"
+        },
+        {
+            "url": "/apex_testing_triggers",
+            "templateUrl": "./pages/apex_testing_triggers.html",
+            "moduleName": "Apex Testing",
+            "name": "Test Apex Triggers"
+        },
+        {
+            "url": "/apex_testing_data",
+            "templateUrl": "./pages/apex_testing_data.html",
+            "moduleName": "Apex Testing",
+            "name": "Create Test Data for Apex Tests"
+        },
+        {
+            "url": "/visualforce_intro",
+            "templateUrl": "./pages/visualforce_intro.html",
+            "moduleName": "Visualforce Basics",
+            "name": "Get Started with Visualforce"
+        },
+        {
+            "url": "/visualforce_creating_pages",
+            "templateUrl": "./pages/visualforce_creating_pages.html",
+            "moduleName": "Visualforce Basics",
+            "name": "Create & Edit Visualforce Pages"
+        },
+        {
+            "url": "/visualforce_variables_expressions",
+            "templateUrl": "./pages/visualforce_variables_expressions.html",
+            "moduleName": "Visualforce Basics",
+            "name": "Use Simple Variables and Formulas"
+        },
+        {
+            "url": "/visualforce_standard_controllers",
+            "templateUrl": "./pages/visualforce_standard_controllers.html",
+            "moduleName": "Visualforce Basics",
+            "name": "Use Standard Controllers"
+        },
+        {
+            "url": "/visualforce_output_components",
+            "templateUrl": "./pages/visualforce_output_components.html",
+            "moduleName": "Visualforce Basics",
+            "name": "Display Records, Fields, and Tables"
+        },
+        {
+            "url": "/visualforce_forms",
+            "templateUrl": "./pages/visualforce_forms.html",
+            "moduleName": "Visualforce Basics",
+            "name": "Input Data Using Forms"
+        },
+        {
+            "url": "/visualforce_standard_list_controllers",
+            "templateUrl": "./pages/visualforce_standard_list_controllers.html",
+            "moduleName": "Visualforce Basics",
+            "name": "Use Standard List Controllers"
+        },
+        {
+            "url": "/visualforce_static_resources",
+            "templateUrl": "./pages/visualforce_static_resources.html",
+            "moduleName": "Visualforce Basics",
+            "name": "Use Static Resources"
+        },
+        {
+            "url": "/visualforce_custom_controllers",
+            "templateUrl": "./pages/visualforce_custom_controllers.html",
+            "moduleName": "Visualforce Basics",
+            "name": "Create & Use Custom Controllers"
+        },
+        {
+            "url": "/developer_console_intro",
+            "templateUrl": "./pages/developer_console_intro.html",
+            "moduleName": "Developer Console Basics",
+            "name": "Get Started with the Developer Console"
+        },
+        {
+            "url": "/developer_console_source_code",
+            "templateUrl": "./pages/developer_console_source_code.html",
+            "moduleName": "Developer Console Basics",
+            "name": "Navigate and Edit Source Code"
+        },
+        {
+            "url": "/developer_console_logs",
+            "templateUrl": "./pages/developer_console_logs.html",
+            "moduleName": "Developer Console Basics",
+            "name": "Generate and Analyze Logs"
+        },
+        {
+            "url": "/developer_console_checkpoints",
+            "templateUrl": "./pages/developer_console_checkpoints.html",
+            "moduleName": "Developer Console Basics",
+            "name": "Inspect Objects at Checkpoints"
+        },
+        {
+            "url": "/developer_console_queries",
+            "templateUrl": "./pages/developer_console_queries.html",
+            "moduleName": "Developer Console Basics",
+            "name": "Execute SOQL and SOSL Queries"
+        },
+        {
+            "url": "/search_solution_basics_choosing",
+            "templateUrl": "./pages/search_solution_basics_choosing.html",
+            "moduleName": "Search Solution Basics",
+            "name": "Choose the Right Search Solution"
+        },
+        {
+            "url": "/search_solution_basics_building",
+            "templateUrl": "./pages/search_solution_basics_building.html",
+            "moduleName": "Search Solution Basics",
+            "name": "Build Search for Common Use Cases"
+        },
+        {
+            "url": "/search_solution_basics_optimizing",
+            "templateUrl": "./pages/search_solution_basics_optimizing.html",
+            "moduleName": "Search Solution Basics",
+            "name": "Optimize Search Results"
+        }
+    ],
+    "id": "Tutorial_Salesforce_Developer_Beginner"
+}

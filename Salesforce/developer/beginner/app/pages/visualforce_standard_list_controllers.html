@@ -1,0 +1,489 @@
+<div class="unit-content">
+<body id="visualforce_standard_list_controller_learning_objectives"><a name="visualforce_standard_list_controller_learning_objectives"></a>
+<div class="nested0">
+<h2 class="helpHead2" id="Tdxn4tBK-heading1"><span class="ph" id="topic-title"><a name="topic-title"></a>Learning Objectives</span></h2>
+<div class="body">
+<div class="p" id="p2"><a name="p2"></a>After completing this unit, you’ll be able to: <ul class="ul bulletList">
+<li class="li">Explain what a Visualforce standard
+          list controller is and how it's different from a standard (record) controller.</li>
+<li class="li">List three actions provided by the standard list controller that are different from a
+          standard controller.</li>
+<li class="li">Display a list of records using a standard list controller on a Visualforce page.</li>
+<li class="li">Define pagination, and be able to add it to a Visualforce page.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="visualforce_standard_list_controller_intro" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_standard_list_controller_intro"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading2"><span class="ph" id="topic-title"><a name="topic-title"></a>Introduction to the Standard List
+  Controller</span></h2>
+<div class="body conbody"><div class="shortdesc">The standard list controller allows you to create Visualforce pages that can display
+  or act on a set of records.</div>
+<p class="p">Displaying a list of records is a fundamental behavior of almost all web apps.
+    Visualforce makes it
+   extremely easy to display a list of records of the same type, using just markup,
+   no back-end code. The secret, as usual, is the standard controller, in this case,
+   the standard <em class="ph i">list</em> controller.</p>
+<p class="p">The standard list controller provides many powerful, automatic behaviors such as
+   querying for records of a specific object and making the records available in a
+   collection variable, as well as filtering of and pagination through the results.
+   Adding the standard list controller to a page is very similar to adding the
+   standard (record) controller, but with the intent of working with many records at
+   once, instead of one record at a time.</p>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_standard_list_controller_table" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_standard_list_controller_table"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading3"><span class="ph" id="topic-title"><a name="topic-title"></a>Display a List of Records</span></h2>
+<div class="body taskbody"><div class="shortdesc">Use the standard list controller and an iteration component, such as
+            <samp>&lt;apex:pageBlockTable&gt;</samp>, to
+        display a list of records.</div>
+<div class="section context">
+<p class="p">The standard (record) controller makes it easy to get a single record
+                loaded into a variable you can use on a Visualforce page.
+                The standard <em class="ph i">list</em> controller is similar, except instead of a
+                single record, it loads a list, or <dfn class="term">collection</dfn>, of
+                records into the variable.</p>
+<p class="p">Because you’re dealing with a collection, instead of an individual
+                record, you need to use an <dfn class="term">iteration component</dfn> to
+                display them. An iteration component works with a collection of
+                similar items, instead of on a single value. An iteration component
+                loops through its collection, and for each record, generates some
+                output based on a template you provide as part of the component
+                markup. This sounds complicated in words, but you’ll understand it
+                quickly when you read the markup.</p>
+<p class="p">The markup for using the standard list controller is almost identical
+                to using the standard, one-record-at-a-time controller. To make it
+                obvious, the primary differences are highlighted in bold in the
+                following sample.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Open the Developer Console and
+                    click <span class="ph menucascade"><strong class="ph uicontrol">File</strong> | <strong class="ph uicontrol">New</strong> | <strong class="ph uicontrol">Visualforce Page</strong></span> to create a new Visualforce
+                    page. Enter <kbd class="ph userinput">ContactList</kbd> for the page
+                    name.</span>
+</li>
+<li class="li step">
+<span class="ph cmd">In the editor, replace any markup with the following.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;apex:page standardController="Contact" recordSetVar="contacts"&gt;
+    &lt;apex:pageBlock title="Contacts List"&gt;
+        
+        &lt;!-- Contacts List --&gt;
+        &lt;apex:pageBlockTable value="{! contacts }" var="ct"&gt;
+            &lt;apex:column value="{! ct.FirstName }"/&gt;
+            &lt;apex:column value="{! ct.LastName }"/&gt;
+            &lt;apex:column value="{! ct.Email }"/&gt;
+            &lt;apex:column value="{! ct.Account.Name }"/&gt;
+        &lt;/apex:pageBlockTable&gt;
+        
+    &lt;/apex:pageBlock&gt;
+&lt;/apex:page&gt;</pre></div>
+</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Click <strong class="ph uicontrol">Preview</strong> to open a preview of your
+                    page that you can look at while you make changes.</span>
+<div class="itemgroup stepresult">A new window should open, showing the standard Salesforce page header and sidebar elements, and a list of your contacts.<div class="fig fignone">
+<span class="image image-block"><img alt="A list of contacts from the standard list controller" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usbee702d17a12f234087bb1620e5fca33.png"/></span>
+</div>
+</div>
+</li>
+</ol>
+<div class="section result">
+<p class="p">Using a standard list controller is very similar to using a standard
+                controller. First you set the <samp>standardController</samp> attribute on the <samp>&lt;apex:page&gt;</samp> component, then
+                you set the <samp>recordSetVar</samp>
+                attribute on the same component. The <samp>standardController</samp> attribute sets the object to work
+                with, just like with the standard controller. The <samp>recordSetVar</samp> sets the name of the
+                variable to be created with the collection of records, here, <samp>{! contacts }</samp>. By convention,
+                this variable is usually named the plural of the object name.</p>
+<div class="p"><samp>&lt;apex:pageBlockTable&gt;</samp> is an
+                iteration component that generates a table of data, complete with
+                platform styling. Here’s what’s going on in the table markup.<ul class="ul bulletList">
+<li class="li">The <samp>value</samp> attribute
+                        of <samp>&lt;apex:pageBlockTable&gt;</samp> is set to the variable
+                        loaded by the standard list controller, <samp>{! contacts }</samp>. This is
+                        the list of records that <samp>&lt;apex:pageBlockTable&gt;</samp> will work with.</li>
+<li class="li">For each record in that list, one record at a time, <samp>&lt;apex:pageBlockTable&gt;</samp>
+                        assigns that record to the variable named in the <samp>&lt;apex:pageBlockTable&gt;</samp>’s <samp>var</samp> attribute. In this
+                        case, that variable is named <samp>ct</samp>.</li>
+<li class="li">For each record, <samp>&lt;apex:pageBlockTable&gt;</samp> constructs a new row
+                        in the table, using the row defined by the set of <samp>&lt;apex:column&gt;</samp>
+                        components within the body of <samp>&lt;apex:pageBlockTable&gt;</samp>. The <samp>&lt;apex:column&gt;</samp>
+                        components, in turn, use the <samp>ct</samp> variable that represents the current record
+                        to pull out the field values for that record.</li>
+<li class="li">Outside of the loop, <samp>&lt;apex:pageBlockTable&gt;</samp> uses the fields in the
+                            <samp>&lt;apex:column&gt;</samp>
+                        components to create column headers, by looking up the label
+                        for each field.</li>
+</ul>
+</div>
+<p class="p">That’s a lot to take in, and iteration components are tricky to
+                understand the first time. The best thing you can do right now is to
+                try creating your own. Choose the fields you want displayed in the
+                table. Look up the different attributes for <samp>&lt;apex:pageBlockTable&gt;</samp> and
+                    <samp>&lt;apex:column&gt;</samp>, and
+                experiment until you feel comfortable. You might also try using some
+                of the other iteration components, such as <samp>&lt;apex:dataList&gt;</samp> or even
+                    <samp>&lt;apex:repeat&gt;</samp>.</p>
+</div>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_standard_list_controller_view_filter" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_standard_list_controller_view_filter"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading4"><span class="ph" id="topic-title"><a name="topic-title"></a>Add List View Filtering to the List</span></h2>
+<div class="body taskbody"><div class="shortdesc">Use <samp>{! listViewOptions }</samp> to
+        get a list of list view filters available for an object. Use <samp>{! filterId }</samp> to set the list view filter
+        to use for a standard list controller’s results.</div>
+<div class="section context">
+<p class="p">The standard list controller provides a number of features you can use
+                to alter the display of the list. One of the most powerful is list
+                view filters. You create list view filters declaratively, using
+                clicks instead of code, and the standard list controller lets you use
+                any defined list view filter on the page.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Wrap the entire <samp>&lt;apex:pageBlock&gt;</samp> in an <samp>&lt;apex:form&gt;</samp> tag.</span>
+<div class="itemgroup info">To change the list view filter for a standard list controller,
+                    you need to submit the new value back to the server. The standard
+                    way to perform this submit is using a form created using the
+                        <samp>&lt;apex:form&gt;</samp>
+                    component.</div>
+</li>
+<li class="li step">
+<span class="ph cmd">In the <samp>&lt;apex:pageBlock&gt;</samp> tag, add the following
+                    attribute.</span>
+<div class="itemgroup info"><div class="codeblock"><pre>id="contacts_list"</pre></div>
+This
+                    give the <samp>&lt;apex:pageBlock&gt;</samp> a “name” that we can use for a
+                    cool Ajax effect, which we’ll explain in a bit.</div>
+</li>
+<li class="li step">
+<span class="ph cmd">After the opening <samp>&lt;apex:pageBlock&gt;</samp> tag, and above the <samp>&lt;apex:pageBlockTable&gt;</samp>, add
+                    the following markup.</span>
+<div class="itemgroup info"><div class="codeblock"><pre>Filter: 
+&lt;apex:selectList value="{! filterId }" size="1"&gt;
+    &lt;apex:selectOptions value="{! listViewOptions }"/&gt;
+    &lt;apex:actionSupport event="onchange" reRender="contacts_list"/&gt;
+&lt;/apex:selectList&gt;</pre></div>
+The
+                    full code for your page should look like
+                    this.<div class="codeblock"><pre>&lt;apex:page standardController="Contact" recordSetVar="contacts"&gt;
+    &lt;apex:form&gt;
+
+        &lt;apex:pageBlock title="Contacts List" id="contacts_list"&gt;
+        
+            Filter: 
+            &lt;apex:selectList value="{! filterId }" size="1"&gt;
+                &lt;apex:selectOptions value="{! listViewOptions }"/&gt;
+                &lt;apex:actionSupport event="onchange" reRender="contacts_list"/&gt;
+            &lt;/apex:selectList&gt;
+
+            &lt;!-- Contacts List --&gt;
+            &lt;apex:pageBlockTable value="{! contacts }" var="ct"&gt;
+                &lt;apex:column value="{! ct.FirstName }"/&gt;
+                &lt;apex:column value="{! ct.LastName }"/&gt;
+                &lt;apex:column value="{! ct.Email }"/&gt;
+                &lt;apex:column value="{! ct.Account.Name }"/&gt;
+            &lt;/apex:pageBlockTable&gt;
+            
+        &lt;/apex:pageBlock&gt;
+
+    &lt;/apex:form&gt;
+&lt;/apex:page&gt;</pre></div>
+</div>
+<div class="itemgroup stepresult">A new filter control appears above the list.<div class="fig fignone">
+<span class="image image-block"><img alt="Contacts list with list views filter" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us27604883a2b39a012034ca09f05f77d3.png"/></span>
+</div>
+</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Select a different filter from the menu. What happens to the
+                    contact list?</span>
+</li>
+</ol>
+<div class="section result">
+<p class="p">You should notice two things when you make a new selection from the
+                Filter menu you just created. First, the list of records changes when
+                you choose a new filter. (You might need to try a couple of different
+                options, some list views will present the same records when using the
+                sample data in a standard DE organization.)</p>
+<p class="p">Second, and more subtle, is that the list is updating <em class="ph i">without
+                    reloading the whole page.</em> This “Ajax” effect is courtesy of
+                the <samp>reRender="contacts_list"</samp>
+                attribute on the <samp>&lt;apex:actionSupport&gt;</samp> component. The combined effect
+                of the component and the <samp>reRender</samp> is to update only the part of the page named
+                in the <samp>reRender</samp> attribute.
+                Since you added the <samp>id="contacts_list"</samp> to the <samp>&lt;apex:pageBlock&gt;</samp>, when the
+                action completes, only the <samp>&lt;apex:pageBlock&gt;</samp> is updated—without reloading the
+                full page.</p>
+<div class="p">The full lifecycle for the new features on this page goes something
+                like this.<ul class="ul bulletList">
+<li class="li">When the page loads, the <samp>&lt;apex:selectList&gt;</samp> builds a menu of available
+                        filters, by getting the list from the <samp>{! listViewOptions }</samp>
+                        expression. <samp>listViewOptions</samp> is a property provided by the
+                        standard list controller.</li>
+<li class="li">When you choose a new option from the menu, the <samp>onchange</samp> event is fired
+                        by the <samp>&lt;apex:actionSupport&gt;</samp> component.</li>
+<li class="li">When the <samp>onchange</samp>
+                        fires, the page submits back the new list view selected, by
+                        submitting the new item to the <samp>filterId</samp> property, set in the <samp>&lt;apex:selectList&gt;</samp>.</li>
+<li class="li">When the property is updated, the page gets a new response
+                        from the server, with a new collection of matching records in
+                        the <samp>contacts</samp>
+                        variable.</li>
+<li class="li">But because <samp>&lt;apex:actionSupport&gt;</samp> specifies rerendering
+                        only a portion of the page, the page is updated using
+                        Ajax—asynchronous JavaScript—instead of by a full page
+                        reload.</li>
+</ul>
+</div>
+<p class="p">The net effect is that you get complex, sophisticated behavior by
+                adding just a few lines of markup.</p>
+</div>
+</div>
+</div>
+<div class="topic task nested0" id="visualforce_standard_list_controller_pagination" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_standard_list_controller_pagination"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading5"><span class="ph" id="topic-title"><a name="topic-title"></a>Add Pagination to the List</span></h2>
+<div class="body taskbody"><div class="shortdesc">Use the pagination features of the standard list controller to allow
+        users to look at long lists of records one “page” at a time.</div>
+<div class="section context">
+<p class="p">The features you’ve developed so far are very nice, and work well with
+                the short list of records that are provided as sample data in a
+                Developer Edition organization. But what happens when you have a real
+                organization, with hundreds or thousands—or even millions—of records?
+                Looking at them all on one page doesn’t work very well!</p>
+<p class="p">In fact, the standard list controller by default only shows the first
+                20 records that match your filter criteria, if any. How can you let
+                people access more than those first 20 records, or perhaps more
+                records per page than just 20?</p>
+<p class="p">The answer is pagination. This is a standard web app user interface
+                element, which lets you move forward and backward through a long list
+                of records a “page” at a time, usually using
+                    <strong class="ph uicontrol">Next</strong> and <strong class="ph uicontrol">Previous</strong>
+                links. You can add this to your page using the standard list
+                controller, as well as conveniences such as a progress indicator and
+                a menu to change the number of records per page.</p>
+</div>
+<ol class="ol steps enumList">
+<li class="li step">
+<span class="ph cmd">Below the contact list <samp>&lt;apex:pageBlockTable&gt;</samp>, add the following
+                    markup.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;!-- Pagination --&gt;
+&lt;table style="width: 100%"&gt;&lt;tr&gt;
+
+    &lt;td&gt;
+        &lt;!-- Page X of Y --&gt;
+    &lt;/td&gt;            
+
+    &lt;td align="center"&gt;
+        &lt;!-- Previous page --&gt;
+        &lt;!-- Next page --&gt;
+    &lt;/td&gt;
+    
+    &lt;td align="right"&gt;
+        &lt;!-- Records per page --&gt;
+    &lt;/td&gt;
+
+&lt;/tr&gt;&lt;/table&gt;
+</pre></div>
+</div>
+<div class="itemgroup stepresult">This creates an HTML table that will hold the three
+                    pagination controls you’re going to add. <div class="box message info"><div class="inner"><div class="bd"><div class="media"><img alt="Note" class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usb473bb5ea1b7e61dfb07e6a7e547de6b.gif"/><div class="mediaBd"><h4 class="mbs">Note</h4><p>In your real pages
+                        you might use more semantic markup with separate styling, but
+                        for the moment, plain HTML is concise and steps out of the
+                        way.</p></div></div></div></div></div>
+</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Replace the <samp>&lt;!-- Page X of Y
+                        --&gt;</samp> comment line with the following markup.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>Page: &lt;apex:outputText 
+    value=" {!PageNumber} of {! CEILING(ResultSize / PageSize) }"/&gt;</pre></div>
+</div>
+<div class="itemgroup stepresult">This adds a progress indicator to the list, indicating
+                    which page the user is viewing, and how many others there are. If
+                    you’re trying this in a DE organization, it probably says “Page 1
+                    of 1.”</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Replace the <samp>&lt;!-- Previous page
+                        --&gt;</samp> and <samp>&lt;!-- Next
+                        page --&gt;</samp> comment lines with the following
+                    markup.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>&lt;!-- Previous page --&gt;
+&lt;!-- active --&gt;
+&lt;apex:commandLink action="{! Previous }" value="« Previous"
+     rendered="{! HasPrevious }"/&gt;
+&lt;!-- inactive (no earlier pages) --&gt;
+&lt;apex:outputText style="color: #ccc;" value="« Previous"
+     rendered="{! NOT(HasPrevious) }"/&gt;
+
+&amp;nbsp;&amp;nbsp;  
+
+&lt;!-- Next page --&gt;
+&lt;!-- active --&gt;
+&lt;apex:commandLink action="{! Next }" value="Next »"
+     rendered="{! HasNext }"/&gt;
+&lt;!-- inactive (no more pages) --&gt;
+&lt;apex:outputText style="color: #ccc;" value="Next »"
+     rendered="{! NOT(HasNext) }"/&gt;</pre></div>
+</div>
+<div class="itemgroup stepresult">This markup provides <strong class="ph uicontrol">Previous</strong> and
+                        <strong class="ph uicontrol">Next</strong> links on the page. The markup
+                    covers two possibilities: when there are more records to view in
+                    a given direction, then the link is active; and when there aren’t
+                    more pages in a given direction, the link is
+                    disabled.</div>
+</li>
+<li class="li step">
+<span class="ph cmd">Replace the <samp>&lt;!-- Records per
+                        page --&gt;</samp> comment line with the following
+                    markup.</span>
+<div class="itemgroup info">
+<div class="codeblock"><pre>Records per page:
+&lt;apex:selectList value="{! PageSize }" size="1"&gt;
+    &lt;apex:selectOption itemValue="5" itemLabel="5"/&gt;
+    &lt;apex:selectOption itemValue="20" itemLabel="20"/&gt;
+    &lt;apex:actionSupport event="onchange" reRender="contacts_list"/&gt;
+&lt;/apex:selectList&gt;</pre></div>
+</div>
+<div class="itemgroup stepresult">This markup provides a menu for changing the number of
+                    records per page. Here we’ve only added an option to display
+                    fewer records on a page. Select “5” from the list, and see what
+                    happens to the list, and the other controls.</div>
+</li>
+</ol>
+<div class="section result">
+<div class="p">The results are a list page that has quite a few features that are
+                provided by the standard list controller.<div class="fig fignone">
+<span class="image image-block"><img alt="Contacts list with pagination controls" class="image image-block" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-us3632d0f42c2251bc48b77cef0f47e1f3.png"/></span>
+</div>
+</div>
+<p class="p">In the progress indicator, three properties are used to indicate how
+                many pages there are: <samp>PageNumber</samp>, <samp>ResultSize</samp>, and <samp>PageSize</samp>. The last two are actually used in a formula
+                expression, which rounds the number off to the nearest integer. This
+                prevents the indicator from saying something nonsensical, such as
+                “Page 2 of 1.6.”</p>
+<p class="p">In the pagination controls, the <samp>&lt;apex:commmandLink&gt;</samp> components reference two action
+                methods provided by the standard list controller, <samp>Previous</samp> and <samp>Next</samp>. The result is a link that
+                performs the <samp>Previous</samp> or
+                    <samp>Next</samp> action. </p>
+<p class="p">But what’s this <samp>rendered</samp> attribute, with expressions such as <samp>{! HasPrevious }</samp>? This is how Visualforce
+                enables you to show components <dfn class="term">conditionally</dfn>, that is,
+                depending on the result of a Boolean expression. Here the page markup
+                is referencing Boolean properties provided by the standard list
+                controller, <samp>HasPrevious</samp> and
+                    <samp>HasNext</samp>, which let you
+                know if there are more records in a given direction or not. By using
+                the expression in the <samp>rendered</samp> attribute, you can show or hide the results of
+                that component on the page. This is how the
+                    <strong class="ph uicontrol">Previous</strong> link is grayed out when you first
+                load the page, but becomes active if you move forward by clicking the
+                    <strong class="ph uicontrol">Next</strong> link.</p>
+<p class="p">The records per page selection menu uses an <samp>&lt;apex:selectList&gt;</samp>, which you
+                used earlier, but instead of calling a controller method to get the
+                menu values, we simply use <samp>&lt;apex:selectOption&gt;</samp> elements for the desired values.
+                Again the <samp>&lt;apex:actionSupport&gt;</samp> tag causes the menu to fire its
+                action whenever the selected value changes, and again it uses <samp>reRender="contacts_list"</samp> to
+                update only the <samp>&lt;apex:pageBlock&gt;</samp>. The new part here is that the
+                    <samp>&lt;apex:selectList&gt;</samp> sets
+                the standard list controller’s <samp>PageSize</samp> property.</p>
+</div>
+</div>
+</div>
+<div class="topic concept nested0" id="visualforce_standard_list_controller_tell_me_more" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_standard_list_controller_tell_me_more"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading6"><span class="ph" id="topic-title"><a name="topic-title"></a>Tell Me More...</span></h2>
+<div class="body conbody"><div class="shortdesc">The standard list controller provides many features that are common in
+    web apps, many more than have been covered here.</div>
+<p class="p">For example, in addition to the <samp>Previous</samp> and <samp>Next</samp> actions,
+      which move backwards and forwards one page at a time, there are also <samp>First</samp> and <samp>Last</samp> actions that go to the beginning or end of the list of
+      records.</p>
+<p class="p">Behind the scene of your markup, the standard list controller is based on the
+        <samp>StandardSetController</samp>
+      Apex class. You
+      can read more about it, and all the features it provides, in the <cite class="cite"><a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.apexcode.meta/apexcode/apex_pages_standardsetcontroller.htm" target="_blank" title="html (New Window)">Force.com
+          Apex Code
+          Developer's Guide</a></cite>.</p>
+<p class="p">There’s a small elephant in the room with the examples we created here, and
+      its name is sorting. It’s often desirable to have a default sort order for a
+      list, and also to have sort-affecting column headers that let you change the
+      sort order on the fly. The simple truth is, you can’t affect the sort order
+      using Visualforce alone.
+      Although the amount of additional Visualforce markup and Apex code required
+      to support sorting and clickable column headers isn’t enormous, it does require
+      custom code. See the additional resources for some starting points.</p>
+</div>
+</div>
+<div class="topic nested0" id="visualforce_standard_list_controller_resources" lang="en-us" xml:lang="en-us" xmlns:xml="http://www.w3.org/XML/1998/namespace"><a name="visualforce_standard_list_controller_resources"></a>
+<h2 class="helpHead2" id="Tdxn4tBK-heading7">
+<span class="ph" id="topic-title"><a name="topic-title"></a>Resources</span>
+</h2>
+<div class="body">
+<ul class="ul bulletList">
+<li class="li Documentation">
+<a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_controller_std.htm" target="_blank" title="html (New Window)">
+               Standard Controllers
+            </a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.pages.meta/pages/pages_controller_sosc_about.htm" target="_blank" title="html (New Window)">
+               Standard List Controllers
+            </a>
+</li>
+<li class="li Documentation">
+<a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.apexcode.meta/apexcode/apex_pages_standardcontroller.htm" target="_blank" title="html (New Window)">
+               StandardController Class
+            </a>
+            Apex
+         </li>
+<li class="li Documentation">
+<a class="xref" href="https://developer.salesforce.com/docs/atlas.en-us.206.0.apexcode.meta/apexcode/apex_pages_standardsetcontroller.htm" target="_blank" title="html (New Window)">
+               StandardSetController Class
+            </a>
+            Apex
+         </li>
+<li class="li Documentation">
+<a class="xref" href="https://help.salesforce.com/HTViewHelpDoc?id=customviews.htm&amp;language=en_US" target="_blank" title="html (New Window)">
+               Create a Custom List View in Salesforce Classic
+            </a>
+</li>
+</ul>
+<ul class="ul bulletList">
+<li class="li Articles">
+<a class="xref" href="https://developer.salesforce.com/page/Building_Visualforce_Pages_Using_the_Standard_Controller" target="_blank" title="html (New Window)">Building
+                    Visualforce Pages Using the Standard Controller</a>
+</li>
+<li class="li Articles">
+<a class="xref" href="https://developer.salesforce.com/page/Force.com_Books" target="_blank" title="html (New Window)">“The
+                    Standard Controller,” in <em class="ph i">Visualforce in
+                Practice</em>
+</a>
+</li>
+<li class="li Articles">
+<a class="xref" href="https://developer.salesforce.com/page/Force.com_Books" target="_blank" title="html (New Window)">“The
+                    Standard List Controller,” in <em class="ph i">Visualforce in
+                    Practice</em>
+</a>
+</li>
+</ul>
+<ul class="ul bulletList">
+<li class="li Videos">
+<a class="xref" href="https://developer.salesforce.com/blogs/developer-relations/2014/03/twitter-bootstrap-and-visualforce-in-minutes.html" target="_blank" title="html (New Window)">Twitter
+                    Bootstrap and Visualforce in Minutes</a>
+</li>
+<li class="li Videos">
+<a class="xref" href="http://events.developerforce.com/conference/dreamforce?session=23931" target="_blank" title="html (New Window)">Leverage
+                    StandardSetController in Apex and Visualforce</a>
+</li>
+</ul>
+<div class="box message info"><div class="inner"><div class="bd"><div class="media"><img class="img mtm" src="https://res.cloudinary.com/hy4kyit2a/image/upload/doc/trailhead/en-usc504a262d3ae7aa180918396b7c09a71.png"/><div class="mediaBd"><p>Remember, this module is meant for
+            Salesforce Classic. When you launch your hands-on org, <a class="xref" href="https://help.salesforce.com/articleView?id=lex_switching_uis.htm&amp;language=en_US" target="_blank">switch to Salesforce Classic</a> to complete this
+            challenge.</p></div></div></div></div></div>
+</div>
+</div>
+</body></div>

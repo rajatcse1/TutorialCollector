@@ -1,0 +1,28 @@
+<div id="content">
+<div class="print" style="text-align:center;"><img alt="projecteuler.net" src="images/print_page_logo.png" style="border:none;"/></div>
+<h2>Rounded Square Roots</h2><div id="problem_info"><h3>Problem 255 <span class="info noprint" style="float:right;"><img src="images/icon_info.png" style="width:18px;opacity:0.7;"/><span style="left:-400px;width:450px;font-size:80%;">Published on Friday, 11th September 2009, 09:00 pm; Solved by 674;<br/>Difficulty rating: 75%</span></span></h3></div>
+<div class="problem_content" role="problem">
+<p>We define the <i>rounded-square-root</i> of a positive integer <var>n</var> as the square root of <var>n</var> rounded to the nearest integer.</p>
+<p>The following procedure (essentially Heron's method adapted to integer arithmetic) finds the rounded-square-root of <var>n</var>:</p>
+<p>Let <var>d</var> be the number of digits of the number <var>n</var>.<br/>
+If <var>d</var> is odd, set <var>x</var><sub>0</sub> = 2×10<sup>(<var>d</var>-1)⁄2</sup>.<br/>
+If <var>d</var> is even, set <var>x</var><sub>0</sub> = 7×10<sup>(<var>d</var>-2)⁄2</sup>.<br/>
+Repeat:</p>
+<p align="center">
+<img alt="p255_Heron.gif" src="project/images/p255_Heron.gif"/></p>
+<p>until <var>x</var><sub><var>k</var>+1</sub> = <var>x</var><sub><var>k</var></sub>.
+</p>
+<p>As an example, let us find the rounded-square-root of <var>n</var> = 4321.<br/><var>n</var> has 4 digits, so <var>x</var><sub>0</sub> = 7×10<sup>(4-2)⁄2</sup> = 70.<br/><img alt="p255_Example.gif" src="project/images/p255_Example.gif"/><br/>
+Since <var>x</var><sub>2</sub> = <var>x</var><sub>1</sub>, we stop here.<br/>
+So, after just two iterations, we have found that the rounded-square-root of 4321 is 66 (the actual square root is 65.7343137…).
+</p>
+<p>The number of iterations required when using this method is surprisingly low.<br/>
+For example, we can find the rounded-square-root of a 5-digit integer (10,000 ≤ <var>n</var> ≤ 99,999) with an average of 3.2102888889 iterations (the average value was rounded to 10 decimal places).
+</p>
+<p>Using the procedure described above, what is the average number of iterations required to find the rounded-square-root of a 14-digit number (10<sup>13</sup> ≤ <var>n</var> &lt; 10<sup>14</sup>)?<br/>
+Give your answer rounded to 10 decimal places.
+</p>
+<p>Note: The symbols ⌊<var>x</var>⌋ and ⌈<var>x</var>⌉ represent the <dfn title="the largest integer not greater than x">floor function</dfn> and <dfn title="the smallest integer not less than x">ceiling function</dfn> respectively.
+</p>
+</div><br/>
+<br/></div>

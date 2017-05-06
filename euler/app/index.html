@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+
+<head>
+  <meta charset="utf-8" />
+  <title>AngularJS Plunker</title>
+  <script>
+    document.write('<base href="' + document.location + '" />');
+  </script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" type="text/css" href="style_default.css">
+  <script data-require="angular.js@1.3.x" src="https://code.angularjs.org/1.3.20/angular.js" data-semver="1.3.20"></script>
+  <script data-require="angular-route@*" data-semver="1.5.8" src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
+  <script src="app.js"></script>
+</head>
+
+<body ng-controller="MainCtrl">
+  <div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;">
+    <div id="MathJax_Hidden"></div>
+  </div>
+  <div id="MathJax_Message" style="display: none;"></div>
+  <div id="container">
+    <div id="header" class="noprint">
+      <div id="nav" class="noprint">
+        <ul>
+          <li><a href="about" title="About" accesskey="h">About</a></li>
+          <li id="current"><a href="archives" title="Archives" accesskey="1">Archives</a></li>
+          <li><a href="recent" title="Recent" accesskey="2">Recent</a></li>
+          <li><a href="news" title="News" accesskey="3">News</a></li>
+          <li><a href="register" title="Register" accesskey="4">Register</a></li>
+          <li><a href="sign_in" title="Sign In" accesskey="5">Sign In</a></li>
+        </ul>
+      </div>
+
+      <div id="logo" class="noprint">
+        <div>Project Euler<span>.net</span></div>
+      </div>
+    </div>
+
+    <div id="info_panel">
+      <a href="rss2_euler.xml"><img src="images/icon_rss.png" alt="RSS Feed" title="RSS Feed"></a><span class="info" style="cursor:pointer;"><a href="secure=f5Z0f5x6pPmreIfC"><img src="images/icon_lock.png" alt="secure_icon"></a><span style="color:#070;font-weight:bold;text-align:left;width:250px;right:10px;">You are currently using a secure connection</span></span>
+    </div>
+    <div id="content" ng-view>
+      <div style="text-align:center;" class="print"><img src="images/print_page_logo.png" alt="projecteuler.net" style="border:none;"></div>
+      <h2>Sum of digits sequence</h2>
+      <div id="problem_info">
+        <h3>Problem 551 <span style="float:right;" class="info noprint"><img src="images/icon_info.png" style="width:18px;opacity:0.7;"><span style="left:-400px;width:450px;font-size:80%;">Published on Saturday, 12th March 2016, 04:00 pm; Solved by 261;<br>Difficulty rating: 50%</span></span>
+        </h3>
+      </div>
+      <div class="problem_content" role="problem">
+        <p>Let <var>a</var><sub>0</sub>, <var>a</var><sub>1</sub>, <var>a</var><sub>2</sub>, ... be an integer sequence defined
+          by:</p>
+        <ul>
+          <li><var>a</var><sub>0</sub> = 1;</li>
+          <li>for <var>n</var> ≥ 1, <var>a<sub>n</sub></var> is the sum of the digits of all preceding terms.</li>
+        </ul>
+        <p>The sequence starts with 1, 1, 2, 4, 8, 16, 23, 28, 38, 49, ...<br> You are given <var>a</var><sub>10<sup>6</sup></sub>&nbsp;=&nbsp;31054319.</p>
+        <p>Find <var>a</var><sub>10<sup>15</sup></sub>.</p>
+      </div><br>
+      <br></div>
+
+    <div id="footer" class="noprint">
+      Project Euler: <a href="copyright">Copyright Information</a> | <a href="privacy">Privacy Policy</a>
+      <!--/Creative Commons License-->
+      <!-- <rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+   <Work rdf:about="">
+      <license rdf:resource="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/" />
+   <dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+   </Work>
+   <License rdf:about="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/"><permits rdf:resource="http://web.resource.org/cc/Reproduction"/><permits rdf:resource="http://web.resource.org/cc/Distribution"/><requires rdf:resource="http://web.resource.org/cc/Notice"/><requires rdf:resource="http://web.resource.org/cc/Attribution"/><prohibits rdf:resource="http://web.resource.org/cc/CommercialUse"/><permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/><requires rdf:resource="http://web.resource.org/cc/ShareAlike"/></License></rdf:RDF> -->
+    </div>
+  </div>
+
+  <div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;">
+    <div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Size1, monospace;"></div>
+  </div>
+</body>
+
+</html>

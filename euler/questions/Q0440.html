@@ -1,0 +1,16 @@
+<div id="content">
+<div class="print" style="text-align:center;"><img alt="projecteuler.net" src="images/print_page_logo.png" style="border:none;"/></div>
+<h2>GCD and Tiling</h2><div id="problem_info"><h3>Problem 440 <span class="info noprint" style="float:right;"><img src="images/icon_info.png" style="width:18px;opacity:0.7;"/><span style="left:-400px;width:450px;font-size:80%;">Published on Sunday, 13th October 2013, 07:00 am; Solved by 234;<br/>Difficulty rating: 60%</span></span></h3></div>
+<div class="problem_content" role="problem">
+<p>We want to tile a board of length <var>n</var> and height 1 completely, with either 1 × 2 blocks or 1 × 1 blocks with a single decimal digit on top:</p>
+<img alt="p440_tiles.png" src="project/images/p440_tiles.png"/><p>For example, here are some of the ways to tile a board of length <var>n</var> = 8:</p>
+<img alt="p440_some8.png" src="project/images/p440_some8.png"/><p>Let T(<var>n</var>) be the number of ways to tile a board of length <var>n</var> as described above.</p>
+<p>For example, T(1) = 10 and T(2) = 101.</p>
+<p>Let S(<var>L</var>) be the triple sum ∑<sub><var>a</var>,<var>b</var>,<var>c</var></sub> gcd(T(<var>c</var><sup><var>a</var></sup>), T(<var>c</var><sup><var>b</var></sup>)) for 1 ≤ <var>a</var>, <var>b</var>, <var>c</var> ≤ <var>L</var>.<br/>
+For example:<br/>
+S(2) = 10444<br/>
+S(3) = 1292115238446807016106539989<br/>
+S(4) mod 987 898 789 = 670616280.</p>
+<p>Find S(2000) mod 987 898 789.</p>
+</div><br/>
+<br/></div>

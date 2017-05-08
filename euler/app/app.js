@@ -10,18 +10,22 @@ function pad(str, max) {
 var app = angular.module('plunker', ["ngRoute"]);
 
 app.run(function ($location, $interval) {
-  var count = 1, total = 601;
-  $interval(function () {
-    if (count > total) {
-      count = total;
-    }
-    $location.path('/Q' + pad(count, 4).toString());
-    count = count + 1;
-  }, 1000)
+  //return;
+  // var count = 1, total = 601;
+  // $interval(function () {
+  //   if (count > total) {
+  //     count = total;
+  //   }
+  //   $location.path('/Q' + pad(count, 4).toString());
+  //   count = count + 1;
+  // }, 1000)
 });
 
-app.controller('MainCtrl', function ($scope) {
-  $scope.name = 'World';
+app.controller('MainCtrl', function ($scope, $location) {
+  //$scope.question = 1;
+  $scope.onClick = function(question){
+    $location.path('/Q' + pad(question, 4).toString());
+  };
 });
 
 app.controller('routeCtrl', function ($scope) {
